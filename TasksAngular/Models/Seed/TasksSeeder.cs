@@ -36,6 +36,7 @@ namespace TasksAngular.Models.Seed
             var thoughts = JsonConvert.DeserializeObject<IEnumerable<Thought>>(json);
             context.Thoughts.AddRange(thoughts);
             */
+
             var thoughts = getThoughts();
             context.Thoughts.AddRange(thoughts);
 

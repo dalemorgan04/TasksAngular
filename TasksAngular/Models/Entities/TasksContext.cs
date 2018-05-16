@@ -11,7 +11,6 @@ namespace TasksAngular.Models.Entities
 
         public virtual DbSet<CalendarEventRecurrence> CalendarEventRecurrences { get; set; }
         public virtual DbSet<CalendarEvent> CalendarEvents { get; set; }
-        public virtual DbSet<HabitEndOnType> HabitEndOnType { get; set; }
         public virtual DbSet<HabitException> HabitExceptions { get; set; }
         public virtual DbSet<HabitRecurrence> HabitRecurrences { get; set; }
         public virtual DbSet<Habit> Habits { get; set; }
@@ -19,7 +18,6 @@ namespace TasksAngular.Models.Entities
         public virtual DbSet<Project> Projects { get; set; }
         public virtual DbSet<Task> Tasks { get; set; }
         public virtual DbSet<Thought> Thoughts { get; set; }
-        public virtual DbSet<TimeFrameType> TimeFrameType { get; set; }
         public virtual DbSet<User> Users { get; set; }
 
         // Unable to generate entity type for table 'dbo.ProjectOrg'. Please see the warning messages.
@@ -49,15 +47,6 @@ namespace TasksAngular.Models.Entities
                 entity.Property(e => e.DateTime).HasColumnType<DateTime>("datetime");
 
                 entity.Property(e => e.Description).HasMaxLength(50);
-            });
-
-            modelBuilder.Entity<HabitEndOnType>(entity =>
-            {
-                entity.Property(e => e.HabitEndOnTypeId).ValueGeneratedNever();
-
-                entity.Property(e => e.Name)
-                    .IsRequired()
-                    .HasMaxLength(50);
             });
 
             modelBuilder.Entity<HabitException>(entity =>
@@ -94,11 +83,6 @@ namespace TasksAngular.Models.Entities
 
                 entity.Property(e => e.EndOnType).HasDefaultValueSql<int>("((0))");
 
-                entity.HasOne(d => d.EndOnTypeNavigation)
-                    .WithMany(p => p.Habits)
-                    .HasForeignKey(d => d.EndOnType)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_Habits_HabitEndOnType");
             });
 
             modelBuilder.Entity<Priority>(entity =>
@@ -162,18 +146,6 @@ namespace TasksAngular.Models.Entities
                     .HasDefaultValueSql("(datefromparts((2050),(1),(1)))");
 
                 entity.Property(e => e.TimeFrameId).HasDefaultValueSql<int>("((0))");
-            });
-            
-
-            modelBuilder.Entity<TimeFrameType>(entity =>
-            {
-                entity.HasKey(e => e.TimeFrameId);
-
-                entity.Property(e => e.TimeFrameId).ValueGeneratedNever();
-
-                entity.Property(e => e.Name)
-                    .IsRequired()
-                    .HasMaxLength(50);
             });
 
             modelBuilder.Entity<User>(entity =>

@@ -1,7 +1,6 @@
 {
   "ConnectionStrings": {
     "TasksConnectionString": "Server=(localdb)\\MSSQLLocalDB; Database = TasksDb; Integrated Security=True; MultipleActiveResultSets=true;"
-    //"Connection": "Server=(localdb)\\MSSQLLocalDB; Database = D:\\USERS\\DALE.MORGAN\\DOCUMENTS\\VISUAL STUDIO 2017\\PROJECTS\\TASKSANGULAR\\TASKSANGULAR\\APPDATA\\TASKS.MDF; Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=True;ApplicationIntent=ReadWrite; MultiSubnetFailover=False"
   },
   "Logging": {
     "LogLevel": {

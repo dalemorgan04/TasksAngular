@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations.Schema;
+using TasksAngular.Models.Enum;
 
 namespace TasksAngular.Models.Entities
 {
@@ -18,7 +19,6 @@ namespace TasksAngular.Models.Entities
         public int? EndOnCount { get; set; }
         public int EndOnType { get; set; }
         public int ProjectId { get; set; }
-
         public HabitEndOnType EndOnTypeNavigation { get; set; }
     }
 }

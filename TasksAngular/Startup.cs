@@ -25,7 +25,7 @@ namespace TasksAngular
             {
                 cfg.UseSqlServer(configuration.GetConnectionString("TasksConnectionString"));
             });
-            //services.AddTransient<TasksSeeder>();
+            services.AddTransient<TasksSeeder>();
             services.AddMvc();
         }
 
@@ -61,7 +61,6 @@ namespace TasksAngular
             //Seed
             if (env.IsDevelopment())
             {
-                var seeder = new TasksSeeder();
                 using (var scope = app.ApplicationServices.CreateScope())
                 {
                     var seeder = scope.ServiceProvider.GetService<TasksSeeder>();
