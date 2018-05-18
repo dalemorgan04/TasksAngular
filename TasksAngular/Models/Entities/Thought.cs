@@ -2,15 +2,14 @@
 using System.ComponentModel.DataAnnotations.Schema;
 using TasksAngular.Infrastructure.Extension;
 using TasksAngular.Models.Enum;
-using TasksAngular.Repository.Core;
 
 namespace TasksAngular.Models.Entities
 {
     [Table("Thoughts")]
-    public partial class Thought :IDomainEntity<int>
+    public partial class Thought 
     {
         [Column("ThoughtId")]
-        public int Id { get; set; }
+        public int ThoughtId { get; set; }
         public int UserId { get; set; }
         public string Description { get; set; }
         public DateTime CreatedDateTime { get; set; }
@@ -51,22 +50,17 @@ namespace TasksAngular.Models.Entities
 
             Thought thought = new Thought()
             {
-                User = new User().Create(),
                 Description = description,
                 CreatedDateTime = DateTime.Now,
                 SortId = sortId,
                 TimeFrameId = timeFrameId,
-                TimeFrameDateTime = validatedTimeFrameDateTime,
-                Project = project
+                TimeFrameDateTime = validatedTimeFrameDateTime
             };
             return thought;
         }
 
         public virtual void Update(string description, int timeFrameId, DateTime timeFrameDateTime, Project project)
         {
-            Description = description;
-            Project = project;
-
             TimeFrameId = timeFrameId;
             switch ((TimeFrameType)timeFrameId)
             {

@@ -32,7 +32,6 @@
 
   <ItemGroup>
     <Folder Include="Infrastructure\Extension\" />
-    <Folder Include="Repository\Thought\" />
     <Folder Include="Service\" />
   </ItemGroup>
 

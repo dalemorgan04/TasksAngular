@@ -23,12 +23,12 @@ namespace TasksAngular.Models.Seed
         {
             context.Database.EnsureCreated();
 
-            if (context.Thoughts.Any())
-            {
-                //Reset data on each run
-                context.Thoughts.RemoveRange(context.Thoughts);
-            }
-            
+            //if (context.Thoughts.Any())
+            //{
+            //    //Reset data on each run
+            //    context.Thoughts.RemoveRange(context.Thoughts);
+            //}
+
             /*
             //Using JSON                
             var filepath = Path.Combine(hosting.ContentRootPath, "Models/Seed/SeedThoughts.json");
@@ -37,10 +37,14 @@ namespace TasksAngular.Models.Seed
             context.Thoughts.AddRange(thoughts);
             */
 
-            var thoughts = getThoughts();
-            context.Thoughts.AddRange(thoughts);
+            if (!context.Thoughts.Any())
+            {
+                var thoughts = getThoughts();
+                context.Thoughts.AddRange(thoughts);
 
-            context.SaveChanges();
+                context.SaveChanges();
+            }
+
             
         }
 

@@ -1,71 +1,84 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using AutoMapper;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using Tasks.Service.Thoughts.Dto;
 using TasksAngular.Models.Entities;
-using TasksAngular.Repository.Core;
-using TasksAngular.Repository.Thought;
 
 namespace Tasks.Service.Thoughts
 {
     public class ThoughtService : IThoughtService
     {
-        private readonly ISpecificationRepository<Thought, int> thoughtRepository;
-        private readonly IThoughtRepository thoughtSqlRepository;
-        private readonly IUnitOfWork unitOfWork;
+        private readonly TasksContext context;
 
-        public ThoughtService(
-            ISpecificationRepository<Thought, int> thoughtRepository,
-            IThoughtRepository thoughtSqlRepository,
-            IUnitOfWork unitOfWork)
+        public ThoughtService(TasksContext context)
         {
-            this.thoughtRepository = thoughtRepository;
-            this.thoughtSqlRepository = thoughtSqlRepository;
-            this.unitOfWork = unitOfWork;
+            this.context = context;
         }
 
         public IList<ThoughtDto> GetThoughts()
         {
-            List<Thought> thoughtList = thoughtRepository.GetAll().ToList();
+            var thoughtList = context.Thoughts.ToList();
             List<ThoughtDto> thoughtDtoList = Mapper.Map<List<Thought>, List<ThoughtDto>>(thoughtList);
             return thoughtDtoList;
         }
 
-        public ThoughtDto GetThoughtById(int id)
+        public ThoughtDto GetThoughts(int id)
         {
-            Thought thought = thoughtRepository.Get(id);
+            Thought thought = context.Thoughts
+                .SingleOrDefault(t => t.ThoughtId == id);
+
             ThoughtDto thoughtDto = Mapper.Map<Thought, ThoughtDto>(thought);
             return thoughtDto;
         }
-
-        public void UpdateSortId(int thoughtId, int moveToSortId)
-        {
-            thoughtSqlRepository.UpdateSortId(thoughtId, moveToSortId);
-        }
-
-        public void Save(ThoughtDto thoughtDto)
+        
+        public async void Save(ThoughtDto thoughtDto)
         {
             Thought thought;
             if (thoughtDto.Id > 0)
             {
-                thought = this.thoughtRepository.Get(thoughtDto.Id);
+                thought = context.Thoughts
+                    .SingleOrDefaultAsync(t => t.ThoughtId == thoughtDto.Id)
+                    .Result;
+
                 thought.Update(
-                    thoughtDto.Description, 
-                    (int)thoughtDto.TimeFrame.TimeFrameType, 
-                    thoughtDto.TimeFrame.TimeFrameDateTime, 
-                    thoughtDto.Project );
+                    thoughtDto.Description,
+                    (int)thoughtDto.TimeFrame.TimeFrameType,
+                    thoughtDto.TimeFrame.TimeFrameDateTime,
+                    thoughtDto.Project);
+
+                try
+                {
+                    context.Update<Thought>(thought);
+                    await context.SaveChangesAsync();
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e);
+                    throw;
+                }
+
             }
             else
             {
                 thought = Thought.Create(thoughtDto.Description, thoughtDto.SortId, (int)thoughtDto.TimeFrame.TimeFrameType, thoughtDto.TimeFrame.TimeFrameDateTime, thoughtDto.Project );
-                thoughtRepository.Add(thought);
+                
+                context.SaveChanges();
             }
-            this.unitOfWork.Commit();
         }
 
         public void Delete(int thoughtId)
         {
-            thoughtRepository.Remove(thoughtId);
+            
+        }
+
+
+        public void UpdateSortId(int thoughtId, int moveToSortId)
+        {
+            //TODO: Build in store proc
         }
     }
 }
