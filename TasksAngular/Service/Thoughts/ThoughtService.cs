@@ -21,7 +21,9 @@ namespace Tasks.Service.Thoughts
 
         public IList<ThoughtDto> GetThoughts()
         {
-            var thoughtList = context.Thoughts.ToList();
+            var thoughtList = context.Thoughts
+                    .Include(t => t.User)
+                    .ToList();
             List<ThoughtDto> thoughtDtoList = Mapper.Map<List<Thought>, List<ThoughtDto>>(thoughtList);
             return thoughtDtoList;
         }

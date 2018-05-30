@@ -1,0 +1,3 @@
+﻿interface IThoughts {
+    thoughts: IThought[];
+}

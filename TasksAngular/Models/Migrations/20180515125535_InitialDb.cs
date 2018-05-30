@@ -228,7 +228,7 @@ namespace TasksAngular.Migrations
                         name: "FK_Tasks_ToUser",
                         column: x => x.UserId,
                         principalTable: "Users",
-                        principalColumn: "UserId",
+                        principalColumn: "User",
                         onDelete: ReferentialAction.Restrict);
                 });
 
@@ -245,7 +245,7 @@ namespace TasksAngular.Migrations
             migrationBuilder.CreateIndex(
                 name: "IX_Tasks_UserId",
                 table: "Tasks",
-                column: "UserId");
+                column: "User");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

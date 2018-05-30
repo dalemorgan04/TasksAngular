@@ -122,11 +122,7 @@ namespace TasksAngular.Models.Entities
                     .HasForeignKey(d => d.PriorityId)
                     .HasConstraintName("FK_Tasks_ToPriority");
 
-                entity.HasOne(d => d.User)
-                    .WithMany(p => p.Tasks)
-                    .HasForeignKey(d => d.UserId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_Tasks_ToUser");
+                entity.HasOne(d => d.User);
             });
             
             modelBuilder.Entity<Thought>(entity =>
@@ -134,6 +130,9 @@ namespace TasksAngular.Models.Entities
                 entity.HasKey(e => e.ThoughtId);
 
                 entity.Property(e => e.CreatedDateTime).HasColumnType<DateTime>("datetime");
+
+                entity.HasOne(t => t.User)
+                    .WithMany();
 
                 entity.Property(e => e.Description)
                     .IsRequired()
@@ -159,6 +158,7 @@ namespace TasksAngular.Models.Entities
                 entity.Property(e => e.LastName)
                     .IsRequired()
                     .HasMaxLength(50);
+                
             });
         }
     }

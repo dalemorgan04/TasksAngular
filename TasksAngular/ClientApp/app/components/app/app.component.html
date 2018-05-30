@@ -1,10 +1,64 @@
-<div class='container-fluid'>
-    <div class='row'>
-        <div class='col-sm-3'>
-            <nav-menu></nav-menu>
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" charset="utf-8">
+    <title>@ViewBag.Title Task Tunnel</title>
+    <link href="https://fonts.googleapis.com/css?family=Copse|Scope+One|Spectral+SC" rel="stylesheet">
+
+</head>
+<body>
+
+<div id="body-grid">
+
+    <header>
+        <div class="header-container">
+            <div class="header-section-left">
+
+            </div>
+            <div class="header-section-center">
+                <h1 class="logo">Thought Stream</h1>
+            </div>
+            <div class="header-section-right">
+
+            </div>
         </div>
-        <div class='col-sm-9 body-content'>
-            <router-outlet></router-outlet>
+    </header>
+
+    <nav>
+
+        <div class="nav-container">
+            <div class="nav-content">
+                <thought-list></thought-list>
+            </div>
         </div>
-    </div>
+
+    </nav>
+
+    <article>
+        <div id="content" class="article-container">
+
+        </div>
+    </article>
+
+    <aside>
+
+        <div class="aside-container">
+
+        </div>
+
+    </aside>
+
+    <footer>
+        <div class="footer-content">
+            <hr id="hr-footer"/>
+            <p>
+                Developed by Dale Morgan
+            </p>
+        </div>
+    </footer>
+
 </div>
+
+</body>
+</html>

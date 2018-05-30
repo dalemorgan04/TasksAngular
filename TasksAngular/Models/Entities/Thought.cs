@@ -1,5 +1,7 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using TasksAngular.Infrastructure.Extension;
 using TasksAngular.Models.Enum;
 
@@ -8,9 +10,10 @@ namespace TasksAngular.Models.Entities
     [Table("Thoughts")]
     public partial class Thought 
     {
+        [Key]
         [Column("ThoughtId")]
         public int ThoughtId { get; set; }
-        public int UserId { get; set; }
+        public User User { get; set; }
         public string Description { get; set; }
         public DateTime CreatedDateTime { get; set; }
         public int SortId { get; set; }

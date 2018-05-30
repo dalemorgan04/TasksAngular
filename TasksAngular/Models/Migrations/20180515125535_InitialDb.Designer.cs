@@ -38,7 +38,7 @@ namespace TasksAngular.Migrations
 
                     b.Property<int>("ProjectId");
 
-                    b.Property<int>("UserId");
+                    b.Property<int>("User");
 
                     b.HasKey("CalendarEventId");
 
@@ -108,7 +108,7 @@ namespace TasksAngular.Migrations
 
                     b.Property<int>("TimeFrameId");
 
-                    b.Property<int>("UserId");
+                    b.Property<int>("User");
 
                     b.HasKey("HabitId");
 
@@ -210,7 +210,7 @@ namespace TasksAngular.Migrations
 
                     b.Property<int?>("TimeFrameId");
 
-                    b.Property<int>("UserId");
+                    b.Property<int>("User");
 
                     b.HasKey("ProjectId");
 
@@ -241,13 +241,13 @@ namespace TasksAngular.Migrations
                         .ValueGeneratedOnAdd()
                         .HasDefaultValueSql("((0))");
 
-                    b.Property<int>("UserId");
+                    b.Property<int>("User");
 
                     b.HasKey("TaskId");
 
                     b.HasIndex("PriorityId");
 
-                    b.HasIndex("UserId");
+                    b.HasIndex("User");
 
                     b.ToTable("Tasks");
                 });
@@ -278,7 +278,7 @@ namespace TasksAngular.Migrations
                         .ValueGeneratedOnAdd()
                         .HasDefaultValueSql("((0))");
 
-                    b.Property<int>("UserId");
+                    b.Property<int>("User");
 
                     b.HasKey("ThoughtId");
 
@@ -300,7 +300,7 @@ namespace TasksAngular.Migrations
 
             modelBuilder.Entity("TasksAngular.Models.Entities.User", b =>
                 {
-                    b.Property<int>("UserId")
+                    b.Property<int>("User")
                         .ValueGeneratedOnAdd();
 
                     b.Property<string>("FirstName")
@@ -311,7 +311,7 @@ namespace TasksAngular.Migrations
                         .IsRequired()
                         .HasMaxLength(50);
 
-                    b.HasKey("UserId");
+                    b.HasKey("User");
 
                     b.ToTable("Users");
                 });
@@ -333,7 +333,7 @@ namespace TasksAngular.Migrations
 
                     b.HasOne("TasksAngular.Models.Entities.User", "User")
                         .WithMany("Tasks")
-                        .HasForeignKey("UserId")
+                        .HasForeignKey("User")
                         .HasConstraintName("FK_Tasks_ToUser");
                 });
 #pragma warning restore 612, 618

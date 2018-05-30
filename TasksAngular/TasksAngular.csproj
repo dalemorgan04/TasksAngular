@@ -13,6 +13,7 @@
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="2.0.3" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer.Design" Version="1.1.5" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="2.0.3" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.0.1" />
     <PackageReference Include="Node.js" Version="5.3.0" />
     <PackageReference Include="Npm" Version="3.5.2" />
   </ItemGroup>
@@ -27,12 +28,25 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="ClientApp\app\services\thought.IThought.ts" />
+    <None Remove="ClientApp\app\services\thought.IThoughts.ts" />
+    <None Remove="ClientApp\app\services\thought.service.ts" />
+  </ItemGroup>
+
+  <ItemGroup>
       <DotNetCliToolReference Include="Microsoft.EntityFrameworkCore.Tools.DotNet" Version="2.0.0" />
   </ItemGroup>
 
   <ItemGroup>
     <Folder Include="Infrastructure\Extension\" />
+    <Folder Include="ViewModels\" />
     <Folder Include="Service\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <TypeScriptCompile Include="ClientApp\app\services\thought.IThought.ts" />
+    <TypeScriptCompile Include="ClientApp\app\services\thought.IThoughts.ts" />
+    <TypeScriptCompile Include="ClientApp\app\services\thought.service.ts" />
   </ItemGroup>
 
   <Target Name="DebugRunWebpack" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('wwwroot\dist') ">
