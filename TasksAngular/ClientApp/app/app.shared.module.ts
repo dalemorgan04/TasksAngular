@@ -2,41 +2,27 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
+//Routing
 import { RouterModule } from '@angular/router';
-
-import { AppComponent } from './components/app/app.component';
-import { NavMenuComponent } from './components/navmenu/navmenu.component';
-import { HomeComponent } from './components/home/home.component';
-import { FetchDataComponent } from './components/fetchdata/fetchdata.component';
-import { CounterComponent } from './components/counter/counter.component';
-import { ThoughtListComponent } from './components/thoughtList/thoughtList.component';
-
-import { ThoughtService } from './services/thought.service';
+import { ThoughtsComponent } from './modules/thoughts/pages/thoughts.component';
+//Modules
+import { LayoutModule } from './modules/layout/layout.module';
+import { SharedModule } from './modules/shared/shared.module';
+import { ThoughtsModule } from './modules/thoughts/thoughts.module';
 
 @NgModule({
-    declarations: [
-        AppComponent,
-        NavMenuComponent,
-        CounterComponent,
-        ThoughtListComponent,
-        FetchDataComponent,
-        HomeComponent
-    ],
     imports: [
         CommonModule,
         HttpModule,
         FormsModule,
         RouterModule.forRoot([
-            { path: '', redirectTo: 'home', pathMatch: 'full' },
-            { path: 'home', component: HomeComponent },
-            { path: 'counter', component: CounterComponent },
-            { path: 'fetch-data', component: FetchDataComponent },
-            { path: 'thoughts/index', component: ThoughtListComponent },
-            { path: '**', redirectTo: 'home' }
-        ])
-    ],
-    providers: [
-        ThoughtService
+            { path: '', redirectTo: 'thought', pathMatch: 'full' },
+            { path: 'thought', component: ThoughtsComponent },
+            { path: '**', redirectTo: '' }
+        ]),
+        LayoutModule,
+        SharedModule,
+        ThoughtsModule
     ]
 })
 export class AppModuleShared {

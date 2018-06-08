@@ -28,25 +28,14 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Remove="ClientApp\app\services\thought.IThought.ts" />
-    <None Remove="ClientApp\app\services\thought.IThoughts.ts" />
-    <None Remove="ClientApp\app\services\thought.service.ts" />
-  </ItemGroup>
-
-  <ItemGroup>
       <DotNetCliToolReference Include="Microsoft.EntityFrameworkCore.Tools.DotNet" Version="2.0.0" />
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="ClientApp\images\svg\" />
     <Folder Include="Infrastructure\Extension\" />
     <Folder Include="ViewModels\" />
     <Folder Include="Service\" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <TypeScriptCompile Include="ClientApp\app\services\thought.IThought.ts" />
-    <TypeScriptCompile Include="ClientApp\app\services\thought.IThoughts.ts" />
-    <TypeScriptCompile Include="ClientApp\app\services\thought.service.ts" />
   </ItemGroup>
 
   <Target Name="DebugRunWebpack" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('wwwroot\dist') ">

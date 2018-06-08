@@ -1,0 +1,31 @@
+﻿<table>
+    <thead>
+    <tr>
+        <th>Description</th>
+    </tr>
+    </thead>
+
+    <tbody id="thoughtResultsTableBody">
+    
+        <tr>
+            <td>{{test}}</td>
+        </tr>
+    
+    </tbody>
+</table>
+
+<table>
+    <thead>
+    <tr>
+        <th>Description</th>
+    </tr>
+    </thead>
+
+    <tbody >
+    
+    <tr *ngFor ="let thought of thoughtlist">
+        <td>{{thought.description}}</td>
+    </tr>
+    
+    </tbody>
+</table>
