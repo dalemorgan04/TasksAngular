@@ -1,0 +1,13 @@
+/*Separator between article and footer*/
+hr.footer {
+    border: 0;
+    height: 1px;
+    width: 70%;
+    /* Old gradient colour http://colorzilla.com/gradient-editor/#e5e9ec+0,00ffed+35,16e280+50,30ff9b+65,e5e9ec+100 */
+    /* Gradient colour: http://colorzilla.com/gradient-editor/#e5e9ec+0,626466+50,e5e9ec+100 */
+    background: #e5e9ec; /* Old browsers */
+    background: -moz-linear-gradient(left, #e5e9ec 0%, #626466 50%, #e5e9ec 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(left, #e5e9ec 0%,#626466 50%,#e5e9ec 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to right, #e5e9ec 0%,#626466 50%,#e5e9ec 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e5e9ec', endColorstr='#e5e9ec',GradientType=1 ); /* IE6-9 */
+}

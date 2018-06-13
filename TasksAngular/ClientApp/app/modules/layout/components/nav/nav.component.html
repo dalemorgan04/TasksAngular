@@ -3,8 +3,9 @@
         <span class='glyphicon glyphicon-th-list'></span> Fetch data
     </a>
 </li>-->
-<div class="nav-container">
-    <div class="nav-content">
+<div class="container" [class.minified] ="minifiedClass" 
+    [@navbar]="navbarState" (@navbar.done)="toggleDone()">
+    <div class="content">
 
         <ul>
             <li>

@@ -1,0 +1,133 @@
+﻿/******************************************
+*
+*        Developed by Dale Morgan
+*         dalemoragn04@gmail.com
+*
+*******************************************/
+
+
+/*
+* ==================== GLOBAL VARIABLES ====================
+*/
+
+:root {
+    /* --- Global themes --- */
+    --theme-green: #16e280;
+    --theme-green-light: #30ff9b;
+    --theme-green-xlight: #7fffc1;
+    --theme-green-dark: #15d87a;
+    --theme-blue-xlight: #7ffff6;
+    --theme-blue-light: #00ffed;
+    --theme-blue: #00E5D6;
+    --theme-blue-dark: #00D8CA;
+    --theme-white: #f7f7f7;
+    --theme-grey: #e5e9ec;
+    --theme-grey-dark: #626466;
+    --theme-black: #363537;
+    --theme-red: #ee6055;
+    --theme-font-text: 'Scope One', serif;
+    --theme-font-heading: 'Spectral SC', serif;
+    /* --- Layout Specific Themes --- */
+    /*Site*/
+    --card-bg-color: var(--theme-white);
+    --text-color: var(--theme-black);
+    --text-font: var(--theme-font-text);
+    /*Header*/
+    --header-font: var(--theme-font-heading);
+    --header-font-color: var(--theme-green-dark);
+    --header-logo-font-color: var(--theme-grey-dark);
+    /*Footer*/
+    --footer-text-color: var(--theme-grey-dark);
+    /*Nav*/
+    --nav-bg-color: var(--theme-white);
+    --grey-dark: var(--theme-grey-dark);
+    --nav-active-color: var(--theme-blue-light);
+    --heading: var(--theme-font-heading);
+    --nav-tab-inactive-bg-color: var(--theme-blue-light);
+    --blue-light: var(--theme-blue-light);
+    --nav-tab-hover-bg-color: var(--theme-blue);
+    /*Aside*/
+    --white: var(--theme-white);
+    --aside-tab-inactive-bg-color: var(--theme-green-light);
+    --aside-tab-disabled-bg-color: var(--theme-grey);
+    --aside-tab-active-bg-color: var(--theme-white);
+    --aside-tab-hover-bg-color: var(--theme-green-dark);
+    /*Shadow*/
+    --shadow-card: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+    --shadow-side: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+    --shadow-header: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+    --shadow-active-tab: -3px 5px 5px -3px rgba(0,0,0,0.16), -3px 5px 5px -3px rgba(0,0,0,0.23);
+
+
+    /* --- Site Theme --- */
+    --green: #16e280;
+    --green-light: #30ff9b;
+    --green-xlight: #7fffc1;
+    --green-dark: #15d87a;
+    --blue-xlight: #7ffff6;
+    --blue-light: #00ffed;
+    --blue: #00E5D6;
+    --blue-dark: #00D8CA;
+    --white: #f7f7f7;
+    --grey: #e5e9ec;
+    --grey-dark: #626466;
+    --black: #363537;
+    --red: #ee6055;
+    --text: 'Scope One', serif;
+    --heading: 'Spectral SC', serif;
+    /*Shadow*/
+    --shadow-card: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+    --shadow-side: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+    --shadow-header: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+    --shadow-active-tab: -3px 5px 5px -3px rgba(0,0,0,0.16), -3px 5px 5px -3px rgba(0,0,0,0.23);
+}
+
+html, body {
+    /*Fill view height and width*/
+    margin: 0;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+}
+
+body {
+    margin: 0; /*Body has default margins on all browsers*/
+    text-align: center;
+    background: var(--grey);
+    color: var(--black);
+    font-family: var(--text);
+    font-size: 12px;
+    min-width: 450px;
+}
+
+h1 {
+    font-family: var(--heading);
+    color: var(--black);
+    text-decoration: underline;
+}
+
+h2, h3 {
+    font-family: var(--heading);
+    color: var(--black);
+}
+
+.rotate {
+    z-index: inherit;
+    /* Safari */
+    -webkit-transform: rotate(270deg);
+    /* Firefox */
+    -moz-transform: rotate(270deg);
+    /* IE */
+    -ms-transform: rotate(270deg);
+    /* Opera */
+    -o-transform: rotate(270deg);
+}
+
+/* Make unselectable */
+h1, img, .rotate {
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-drag: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+}
