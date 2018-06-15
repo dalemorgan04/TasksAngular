@@ -1,46 +1,48 @@
 import { Component, NgZone, Output, EventEmitter, HostListener } from '@angular/core';
 import { trigger, state, style, transition, animate, keyframes } from '@angular/animations';
 import { NavService } from '../nav/nav.service';
+import { SidebarService } from '../../../shared/sidebar/sidebar.service';
+import { headerLeftArrow, headerRightArrow } from '../../../shared/animations';
 
-@
-Component({
+@Component({
     selector: 'header',
     templateUrl: './header.component.html',
     styleUrls: ['./header.component.css'],
-    animations: [
-        trigger('leftArrow',
-        [
-            state('expanded',
-                style({
-                    transform: 'none'
-                })),
-            state('minified',
-                style({
-                    transform: 'rotate3d(0, 0, 1, 180deg)'
-                })),
-            transition('minified => expanded', animate(100)),
-            transition('expanded => minified', animate('100ms 300ms'))
-        ])
-    ]
+    animations: [ headerLeftArrow, headerRightArrow ]
 })
 export class HeaderComponent {
 
     public leftArrowState: string = 'expanded';
-    public wobbleRightState: string = 'expanded';
-    public isMinified: boolean = false;
+    public rightArrowState: string = 'minified';
+    public isNavMinified: boolean = false;
+    public isSidebarOpen: boolean = false;
 
-    constructor(public zone: NgZone, private navService: NavService) { }
+    constructor(
+        public zone: NgZone,
+        private navService: NavService,
+        private sidebarService: SidebarService)
+    { }
 
     ngOnInit() {
         this.navService.change.subscribe((isMinified: any) => {
-            this.isMinified = isMinified;
-            this.leftArrowState = this.isMinified
+            this.isNavMinified = isMinified;
+            this.leftArrowState = this.isNavMinified
                 ? 'minified'
                 : 'expanded';
+        });
+        this.sidebarService.change.subscribe((isOpen: any) => {
+            this.isSidebarOpen = isOpen;
+            this.rightArrowState = this.isSidebarOpen
+                ? 'expanded'
+                : 'minified';
         });
     }
 
     toggleNav() {
         this.navService.toggle();
+    }
+
+    toggleSidebar() {
+        this.sidebarService.toggle();
     }
 }

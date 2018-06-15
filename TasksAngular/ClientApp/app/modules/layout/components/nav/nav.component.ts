@@ -1,34 +1,13 @@
-import { Component, OnInit, HostBinding } from '@angular/core';
-import { query, stagger, trigger, state, style, transition, animate, keyframes } from '@angular/animations';
+import { Component, OnInit } from '@angular/core';
+import { query, stagger, trigger, state, style, transition, animate } from '@angular/animations';
 import { NavService } from './nav.service';
+import { navbar } from '../../../shared/animations';
 
 @Component({
     selector: 'nav',
     templateUrl: './nav.component.html',
     styleUrls: ['./nav.component.css'],
-    animations: [
-        trigger('navbar', [
-            state('expanded', style({
-                width: '150px'
-            })),
-            state('minified', style({
-                width: '70px'
-            })),
-            transition('expanded => minified', [
-                query('span', stagger('30ms', [
-                    animate('100ms', style({ opacity: '0' }))
-                ])),
-                query(':self', animate('200ms ease-in-out'))
-            ]),
-            transition('minified => expanded', [
-                query('span', style({opacity:0})),
-                query(':self', animate('200ms ease-in-out')),
-                query('span', stagger('30ms', [
-                    animate('100ms', style({ opacity: '1' }))
-                ]))
-            ])
-        ])
-    ]
+    animations: [ navbar ]
 })
 export class NavComponent implements OnInit {
 

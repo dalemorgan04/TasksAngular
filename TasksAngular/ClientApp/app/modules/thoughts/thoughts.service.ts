@@ -11,20 +11,20 @@ import '../../models/thought.model';
 export class ThoughtsService
 {
     private baseUrl: string = '';
-    public thoughtlist: IThought[];
+    public thoughtslist: IThought[];
 
     constructor(
             private http: Http,
             @Inject('BASE_URL') baseUrl: string) {
         this.baseUrl = baseUrl;
-        this.thoughtlist = [];
+        this.thoughtslist = [];
     }
 
-    getThoughtList(): Observable<IThought[]> {
+    getThoughtsList(): Observable<IThought[]> {
         return this.http.get('api/Thoughts/Index')  
             .map((response: Response) => {
-                this.thoughtlist = response.json().thoughtList;
-                return this.thoughtlist;
+                this.thoughtslist = response.json().thoughtsList;
+                return this.thoughtslist;
             })
             .catch(this.errorHandler);
     }

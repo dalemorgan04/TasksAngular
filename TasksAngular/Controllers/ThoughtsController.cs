@@ -27,7 +27,7 @@ namespace TasksAngular.Controllers
             List<ThoughtDto> thoughtDtoList = thoughtService.GetThoughts().ToList();
             ThoughtsViewModel viewModel = new ThoughtsViewModel()
             {
-                ThoughtList = new List<ThoughtViewModel>()
+                ThoughtsList = new List<ThoughtViewModel>()
             };
             foreach (var thoughtDto in thoughtDtoList)
             {
@@ -45,7 +45,7 @@ namespace TasksAngular.Controllers
                     TimeFrameWeekString = thoughtDto.TimeFrame.WeekString,
                     TimeFrameDueString = thoughtDto.TimeFrame.DueString
                 };
-                viewModel.ThoughtList.Add(thought);
+                viewModel.ThoughtsList.Add(thought);
             }
             return viewModel;
         }

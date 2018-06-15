@@ -6,8 +6,8 @@
     <div class="center">
         <h1 class="logo">Thought Stream</h1>
     </div>
-    <div class="right" [@wobbleRight]="wobbleRightState" 
-         (mouseenter) ="triggerWobble('right')">
-        <img src="../../../../../images/svg/rightArrow.svg" />
+    <div class="right" (click) ="toggleSidebar()">
+        <img [@rightArrow]="rightArrowState"
+             src="../../../../../images/svg/rightArrow.svg" />
     </div>
 </div>

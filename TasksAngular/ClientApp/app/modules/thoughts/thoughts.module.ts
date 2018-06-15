@@ -1,10 +1,11 @@
 ﻿import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { ThoughtListComponent } from './components/thoughtList/thoughtList.component';
+import { SharedModule } from '../shared/shared.module';
 import { ThoughtsService } from './thoughts.service';
 import { ThoughtsComponent } from './pages/thoughts.component';
-import { SharedModule } from '../shared/shared.module';
+import { ThoughtsSideBarComponent } from './components/thoughts-sidebar/thoughts-sidebar.component';
+import { ThoughtsListComponent } from './components/thoughts-list/thoughts-list.component';
 
 @NgModule({
     imports: [
@@ -13,14 +14,16 @@ import { SharedModule } from '../shared/shared.module';
     ],
     declarations: [
         ThoughtsComponent,
-        ThoughtListComponent
+        ThoughtsListComponent,
+        ThoughtsSideBarComponent
     ],
     providers: [
         ThoughtsService
     ],
     exports: [
         ThoughtsComponent,
-        ThoughtListComponent
+        ThoughtsListComponent,
+        ThoughtsSideBarComponent
     ]
 })
 export class ThoughtsModule {

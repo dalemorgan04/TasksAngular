@@ -4,6 +4,6 @@ namespace TasksAngular.ViewModels.Thoughts
 {
     public class ThoughtsViewModel
     {   
-        public List<ThoughtViewModel> ThoughtList { get; set; }  
+        public List<ThoughtViewModel> ThoughtsList { get; set; }  
     }
 }

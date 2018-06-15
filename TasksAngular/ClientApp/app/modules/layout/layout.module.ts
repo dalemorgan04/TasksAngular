@@ -7,6 +7,7 @@ import { LayoutComponent } from './pages/layout.component';
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { NavService } from './components/nav/nav.service';
+import { ContentComponent } from './components/content/content.component';
 
 @NgModule({
     imports: [
@@ -15,8 +16,9 @@ import { NavService } from './components/nav/nav.service';
     ],
     declarations: [
         LayoutComponent,
-        NavComponent,
         HeaderComponent,
+        NavComponent,
+        ContentComponent,
         FooterComponent
     ],
     providers: [
@@ -24,8 +26,9 @@ import { NavService } from './components/nav/nav.service';
     ],
     exports: [
         LayoutComponent,
-        NavComponent,
         HeaderComponent,
+        NavComponent,
+        ContentComponent,
         FooterComponent
     ]
 })
