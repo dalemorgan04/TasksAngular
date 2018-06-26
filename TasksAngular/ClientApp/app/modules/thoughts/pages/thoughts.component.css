@@ -3,6 +3,7 @@
     height: 100%;
     margin: 0;
     padding: 0;
+
     /*Flexbox Rows*/
     display: flex;
     flex-direction: row;
@@ -29,8 +30,10 @@
 }
 thoughts-list {
     flex: 1 1 100%;
+    padding: 10px;
 }
 thoughts-sidebar {
     flex: 0 0 auto;
     padding-bottom: 5px;
+    float: right;
 }

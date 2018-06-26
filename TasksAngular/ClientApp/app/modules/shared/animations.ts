@@ -11,8 +11,8 @@ export const headerLeftArrow =
                 style({
                     transform: 'rotate3d(0, 0, 1, 180deg)'
                 })),
-            transition('minified => expanded', animate(100)),
-            transition('expanded => minified', animate('100ms 300ms'))
+            transition('minified => expanded', animate(200)),
+            transition('expanded => minified', animate(200))
         ]);
 
 export const headerRightArrow = 
@@ -26,8 +26,8 @@ export const headerRightArrow =
                 style({
                     transform: 'rotate3d(0, 0, 1, 180deg)'
                 })),
-            transition('minified => expanded', animate(100)),
-            transition('expanded => minified', animate('100ms 300ms'))
+            transition('minified => expanded', animate(200)),
+            transition('expanded => minified', animate(200))
         ]);
 
 export const navbar =
@@ -48,12 +48,12 @@ export const navbar =
                             [
                                 animate('100ms', style({ opacity: '0' }))
                             ])),
-                    query(':self', animate('200ms cubic-bezier(0.175, 0.885, 0.32, 1.275)'))
+                    query(':self', animate('200ms cubic-bezier(1, 0, 0, 1)'))
                 ]),
             transition('minified => expanded',
                 [
                     query('span', style({ opacity: 0 })),
-                    query(':self', animate('200ms cubic-bezier(0.175, 0.885, 0.32, 1.275)')),
+                    query(':self', animate('200ms cubic-bezier(1, 0, 0, 1)')),
                     query('span',
                         stagger('30ms',
                             [
@@ -61,6 +61,7 @@ export const navbar =
                             ]))
                 ])
         ]);
+
 export const sidebar =
     trigger('sidebar',
         [
@@ -75,12 +76,12 @@ export const sidebar =
             transition('expanded => minified',
                 [
                     query('.content', animate('100ms', style({ opacity: '0' }))),
-                    query(':self', animate('200ms cubic-bezier(0.175, 0.885, 0.32, 1.275)'))
+                    query(':self', animate('200ms 200ms cubic-bezier(0.455, 0.03, 0.515, 0.955)'))
                 ]),
             transition('minified => expanded',
                 [
-                    query('.content', style({ opacity: 1 })),
-                    query(':self', animate('200ms cubic-bezier(0.175, 0.885, 0.32, 1.275)')),
+                    query('.content', style({ opacity: 0 })),
+                    query(':self', animate('200ms 100ms cubic-bezier(0.455, 0.03, 0.515, 0.955)')),
                     query('.content', animate('100ms', style({ opacity: '1' })))
                 ])
         ]);

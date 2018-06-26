@@ -1,5 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Data.Common;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Linq.Expressions;
 using AutoMapper;
@@ -62,7 +65,6 @@ namespace Tasks.Service.Thoughts
                     Console.WriteLine(e);
                     throw;
                 }
-
             }
             else
             {
@@ -77,10 +79,18 @@ namespace Tasks.Service.Thoughts
             
         }
 
-
         public void UpdateSortId(int thoughtId, int moveToSortId)
         {
-            //TODO: Build in store proc
+            //context.Database.ExecuteSqlCommand("usp_UpdateThoughtSortOrder @p0, @p1",
+            //    parameters: new[] {thoughtId, moveToSortId});
+
+            //var rows = 
+            var parameters = new List<SqlParameter>()
+            {
+                new SqlParameter("@thoughtId", thoughtId),
+                new SqlParameter("@moveToSortId", moveToSortId)
+            };
+            context.Database.ExecuteSqlCommand("EXEC usp_UpdateThoughtSortOrder @thoughtId ,@moveToSortId", parameters.ToArray());
         }
     }
 }

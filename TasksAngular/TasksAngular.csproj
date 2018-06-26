@@ -29,6 +29,13 @@
 
   <ItemGroup>
     <None Remove="ClientApp\app\modules\shared\sidebar\sidebar.service.ts" />
+    <None Remove="ClientApp\images\svg\loading.svg" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="ClientApp\images\svg\loading.svg">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
   </ItemGroup>
 
   <ItemGroup>
@@ -36,13 +43,12 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="ClientApp\images\svg\" />
     <Folder Include="Infrastructure\Extension\" />
     <Folder Include="ViewModels\" />
-    <Folder Include="Service\" />
   </ItemGroup>
 
   <ItemGroup>
+    <None Include="wwwroot\loading.svg" />
     <None Include="wwwroot\site.css" />
   </ItemGroup>
 

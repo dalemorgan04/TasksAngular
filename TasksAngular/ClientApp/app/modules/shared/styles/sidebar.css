@@ -9,6 +9,7 @@
     height: 100%;
     margin: 0;
     padding: 0;
+    float: right;
     /*Flexbox Rows*/
     display: flex;
     flex-direction: row;
@@ -54,7 +55,7 @@
     height: 80px;
     margin-top: -10px;
     font-size: 1.1em;
-    font-family: var(--theme-font-text);
+    font-family: var(--font-text);
     color: var(--text-font);
     cursor: pointer;
     background: var(--aside-tab-inactive-bg-color);
@@ -110,14 +111,14 @@
         -o-transform: rotate(270deg);
     }
 
-.content {
+.content-container {
     background: var(--white);
     padding: 10px;
     width: 100%;
     height: 100%;
-    width: 350px;
+    width: 320px;
     padding-bottom: 5px;
-    
+    float: right;    
     /*Shadow middle height*/
     -moz-box-shadow: var(--shadow-side);
     -webkit-box-shadow: var(--shadow-side);

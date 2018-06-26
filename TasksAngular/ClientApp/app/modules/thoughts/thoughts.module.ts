@@ -1,6 +1,8 @@
 ﻿import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
+import { DragulaModule } from 'ng2-dragula/ng2-dragula';
+
 import { SharedModule } from '../shared/shared.module';
 import { ThoughtsService } from './thoughts.service';
 import { ThoughtsComponent } from './pages/thoughts.component';
@@ -10,6 +12,7 @@ import { ThoughtsListComponent } from './components/thoughts-list/thoughts-list.
 @NgModule({
     imports: [
         CommonModule,
+        DragulaModule,
         SharedModule
     ],
     declarations: [

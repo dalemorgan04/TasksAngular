@@ -158,7 +158,6 @@ namespace TasksAngular.Models.Entities
                 entity.Property(e => e.LastName)
                     .IsRequired()
                     .HasMaxLength(50);
-                
             });
         }
     }

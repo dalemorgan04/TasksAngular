@@ -1,63 +1,25 @@
-﻿/******************************************
-*
-*        Developed by Dale Morgan
-*         dalemoragn04@gmail.com
-*
-*******************************************/
-
+﻿ /*******************************************
+ *                                          *
+ *        Developed by Dale Morgan          *
+ *         dalemoragn04@gmail.com           *
+ *                                          *
+ *******************************************/
 
 /*
-* ==================== GLOBAL VARIABLES ====================
-*/
+ * ==================== GLOBAL VARIABLES ====================
+ */
 
 :root {
     /* --- Global themes --- */
-    --theme-green: #16e280;
-    --theme-green-light: #30ff9b;
-    --theme-green-xlight: #7fffc1;
-    --theme-green-dark: #15d87a;
-    --theme-blue-xlight: #7ffff6;
-    --theme-blue-light: #00ffed;
-    --theme-blue: #00E5D6;
-    --theme-blue-dark: #00D8CA;
-    --theme-white: #f7f7f7;
-    --theme-grey: #e5e9ec;
-    --theme-grey-dark: #626466;
-    --theme-black: #363537;
-    --theme-red: #ee6055;
-    --theme-font-text: 'Scope One', serif;
-    --theme-font-heading: 'Spectral SC', serif;
+    --font-text: 'Scope One', serif;
     /* --- Layout Specific Themes --- */
     /*Site*/
-    --card-bg-color: var(--theme-white);
-    --text-color: var(--theme-black);
-    --text-font: var(--theme-font-text);
-    /*Header*/
-    --header-font: var(--theme-font-heading);
-    --header-font-color: var(--theme-green-dark);
-    --header-logo-font-color: var(--theme-grey-dark);
-    /*Footer*/
-    --footer-text-color: var(--theme-grey-dark);
-    /*Nav*/
-    --nav-bg-color: var(--theme-white);
-    --grey-dark: var(--theme-grey-dark);
-    --nav-active-color: var(--theme-blue-light);
-    --heading: var(--theme-font-heading);
-    --nav-tab-inactive-bg-color: var(--theme-blue-light);
-    --blue-light: var(--theme-blue-light);
-    --nav-tab-hover-bg-color: var(--theme-blue);
+    --text-font: var(--font-text);
     /*Aside*/
-    --white: var(--theme-white);
-    --aside-tab-inactive-bg-color: var(--theme-green-light);
-    --aside-tab-disabled-bg-color: var(--theme-grey);
-    --aside-tab-active-bg-color: var(--theme-white);
-    --aside-tab-hover-bg-color: var(--theme-green-dark);
-    /*Shadow*/
-    --shadow-card: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
-    --shadow-side: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
-    --shadow-header: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
-    --shadow-active-tab: -3px 5px 5px -3px rgba(0,0,0,0.16), -3px 5px 5px -3px rgba(0,0,0,0.23);
-
+    --aside-tab-inactive-bg-color: var(--green-light);
+    --aside-tab-disabled-bg-color: var(--grey);
+    --aside-tab-active-bg-color: var(--white);
+    --aside-tab-hover-bg-color: var(--green-dark);
 
     /* --- Site Theme --- */
     --green: #16e280;
@@ -101,22 +63,414 @@ body {
     min-width: 450px;
 }
 
+/*
+ * ==================== HEADINGS ====================
+ */
+
+h1.logo {
+    font-size: 30px;
+}
+
+/*Titles of tabs and content*/
 h1 {
     font-family: var(--heading);
-    color: var(--black);
-    text-decoration: underline;
+    color: var(--grey-dark);
+    font-size: 20px;
 }
 
-h2, h3 {
+
+/*Short tab names or section titles*/
+h2 {
     font-family: var(--heading);
-    color: var(--black);
+    color: var(--heading);
+    font-size: 14px;
+    font-weight: normal;
 }
 
-/* Make unselectable */
-h1, img, .rotate {
-    user-select: none;
-    -moz-user-select: none;
-    -webkit-user-drag: none;
+/*Descriptions*/
+h3 {
+    font-family: var(--heading);
+    color: var(--heading);
+    font-size: 14px;
+    font-weight: lighter;
+    font-style: italic;
+}
+
+/*
+ * ==================== BUTTONS ====================
+ */
+
+button {
+    display: inline-block;
+    font-family: var(--text);
+    color: var(--black);
+    background: var(--green-light);
+    font-size: 20px;
+    text-align: center;
+    vertical-align: middle;
+    cursor: pointer;
+    white-space: nowrap;
+    border: 1px solid transparent;
+    border-radius: 3px;
+    padding: 8px 10px;
+    margin-bottom: 2px;
+    /*Not selectable*/
     -webkit-user-select: none;
+    -moz-user-select: none;
     -ms-user-select: none;
+    user-select: none;
+    /*Shadow card height*/
+    -moz-box-shadow: var(--shadow-card);
+    -webkit-box-shadow: var(--shadow-card);
+    box-shadow: var(--shadow-card);
+    /*Rounded corners*/
+    -webkit-border-radius: 5px;
+    border-radius: 5px; /* future proofing */
+    -moz-border-radius: 5px;
+    /*Transition*/
+    -moz-transition: all .15s ease-in;
+    -o-transition: all .15s ease-in;
+    -webkit-transition: all .15s ease-in;
+    transition: all .15s ease-in;
+}
+
+    button:hover {
+        background: var(--green);
+        /*Transition*/
+        -moz-transition: all 0s linear;
+        -o-transition: all 0s linear;
+        -webkit-transition: all 0s linear;
+        transition: all 0s linear;
+    }
+
+/*
+* ==================== CARDS ====================
+*/
+
+.card {
+    display: flex;
+    flex: 1 1 100%;
+    background: var(--white);
+    padding: 0;
+    padding-bottom: 10px;
+    margin-bottom: 15px;
+    /*Shadow card height*/
+    -moz-box-shadow: var(--shadow-card);
+    -webkit-box-shadow: var(--shadow-card);
+    box-shadow: var(--shadow-card);
+    /*Transition*/
+    -moz-transition: all .15s ease-in;
+    -o-transition: all .15s ease-in;
+    -webkit-transition: all .15s ease-in;
+    transition: all .15s ease-in;
+}
+
+/*
+* ==================== FORMS ====================
+*/
+
+/*
+* ---------- Text input----------
+*/
+
+.input-container-text {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    border: 0;
+}
+
+    .input-container-text > input {
+        flex: 1 1 100%;
+        border: 0;
+        padding: 0;
+        font-size: 20px;
+        background-color: white;
+        border-bottom: 1px solid var(--grey);
+        color: var(--grey-dark);
+        height: 30px;
+    }
+
+        .input-container-text > input:disabled {
+            background-color: var(--grey);
+        }
+
+    .input-container-text > .underline {
+        content: "";
+        display: block;
+        height: 2px;
+        width: 0;
+        background: transparent;
+        transition: width .5s ease, background-color .5s ease;
+    }
+
+    .input-container-text > input:focus,
+    .input-container-text > input:-webkit-autofill {
+        border-bottom: 1px solid transparent;
+        outline-offset: 0;
+        outline: 0;
+    }
+
+        .input-container-text > input:focus + .underline,
+        .input-container-text > input.focus + .underline {
+            width: 100%;
+            background: var(--green);
+        }
+
+
+/*
+* ---------- Input group----------
+*/
+
+.input-group {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-content: stretch;
+    height: 33px;
+    margin: 0;
+}
+
+    .input-group > .pad-top {
+        padding-top: 20px;
+    }
+
+    .input-group > .pad-bottom {
+        padding-bottom: 20px;
+    }
+
+    .input-group > .stretch {
+        flex: 1 1 100%;
+    }
+
+    .input-group > .fit {
+        flex: 0 0 auto;
+    }
+
+    .input-group > .pad-right {
+        padding-right: 10px;
+    }
+
+/*
+* ---------- Table ----------
+*/
+
+.emptyTablePlaceholder {
+    height: 5px;
+}
+
+.placeholder {
+    height: 20px;
+    line-height: 20px;
+    background: var(--green-light);
+}
+
+table {
+    margin: 0;
+    padding: 0;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    width: 100%;
+    border-collapse: collapse;
+}
+
+    table > thead > tr {
+        padding-top: 20px;
+        font-family: var(--heading);
+        color: var(--grey-dark);
+    }
+
+        table > thead > tr > th {
+            text-align: center;
+            text-decoration: underline;
+        }
+
+    table > tbody > tr {
+        border-bottom: 1px solid var(--grey);
+        cursor: pointer;
+    }
+
+        table > tbody > tr:hover {
+            font-weight: bold;
+        }
+
+        table > tbody > tr.selected {
+            z-index: 11;
+            background: var(--green-light);
+            /*Shadow*/
+            -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+            box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+            /*Transition*/
+            -webkit-transition: border-color ease-in-out .15s, -webkit-box-shadow ease-in-out .15s;
+            -o-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+            transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+        }
+
+    table td.left {
+        text-align: left;
+    }
+
+    table td.center {
+        text-align: center;
+    }
+
+    table td.right {
+        text-align: right;
+    }
+
+    table td.fit {
+        width: auto;
+        white-space: nowrap;
+    }
+
+    table td.stretch {
+        width: 100%;
+    }
+
+    table td.pad-left {
+        padding-left: 15px;
+    }
+
+    table td.pad-right {
+        padding-right: 10px;
+    }
+
+
+
+/*
+* ---------- Textbox ----------
+*/
+
+.textbox {
+    color: var(--black);
+    opacity: 1;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    font-size: 16px;
+    background-color: transparent;
+    /*Transition*/
+    -webkit-transition: border-color ease-in-out .3s, -webkit-box-shadow ease-in-out .15s;
+    -o-transition: border-color ease-in-out .3s, box-shadow ease-in-out .15s;
+    transition: border-color ease-in-out .3s, box-shadow ease-in-out .15s;
+}
+
+/*
+* ---------- Separator ----------
+*/
+
+.hr-horizontal {
+    border: 0;
+    height: 1px;
+    width: 80%;
+    /* Old gradient colour http://colorzilla.com/gradient-editor/#e5e9ec+0,00ffed+35,16e280+50,30ff9b+65,e5e9ec+100 */
+    /* Gradient colour: http://colorzilla.com/gradient-editor/#e5e9ec+0,626466+50,e5e9ec+100 */
+    background: #e5e9ec; /* Old browsers */
+    background: -moz-linear-gradient(left, #e5e9ec 0%, #626466 50%, #e5e9ec 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(left, #e5e9ec 0%,#626466 50%,#e5e9ec 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to right, #e5e9ec 0%,#626466 50%,#e5e9ec 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e5e9ec', endColorstr='#e5e9ec',GradientType=1 ); /* IE6-9 */
+}
+
+.hr-vertical {
+    border: 0;
+    height: 80%;
+    width: 1px;
+    /* Gradient color: http://colorzilla.com/gradient-editor/#e5e9ec+0,626466+50,e5e9ec+100 */
+    background: #e5e9ec; /* Old browsers */
+    background: -moz-linear-gradient(top, #e5e9ec 0%, #626466 50%, #e5e9ec 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(top, #e5e9ec 0%,#626466 50%,#e5e9ec 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to bottom, #e5e9ec 0%,#626466 50%,#e5e9ec 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e5e9ec', endColorstr='#e5e9ec',GradientType=0 ); /* IE6-9 */
+    align-self: center;
+    justify-self: center;
+}
+
+/*
+* ---------- Drop down ----------
+*/
+
+Select {
+    min-width: 100px;
+    width: auto;
+    margin-right: 5px;
+}
+
+
+/*
+* ---------- Checkbox ----------
+*    https://codepen.io/bdan/pen/jAkZZK
+*/
+
+.check {
+    width: 20px;
+    height: 30px;
+    display: block;
+    position:relative;
+    clear:both;
+}
+.check input {
+    display: none;
+}
+.check input:checked + .box {
+    background-color: white;
+    
+}
+.check input:checked + .box:after {
+    top: 0;
+}
+.check .box {
+    width: 100%;
+    height: 100%;
+    transition: all 1.1s cubic-bezier(0.19, 1, 0.22, 1);
+    border: 2px solid transparent;
+    background-color: white;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    border-bottom: 1px solid var(--grey);
+}
+.check .box:after {
+    width: 50%;
+    height: 20%;
+    content: '';
+    position: absolute;
+    border-left: 2px solid;
+    border-bottom: 2px solid;
+    border-color: var(--green);
+    transform: rotate(-45deg) translate3d(0, 0, 0);
+    transform-origin: center center;
+    transition: all 1.1s cubic-bezier(0.19, 1, 0.22, 1);
+    left: 5px;
+    right: 5px;
+    top: 200%;
+    bottom: 5%;
+    margin: auto;
+}
+
+/*
+* ---------- Dragula ----------
+*/
+
+.gu-mirror {
+    position: fixed !important;
+    margin: 0 !important;
+    z-index: 9999 !important;
+    opacity: 0.8;
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=80)";
+    filter: alpha(opacity=80);
+}
+.gu-hide {
+    display: none !important;
+}
+.gu-unselectable {
+    -webkit-user-select: none !important;
+    -moz-user-select: none !important;
+    -ms-user-select: none !important;
+    user-select: none !important;
+}
+.gu-transit {
+    opacity: 0.2;
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=20)";
+    filter: alpha(opacity=20);
 }

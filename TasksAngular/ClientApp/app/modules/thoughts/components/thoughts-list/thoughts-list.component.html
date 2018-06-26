@@ -1,31 +1,25 @@
-﻿<table>
-    <thead>
-    <tr>
-        <th>Description</th>
-    </tr>
-    </thead>
-
-    <tbody id="thoughtResultsTableBody">
-    
+﻿<div class="card table">
+    <table>
+        <thead>
         <tr>
-            <td>{{test}}</td>
+            <th><!--Description--></th>
+            <th>Due</th>
+            <th><!--Options--></th>
         </tr>
-    
-    </tbody>
-</table>
+        </thead>
+        <tbody [dragula]="'bag-thoughts'" [dragulaModel]='thoughtslist'>
+        <tr *ngFor="let thought of thoughtslist" [attr.data-sortId]="thought.sortId">  
 
-<table>
-    <thead>
-    <tr>
-        <th>Description</th>
-    </tr>
-    </thead>
+            <!--data-thoughtid={{thought.id}}
+            data-sortid={{thought.sortId}}
+            data-timeframeid={{thought.timeFrameId}}
+            data-timeframedate={{thought.timeFrameDateString}}
+            data-timeframetime={{thought.timeFrameTimeString}}-->
 
-    <tbody >
-    
-    <tr *ngFor ="let thought of thoughtslist">
-        <td>{{thought.description}}</td>
-    </tr>
-    
-    </tbody>
-</table>
+            <td class="description">{{thought.description}}</td>
+            <td class="due">{{thought.timeFrameDueString}} </td>
+            <td class="delete"><img src="../../../../../images/svg/delete.svg" /></td>
+        </tr>
+        </tbody>
+    </table>
+</div>

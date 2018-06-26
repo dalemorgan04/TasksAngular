@@ -246,6 +246,16 @@ namespace TasksAngular.Migrations
                 name: "IX_Tasks_UserId",
                 table: "Tasks",
                 column: "User");
+
+            var sp = @"CREATE PROCEDURE [dbo].[GetStudents]
+                    @FirstName varchar(50)
+                AS
+                BEGIN
+                    SET NOCOUNT ON;
+                    select * from Students where FirstName like @FirstName +'%'
+                END";
+
+            migrationBuilder.Sql(sp);
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

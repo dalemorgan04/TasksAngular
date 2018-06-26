@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
+using System.Net.Mime;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -49,12 +51,19 @@ namespace TasksAngular.Controllers
             }
             return viewModel;
         }
-
-        [HttpGet]
-        [Route("api/Thoughts/GetTest")]
-        public string GetTest()
+        [HttpPost]
+        [Route("api/Thoughts/Sort")]
+        public Boolean UpdateSortId([FromBody]SortDto sort)
         {
-            return "Success!";
+            try
+            {
+                thoughtService.UpdateSortId(sort.Id, sort.MoveToSortId);
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
         }
     }
 }
