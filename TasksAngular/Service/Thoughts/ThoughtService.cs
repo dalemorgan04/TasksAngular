@@ -43,10 +43,10 @@ namespace Tasks.Service.Thoughts
         public async void Save(ThoughtDto thoughtDto)
         {
             Thought thought;
-            if (thoughtDto.Id > 0)
+            if (thoughtDto.ThoughtId > 0)
             {
                 thought = context.Thoughts
-                    .SingleOrDefaultAsync(t => t.ThoughtId == thoughtDto.Id)
+                    .SingleOrDefaultAsync(t => t.ThoughtId == thoughtDto.ThoughtId)
                     .Result;
 
                 thought.Update(
@@ -90,7 +90,7 @@ namespace Tasks.Service.Thoughts
                 new SqlParameter("@thoughtId", thoughtId),
                 new SqlParameter("@moveToSortId", moveToSortId)
             };
-            context.Database.ExecuteSqlCommand("EXEC usp_UpdateThoughtSortOrder @thoughtId ,@moveToSortId", parameters.ToArray());
+            var rows = context.Database.ExecuteSqlCommand("EXEC usp_UpdateThoughtSortOrder @thoughtId ,@moveToSortId", parameters.ToArray());
         }
     }
 }

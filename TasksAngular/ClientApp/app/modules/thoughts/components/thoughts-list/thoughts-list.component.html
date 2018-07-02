@@ -8,16 +8,12 @@
         </tr>
         </thead>
         <tbody [dragula]="'bag-thoughts'" [dragulaModel]='thoughtslist'>
-        <tr *ngFor="let thought of thoughtslist" [attr.data-sortId]="thought.sortId">  
-
-            <!--data-thoughtid={{thought.id}}
-            data-sortid={{thought.sortId}}
-            data-timeframeid={{thought.timeFrameId}}
-            data-timeframedate={{thought.timeFrameDateString}}
-            data-timeframetime={{thought.timeFrameTimeString}}-->
-
+        <tr *ngFor="let thought of thoughtslist"
+            [attr.data-thoughtid]="thought.thoughtId"
+            [attr.data-sortid]="thought.sortId">
             <td class="description">{{thought.description}}</td>
             <td class="due">{{thought.timeFrameDueString}} </td>
+            <td class="due">{{thought.id}} </td>
             <td class="delete"><img src="../../../../../images/svg/delete.svg" /></td>
         </tr>
         </tbody>

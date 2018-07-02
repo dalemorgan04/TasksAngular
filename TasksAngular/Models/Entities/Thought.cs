@@ -11,7 +11,6 @@ namespace TasksAngular.Models.Entities
     public partial class Thought 
     {
         [Key]
-        [Column("ThoughtId")]
         public int ThoughtId { get; set; }
         public User User { get; set; }
         public string Description { get; set; }

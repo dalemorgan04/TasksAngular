@@ -1,5 +1,5 @@
 ﻿interface IThought {
-    id: number;
+    thoughtId: number;
     userId: number;
     description: string;
     createdDateTime: string;

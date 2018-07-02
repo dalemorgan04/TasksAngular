@@ -8,17 +8,21 @@ import { ThoughtsService } from './thoughts.service';
 import { ThoughtsComponent } from './pages/thoughts.component';
 import { ThoughtsSideBarComponent } from './components/thoughts-sidebar/thoughts-sidebar.component';
 import { ThoughtsListComponent } from './components/thoughts-list/thoughts-list.component';
+import { ThoughtsAddComponent } from './components/thoughts-add/thoughts-add.component';
+import { TimeframeModule } from '../timeframe/timeframe.module';
 
 @NgModule({
     imports: [
         CommonModule,
         DragulaModule,
-        SharedModule
+        SharedModule,
+        TimeframeModule
     ],
     declarations: [
         ThoughtsComponent,
         ThoughtsListComponent,
-        ThoughtsSideBarComponent
+        ThoughtsSideBarComponent,
+        ThoughtsAddComponent
     ],
     providers: [
         ThoughtsService
@@ -26,7 +30,8 @@ import { ThoughtsListComponent } from './components/thoughts-list/thoughts-list.
     exports: [
         ThoughtsComponent,
         ThoughtsListComponent,
-        ThoughtsSideBarComponent
+        ThoughtsSideBarComponent,
+        ThoughtsAddComponent
     ]
 })
 export class ThoughtsModule {

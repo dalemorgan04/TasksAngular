@@ -2055,7 +2055,7 @@
     "fsevents": {
       "version": "1.2.4",
       "resolved": "https://registry.npmjs.org/fsevents/-/fsevents-1.2.4.tgz",
-      "integrity": "sha512-z8H8/diyk76B7q5wg+Ud0+CqzcAF3mBBI/bA5ne5zrRUUIvNkJY//D3BqyH571KuAC4Nr7Rw7CjWX4r0y9DvNg==",
+      "integrity": "sha1-9B3LGvJYKvNpLaNvxVy9jhBBxCY=",
       "optional": true,
       "requires": {
         "nan": "2.10.0",
@@ -3681,10 +3681,15 @@
       "resolved": "https://registry.npmjs.org/ms/-/ms-2.0.0.tgz",
       "integrity": "sha1-VgiurfwAvmwpAd9fmGF4jeDVl8g="
     },
+    "mydatepicker": {
+      "version": "2.6.3",
+      "resolved": "https://registry.npmjs.org/mydatepicker/-/mydatepicker-2.6.3.tgz",
+      "integrity": "sha1-XHgK0f+AaQS86/iQno7ZOJD3sL8="
+    },
     "nan": {
       "version": "2.10.0",
       "resolved": "https://registry.npmjs.org/nan/-/nan-2.10.0.tgz",
-      "integrity": "sha512-bAdJv7fBLhWC+/Bls0Oza+mvTaNQtP+1RyhhhvD95pgUJz6XM5IzgmxOkItJ9tkoCiplvAnXI1tNmmUD/eScyA==",
+      "integrity": "sha1-ltDNYQ69WNS03pzAxoKM2pnHVI8=",
       "optional": true
     },
     "nanomatch": {

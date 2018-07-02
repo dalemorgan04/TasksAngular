@@ -8,6 +8,7 @@ import { ThoughtsComponent } from './modules/thoughts/pages/thoughts.component';
 //Modules
 import { LayoutModule } from './modules/layout/layout.module';
 import { SharedModule } from './modules/shared/shared.module';
+import { TimeframeModule } from './modules/timeframe/timeframe.module';
 import { ThoughtsModule } from './modules/thoughts/thoughts.module';
 
 @NgModule({
@@ -22,6 +23,7 @@ import { ThoughtsModule } from './modules/thoughts/thoughts.module';
         ]),
         LayoutModule,
         SharedModule,
+        TimeframeModule,
         ThoughtsModule
     ]
 })

@@ -5,7 +5,7 @@ namespace Tasks.Service.Thoughts.Dto
 {
     public class ThoughtDto
     {
-        public int Id { get; set; }
+        public int ThoughtId { get; set; }
         public User User { get; set; }
         public string Description { get; set; }
         public Priority Priority { get; set; }

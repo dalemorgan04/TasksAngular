@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DragulaService } from 'ng2-dragula/ng2-dragula';
+import { IMyDpOptions } from 'mydatepicker';
 import { ThoughtsService } from '../../thoughts.service';
 import '../../../../models/thought.model';
 
@@ -9,7 +10,13 @@ import '../../../../models/thought.model';
     styleUrls: ['thoughts-list.component.css']
 })
 export class ThoughtsListComponent implements OnInit {
+
     public thoughtslist: IThought[];
+    public myDatePickerOptions: IMyDpOptions = {
+        dateFormat: 'dd.mm.yyyy',
+    };
+    public model: any = { date: { year: 2018, month: 10, day: 9 } };
+
     constructor(
         private thoughtsService: ThoughtsService,
         private dragula: DragulaService)
@@ -27,7 +34,7 @@ export class ThoughtsListComponent implements OnInit {
                 } else {
                     moveToSortId = 0;
                 }
-                this.thoughtsService.updateSortOrder(Number(el[1].dataset.sortid), moveToSortId)
+                this.thoughtsService.updateSortOrder(Number(el[1].dataset.thoughtid), moveToSortId)
                     .subscribe(result => {
                         if (result) {
                             this.getThoughtsList();            
@@ -43,6 +50,14 @@ export class ThoughtsListComponent implements OnInit {
         this.thoughtsService.getThoughtsList()
             .subscribe(result => {
                 this.thoughtslist = result;
+                this.sortThoughtsList();
             }, error => alert('Couldnt get list'));
+    }
+
+    private sortThoughtsList(): void {
+        this.thoughtslist.sort((a, b) =>
+              a.sortId > b.sortId ?  1
+            : a.sortId < b.sortId ? -1 
+            : 0);
     }
 }

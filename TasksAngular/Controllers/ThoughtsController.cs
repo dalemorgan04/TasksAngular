@@ -35,7 +35,7 @@ namespace TasksAngular.Controllers
             {
                 var thought = new ThoughtViewModel()
                 {
-                    Id = thoughtDto.Id,
+                    ThoughtId = thoughtDto.ThoughtId,
                     UserId = thoughtDto.User.UserId,
                     Description = thoughtDto.Description,
                     CreatedDateTime = thoughtDto.CreatedDateTime,

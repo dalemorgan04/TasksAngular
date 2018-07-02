@@ -85,3 +85,26 @@ export const sidebar =
                     query('.content', animate('100ms', style({ opacity: '1' })))
                 ])
         ]);
+export const timeframeTab =
+    trigger('tab',
+        [
+            state('active',
+                style({
+                    width: '350px'
+                })),
+            state('inactive',
+                style({
+                    width: '0px'
+                })),
+            transition('inactive => active',
+                [
+                    query('.content', animate('100ms', style({ opacity: '0' }))),
+                    query(':self', animate('200ms 200ms cubic-bezier(0.455, 0.03, 0.515, 0.955)'))
+                ]),
+            transition('active => inactive',
+                [
+                    query('.content', style({ opacity: 0 })),
+                    query(':self', animate('200ms 100ms cubic-bezier(0.455, 0.03, 0.515, 0.955)')),
+                    query('.content', animate('100ms', style({ opacity: '1' })))
+                ])
+        ]);

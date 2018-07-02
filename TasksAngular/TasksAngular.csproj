@@ -43,6 +43,8 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="ClientApp\app\modules\shared\datepicker\weekpicker\" />
+    <Folder Include="ClientApp\app\modules\timeframe\components\" />
     <Folder Include="Infrastructure\Extension\" />
     <Folder Include="ViewModels\" />
   </ItemGroup>

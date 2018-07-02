@@ -4,7 +4,7 @@ namespace TasksAngular.ViewModels.Thoughts
 {
     public class ThoughtViewModel
     {
-        public int Id { get; set; }
+        public int ThoughtId { get; set; }
         public int UserId { get; set; }
         public string Description { get; set; }
         public DateTime CreatedDateTime { get; set; }

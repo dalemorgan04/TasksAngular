@@ -1,0 +1,14 @@
+.container {
+    width: 100%;
+}
+.mydp .selector {
+    z-index: 999;
+    border: 2px solid red;
+    /*Shadow card height*/
+    -moz-box-shadow: var(--shadow-card);
+    -webkit-box-shadow: var(--shadow-card);
+    box-shadow: var(--shadow-card);
+}
+
+.mydb .button {
+}
