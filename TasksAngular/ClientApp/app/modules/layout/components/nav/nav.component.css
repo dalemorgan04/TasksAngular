@@ -23,26 +23,28 @@ li {
     height: 30px;
     font-family: var(--heading);
     cursor: pointer;
+    padding-left: 15px;
     padding-bottom: 35px;
     padding-top: 5px;
     text-align: left;
 }
+    li:hover {
+        background: var(--blue-light);
+    }
 
-li.active {
-    background: var(--blue-light);
-    /*Shadow card height*/
-    -moz-box-shadow: var(--shadow-card);
-    -webkit-box-shadow: var(--shadow-card);
-    box-shadow: var(--shadow-card);
-}
+    li.active {
+        background: var(--blue-dark);
+    }
 
 a {
     display: flex;
+    padding-top: 7px;
     color: var(--grey-dark);
 }
 
 fa-icon {
-    width: 30px;   
+    width: 30px;
+    padding-right: 10px;
 }
 
 .minified span {

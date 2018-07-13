@@ -1,11 +1,17 @@
-﻿img {
+﻿fa-icon {
     visibility: hidden;
 }
 
-tr:hover img {
+tr:hover fa-icon {
     visibility: visible;
 }
 
+.row {
+    width: 100%;
+    margin: 0;
+}
+
+/*Dragging helper*/
 .gu-mirror {
     display: flex;
     background: var(--white);
@@ -21,25 +27,4 @@ tr:hover img {
     -o-transition: all .15s ease-in;
     -webkit-transition: all .15s ease-in;
     transition: all .15s ease-in;
-}
-
-.description {
-    text-align: left;  
-    width: 100%;
-    padding-left: 15px;
-}
-
-.due {
-    text-align: center;
-    width: auto;
-    white-space: nowrap;
-    padding-left: 15px;
-}
-
-.delete {
-    text-align: right;   
-    width: auto;
-    white-space: nowrap;
-    padding-left: 15px;
-    padding-right: 10px;
 }

@@ -10,13 +10,15 @@ import { ThoughtsSideBarComponent } from './components/thoughts-sidebar/thoughts
 import { ThoughtsListComponent } from './components/thoughts-list/thoughts-list.component';
 import { ThoughtsAddComponent } from './components/thoughts-add/thoughts-add.component';
 import { TimeframeModule } from '../timeframe/timeframe.module';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
     imports: [
         CommonModule,
         DragulaModule,
         SharedModule,
-        TimeframeModule
+        TimeframeModule,
+        FontAwesomeModule
     ],
     declarations: [
         ThoughtsComponent,

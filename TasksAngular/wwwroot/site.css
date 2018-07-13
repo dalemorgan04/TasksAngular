@@ -148,8 +148,8 @@ button {
 */
 
 .card {
-    display: flex;
-    flex: 1 1 100%;
+    /*display: flex;
+    flex: 1 1 100%;*/
     background: var(--white);
     padding: 0;
     padding-bottom: 10px;
@@ -173,18 +173,9 @@ button {
 * ---------- Text input----------
 */
 
-.input-container-text {
-    display: flex;
-    flex-direction: column;
-    flex-wrap: nowrap;
-    border: 0;
-}
 
-    .input-container-text > input {
-        flex: 1 1 100%;
-        width: 100%;
-        border: 0;
-        padding: 0;
+
+    input {
         font-size: 15px;
         background-color: white;
         border-bottom: 1px solid var(--grey);
@@ -192,11 +183,7 @@ button {
         height: 30px;
     }
 
-        .input-container-text > input:disabled {
-            background-color: var(--grey);
-        }
-
-    .input-container-text > .underline {
+    .underline {
         content: "";
         display: block;
         height: 2px;
@@ -211,8 +198,7 @@ button {
         outline-offset: 0;
         outline: 0;
     }
-
-        .input-container-text > input:focus + .underline,
+        
         .input-container-text > input.focus + .underline {
             width: 100%;
             background: var(--green);
@@ -279,6 +265,7 @@ table {
         padding-top: 20px;
         font-family: var(--heading);
         color: var(--grey-dark);
+        border-bottom: 1px solid var(--grey);
     }
 
         table > thead > tr > th {
@@ -306,37 +293,6 @@ table {
             -o-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
             transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
         }
-
-    table td.left {
-        text-align: left;
-    }
-
-    table td.center {
-        text-align: center;
-    }
-
-    table td.right {
-        text-align: right;
-    }
-
-    table td.fit {
-        width: auto;
-        white-space: nowrap;
-    }
-
-    table td.stretch {
-        width: 100%;
-    }
-
-    table td.pad-left {
-        padding-left: 15px;
-    }
-
-    table td.pad-right {
-        padding-right: 10px;
-    }
-
-
 
 /*
 * ---------- Textbox ----------

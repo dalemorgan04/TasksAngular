@@ -39,7 +39,7 @@ export const navbar =
                 })),
             state('minified',
                 style({
-                    width: '70px'
+                    width: '45px'
                 })),
             transition('expanded => minified',
                 [

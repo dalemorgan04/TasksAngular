@@ -3,6 +3,7 @@ import { DragulaService } from 'ng2-dragula/ng2-dragula';
 import { IMyDpOptions } from 'mydatepicker';
 import { ThoughtsService } from '../../thoughts.service';
 import '../../../../models/thought.model';
+import { faTimes } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
     selector: 'thoughts-list',
@@ -12,6 +13,7 @@ import '../../../../models/thought.model';
 export class ThoughtsListComponent implements OnInit {
 
     public thoughtslist: IThought[];
+    public deleteIcon = faTimes;
 
     constructor(
         private thoughtsService: ThoughtsService,
