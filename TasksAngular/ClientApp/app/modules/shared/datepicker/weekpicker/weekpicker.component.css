@@ -1,0 +1,55 @@
+/*
+* ---------- Datepicker----------
+*/
+
+.weekpicker .mydp .selector,
+.weekpicker .mydp .selector:focus {
+    z-index: 999;
+    outline: 0;
+    border: 0;
+    border-top: 1px var(--grey);
+    /*Shadow card height*/
+    -moz-box-shadow: var(--shadow-side);
+    -webkit-box-shadow: var(--shadow-side);
+    box-shadow: var(--shadow-side);
+}
+.weekpicker .mydp .header,
+.weekpicker .mydp .header:focus {
+    border-top: 1px solid var(--grey);
+}
+
+.weekpicker .mydp .selectorarrow,
+.weekpicker .mydp .selectorarrow:before,
+.weekpicker .mydp .selectorarrow:after,
+.weekpicker .mydp .selectorarrow:focus:before {
+    border-bottom-color: var(--green);
+}
+
+/*Buttons*/
+.weekpicker .mydp button {
+    -moz-box-shadow: none;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
+
+/*Input*/
+.weekpicker .mydp .selection {
+    border: 0;
+    padding: 0;
+    font-size: 15px;
+    color: var(--grey-dark);
+    height: 30px;
+}
+
+/*Weekpicker*/
+
+.weekpicker .mydp  tr:hover {
+    background: var(--grey);
+}
+
+.weekpicker .mydp .tablesingleday:hover,
+.weekpicker .mydp .tablesingleday,
+.weekpicker .mydp .currmonth:hover,
+.weekpicker .mydp .currmonth {
+    background-color: unset;
+}

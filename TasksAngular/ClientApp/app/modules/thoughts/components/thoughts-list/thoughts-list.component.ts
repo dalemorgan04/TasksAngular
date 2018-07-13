@@ -12,10 +12,6 @@ import '../../../../models/thought.model';
 export class ThoughtsListComponent implements OnInit {
 
     public thoughtslist: IThought[];
-    public myDatePickerOptions: IMyDpOptions = {
-        dateFormat: 'dd.mm.yyyy',
-    };
-    public model: any = { date: { year: 2018, month: 10, day: 9 } };
 
     constructor(
         private thoughtsService: ThoughtsService,

@@ -3,14 +3,18 @@ import { CommonModule } from '@angular/common';
 import { SidebarService } from './sidebar/sidebar.service';
 import { MyDatePickerModule } from 'mydatepicker';
 import { DayPickerComponent } from './datepicker/daypicker/daypicker.component';
+import { WeekPickerComponent } from './datepicker/weekpicker/weekpicker.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
     imports: [
         CommonModule,
-        MyDatePickerModule
+        MyDatePickerModule,
+        NgbModule
     ],
     declarations: [
-        DayPickerComponent
+        DayPickerComponent,
+        WeekPickerComponent
     ],
     providers: [
         SidebarService
@@ -18,7 +22,9 @@ import { DayPickerComponent } from './datepicker/daypicker/daypicker.component';
     
     exports: [
         MyDatePickerModule,
-        DayPickerComponent
+        DayPickerComponent,
+        WeekPickerComponent,
+        NgbModule
     ]
 })
 export class SharedModule {}

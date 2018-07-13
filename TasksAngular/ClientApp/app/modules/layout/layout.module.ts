@@ -8,11 +8,13 @@ import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { NavService } from './components/nav/nav.service';
 import { ContentComponent } from './components/content/content.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
     imports: [
         CommonModule,
-        RouterModule
+        RouterModule,
+        FontAwesomeModule
     ],
     declarations: [
         LayoutComponent,

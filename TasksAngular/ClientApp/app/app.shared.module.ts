@@ -1,7 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { HttpModule } from '@angular/http';
+//import { HttpModule } from '@angular/http';
+import { HttpClientModule } from '@angular/common/http';
 //Routing
 import { RouterModule } from '@angular/router';
 import { ThoughtsComponent } from './modules/thoughts/pages/thoughts.component';
@@ -14,7 +15,8 @@ import { ThoughtsModule } from './modules/thoughts/thoughts.module';
 @NgModule({
     imports: [
         CommonModule,
-        HttpModule,
+        //HttpModule,
+        HttpClientModule,
         FormsModule,
         RouterModule.forRoot([
             { path: '', redirectTo: 'thought', pathMatch: 'full' },

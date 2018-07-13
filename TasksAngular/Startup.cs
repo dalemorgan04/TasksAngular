@@ -43,6 +43,7 @@ namespace TasksAngular
                 {
                     HotModuleReplacement = true
                 });
+                //Doesn't work with Angular 6
             }
             else
             {

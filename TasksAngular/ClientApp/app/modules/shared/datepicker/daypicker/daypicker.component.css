@@ -1,14 +1,44 @@
-.container {
-    width: 100%;
-}
-.mydp .selector {
+/*
+* ---------- Datepicker----------
+*/
+
+.daypicker .mydp .selector,
+.daypicker .mydp .selector:focus {
     z-index: 999;
-    border: 2px solid red;
+    outline: 0;
+    border: 0;
+    border-top: 1px var(--grey);
     /*Shadow card height*/
-    -moz-box-shadow: var(--shadow-card);
-    -webkit-box-shadow: var(--shadow-card);
-    box-shadow: var(--shadow-card);
+    -moz-box-shadow: var(--shadow-side);
+    -webkit-box-shadow: var(--shadow-side);
+    box-shadow: var(--shadow-side);
+}
+.daypicker .mydp .header,
+.daypicker .mydp .header:focus {
+    border-top: 1px solid var(--grey);
 }
 
-.mydb .button {
+.daypicker .mydp .selectorarrow,
+.daypicker .mydp .selectorarrow:before,
+.daypicker .mydp .selectorarrow:after,
+.daypicker .mydp .selectorarrow:focus:before {
+    border-bottom-color: var(--green);
 }
+
+/*Buttons*/
+.daypicker .mydp button {
+    -moz-box-shadow: none;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
+
+/*Input*/  
+.daypicker .mydp .selection {
+    border: 0;
+    padding: 0;
+    font-size: 15px;
+    color: var(--grey-dark);
+    height: 30px;
+}
+
+/*Daypicker*/

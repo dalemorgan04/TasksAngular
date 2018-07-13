@@ -1,32 +1,5 @@
-.container {
-    width: 100%;
+.this-container {
     height: 100%;
-    margin: 0;
-    padding: 0;
-
-    /*Flexbox Rows*/
-    display: flex;
-    flex-direction: row;
-
-    -moz-flex-wrap: nowrap;
-    -ms-flex-wrap: nowrap;
-    -o-flex-wrap: nowrap;
-    -webkit-flex-wrap: nowrap;
-    flex-wrap: nowrap;
-
-    -o-justify-content: center;
-    -webkit-justify-content: center;
-    justify-content: center;
-
-    -ms-align-items: stretch;
-    -o-align-items: stretch;
-    -webkit-align-items: stretch;
-    align-items: stretch;
-
-    -moz-align-content: stretch;
-    -o-align-content: stretch;
-    -webkit-align-content: stretch;
-    align-content: stretch;
 }
 thoughts-list {
     flex: 1 1 100%;

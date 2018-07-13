@@ -22,11 +22,7 @@
             <!--Date-->
             <h3>Due on the day of...</h3>
             <div class="input-group">
-                <div class="input-container-text fit">
-                    <input class="timeframe-date" placeholder="Click to choose date" readonly="readonly" />
-                    <span class="underline"></span>
-                </div>
-                
+                <daypicker></daypicker>
             </div>
 
             <!--Time-->
@@ -54,10 +50,7 @@
         <div class="tab-week" *ngSwitchCase ="'week'">
             <h3>Due in the week of...</h3>
             <div class="input-group fit">
-                <div class="input-container-text">
-                    <input class="timeframe-week" placeholder="Click to choose a week" readonly="readonly"/>
-                    <span class="underline"></span>
-                </div>
+                <weekpicker></weekpicker>
             </div>
         </div>
 

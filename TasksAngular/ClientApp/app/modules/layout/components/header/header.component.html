@@ -1,13 +1,25 @@
-<div class="container">
-    <div class="left" (click)="toggleNav()">
-        <img [@leftArrow]="leftArrowState"
-            src="../../../../../images/svg/leftArrow.svg" />
+<div class="container-fluid d-flex align-items-right p-0">
+    <div class="flex-fill pt-2 pb-2 pointer pl-5" (click)="toggleNav()">
+        <fa-icon 
+            style="color:var(--grey-dark);"
+            class="float-left"
+            [@leftArrow]="leftArrowState"
+            [icon]="leftIcon"
+            size="3x">
+        </fa-icon>
     </div>
-    <div class="center">
+    
+    <div class="flex-fill">
         <h1 class="logo">Thought Stream</h1>
     </div>
-    <div class="right" (click) ="toggleSidebar()">
-        <img [@rightArrow]="rightArrowState"
-             src="../../../../../images/svg/rightArrow.svg" />
+
+    <div class="flex-fill pt-2 pointer pr-5" (click)="toggleSidebar()">
+        <fa-icon 
+            style="color:var(--grey-dark);"
+            class="float-right"
+            [@rightArrow]="rightArrowState"
+            [icon]="rightIcon"
+            size="3x">
+        </fa-icon>
     </div>
 </div>

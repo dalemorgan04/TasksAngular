@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { query, stagger, trigger, state, style, transition, animate } from '@angular/animations';
 import { NavService } from './nav.service';
 import { navbar } from '../../../shared/animations';
+import { faProjectDiagram, faLightbulb, faTasks, faRetweet, faCalendarAlt, faFolderOpen   } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
     selector: 'nav',
@@ -10,6 +11,13 @@ import { navbar } from '../../../shared/animations';
     animations: [ navbar ]
 })
 export class NavComponent implements OnInit {
+
+    public planIcon = faProjectDiagram;
+    public thoughtsIcon = faLightbulb;
+    public tasksIcon = faTasks;
+    public habitsIcon = faRetweet;
+    public eventsIcon = faCalendarAlt;
+    public projectsIcon = faFolderOpen;
 
     public navbarState: string = 'expanded';
     public minifiedClass: boolean = true;
