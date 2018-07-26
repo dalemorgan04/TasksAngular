@@ -1,4 +1,4 @@
-﻿import { Injectable, Inject } from '@angular/core';
+import { Injectable, Inject } from '@angular/core';
 import { HttpClient} from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import { map } from 'rxjs/operators';
@@ -36,6 +36,17 @@ export class ThoughtsService
                 })
             );
     }
+
+    public addThought( thought:IThought ): Observable<boolean> {
+        let data: string = JSON.stringify({});
+        return this.http.post<boolean>('api/Thoughts/Sort', data)
+            .pipe(
+                map((response: Response) => {
+                    return response.json();
+                })
+            );
+    }
+
 
     private errorHandler(error: Response | any) {
         console.log(error.message || error);

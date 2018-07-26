@@ -1,8 +1,34 @@
- <div class="input-group">
-     
-     <input type="text" class="form-control" placeholder="What's on your mind?" aria-label="Recipient's username" aria-describedby="add a thought">
-     <div class="input-group-append">
-         <button type="button" id="button-addon2">Button</button>
-     </div>
- </div>
-<timeframe></timeframe>
+<div
+     fxLayout="column"
+     class="h-100">
+    
+    <div
+        fxFlex="0 0 30px"
+        class="container-fluid mt-2">
+            <h1>Add a thought</h1>
+    </div>
+
+    <div
+         fxFlex ="1 1 100%"
+         class="d-flex flex-column">
+    
+        <mat-card class="shadow-form mt-4 mb-4 p-0">
+            <mat-form-field class="container-fluid">
+                <textarea matInput placeholder="What's your thought?"></textarea>
+            </mat-form-field>
+        </mat-card>
+
+        <timeframe></timeframe>
+
+    </div>
+
+    <div class="
+            align-self-end
+            container-fluid d-flex flex-row
+            justify-content-center
+            mt-4"
+         fxFlex="0 0 40px">
+        <button mat-raised-button color="primary">Add</button>
+    </div>
+
+</div>

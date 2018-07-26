@@ -1,0 +1,55 @@
+@import '_colours.scss';
+@import url('https://fonts.googleapis.com/css?family=Roboto+Slab|Slabo+27px|Tangerine');
+
+/*$text: 'Slabo 27px', serif;*/
+$heading: 'Roboto Slab', serif;
+$text: 'Roboto Slab', serif;
+$logo: 'Tangerine', cursive;
+
+/*  Extensions  */
+%radius-heading {    
+    border-radius: 0px 0px 0px 0px;
+    -moz-border-radius: 0px 0px 0px 0px;
+    -webkit-border-radius: 0px 0px 0px 0px;    
+}
+
+body {
+  color: $black;
+  font-family: $text;
+  font-size: 12px;
+}
+
+h1, h2, h3 {
+  font-family: $heading;
+  color: $grey-dark;
+}
+
+h1 {
+    font-size: 20px;
+
+    &.logo {
+        font-size: 40px;
+        font-family: $logo;
+        color: $black;
+        font-weight: bolder;
+        font-size: 30px;
+    }
+
+    &.bordered {
+        @extend %radius-heading;
+        border: 3px double $grey-dark;        
+    }
+}
+
+h2 {   
+  font-size: 14px;
+  font-weight: normal;
+}
+
+h3 {  
+  font-size: 14px;
+  font-weight: lighter;
+  font-style: italic;
+}
+
+

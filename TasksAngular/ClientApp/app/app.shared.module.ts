@@ -11,11 +11,11 @@ import { LayoutModule } from './modules/layout/layout.module';
 import { SharedModule } from './modules/shared/shared.module';
 import { TimeframeModule } from './modules/timeframe/timeframe.module';
 import { ThoughtsModule } from './modules/thoughts/thoughts.module';
+import { FlexLayoutModule } from "@angular/flex-layout";
 
 @NgModule({
     imports: [
         CommonModule,
-        //HttpModule,
         HttpClientModule,
         FormsModule,
         RouterModule.forRoot([
@@ -24,6 +24,7 @@ import { ThoughtsModule } from './modules/thoughts/thoughts.module';
             { path: '**', redirectTo: '' }
         ]),
         LayoutModule,
+        FlexLayoutModule,
         SharedModule,
         TimeframeModule,
         ThoughtsModule

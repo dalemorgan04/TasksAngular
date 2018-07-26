@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Common;
@@ -81,10 +81,6 @@ namespace Tasks.Service.Thoughts
 
         public void UpdateSortId(int thoughtId, int moveToSortId)
         {
-            //context.Database.ExecuteSqlCommand("usp_UpdateThoughtSortOrder @p0, @p1",
-            //    parameters: new[] {thoughtId, moveToSortId});
-
-            //var rows = 
             var parameters = new List<SqlParameter>()
             {
                 new SqlParameter("@thoughtId", thoughtId),

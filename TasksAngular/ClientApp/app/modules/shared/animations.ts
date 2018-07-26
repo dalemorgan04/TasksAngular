@@ -1,4 +1,4 @@
-import { query, stagger, trigger, state, style, transition, animate } from '@angular/animations';
+import { query, stagger, trigger, state, style, transition, animate, group } from '@angular/animations';
 
 export const headerLeftArrow =
     trigger('leftArrow',
@@ -41,26 +41,20 @@ export const navbar =
                 style({
                     width: '45px'
                 })),
-            transition('expanded => minified',
-                [
-                    query('span',
-                        stagger('30ms',
-                            [
-                                animate('100ms', style({ opacity: '0' }))
-                            ])),
-                    query(':self', animate('200ms cubic-bezier(1, 0, 0, 1)'))
-                ]),
-            transition('minified => expanded',
-                [
-                    query('span', style({ opacity: 0 })),
-                    query(':self', animate('200ms cubic-bezier(1, 0, 0, 1)')),
-                    query('span',
-                        stagger('30ms',
-                            [
-                                animate('100ms', style({ opacity: '1' }))
-                            ]))
+            transition('expanded => minified', [
+                group([
+                    query('span', animate('300ms', style({ opacity: '0' }))),
+                    query(':self', animate('300ms cubic-bezier(0.4, 0.0, 0.2, 1)'))
                 ])
-        ]);
+            ]),
+            transition('minified => expanded', [
+                group([
+                    query('span', style({ opacity: 0 })),
+                    query(':self', animate('300ms cubic-bezier(0.4, 0.0, 0.2, 1)')),
+                    query('span', animate('300ms', style({ opacity: '1' })))
+                ])
+            ])
+    ]);
 
 export const sidebar =
     trigger('sidebar',
@@ -71,21 +65,35 @@ export const sidebar =
                 })),
             state('minified',
                 style({
-                    width: '0px'
+                    width: '35px'
                 })),
             transition('expanded => minified',
                 [
-                    query('.content', animate('100ms', style({ opacity: '0' }))),
-                    query(':self', animate('200ms 200ms cubic-bezier(0.455, 0.03, 0.515, 0.955)'))
+                    group([
+                        query('.sidebar-content', animate('300ms', style({ opacity: '0' }))),
+                        query(':self', animate('300ms cubic-bezier(0.4, 0.0, 0.2, 1)'))
+                    ])
                 ]),
             transition('minified => expanded',
                 [
-                    query('.content', style({ opacity: 0 })),
-                    query(':self', animate('200ms 100ms cubic-bezier(0.455, 0.03, 0.515, 0.955)')),
-                    query('.content', animate('100ms', style({ opacity: '1' })))
+                    group([
+                        query('.sidebar-content', animate('350ms', style({ opacity: '1' }))),
+                        query(':self', animate('350ms cubic-bezier(0.4, 0.0, 0.2, 1)'))
+                    ])
                 ])
         ]);
-export const timeframeTab =
+export const fadeIn =
+    trigger('fadeIn',
+        [
+            state('fadeIn',
+                style({
+                    opacity: '1',
+                    transform: 'translateY(50%)'
+                })),
+            transition('void => *', [style({ opacity: '0' }), animate('500ms')])
+        ]);
+
+export const timeframetab =
     trigger('tab',
         [
             state('active',
@@ -98,7 +106,7 @@ export const timeframeTab =
                 })),
             transition('inactive => active',
                 [
-                    query('.content', animate('100ms', style({ opacity: '0' }))),
+                    //query('.content', animate('100ms', style({ opacity: '0' }))),
                     query(':self', animate('200ms 200ms cubic-bezier(0.455, 0.03, 0.515, 0.955)'))
                 ]),
             transition('active => inactive',

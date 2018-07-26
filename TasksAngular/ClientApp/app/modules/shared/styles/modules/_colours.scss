@@ -1,0 +1,98 @@
+/*
+* -- Colours  --
+*/
+
+$green: #00E676;
+$green-light: #69F0AE;
+$green-xlight: #B9F6CA;
+$green-dark: #00C853;
+$blue-xlight: #7ffff6;
+$blue-light: #84FFFF;
+$blue: #00E5FF;
+$blue-dark: #00B8D4;
+$white: #f7f7f7;
+$grey: #dedede ;
+$grey-light: #e5e9ec;
+$grey-dark: #626466;
+$black: #363537;
+$red: #FF5252;
+$white: white;
+
+    %blue-green-blend {
+        background: -moz-linear-gradient(left,$blue 0%, $green-light 50%, $green 100%) !important; /* FF3.6-15 */
+        background: -webkit-linear-gradient(left,$blue 0%, $green-light 50%, $green 100%) !important; /* Chrome10-25,Safari5.1-6 */
+        background: linear-gradient(to right,$blue 0%, $green-light 50%, $green 100%) !important; /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+        background: $green; /* Old browsers */
+    }
+
+    body{
+        background: $grey-light;
+    }
+
+/*
+* -- Shadows --
+*/
+
+    %shadow-header {
+        $shadow-header: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+        -moz-box-shadow: $shadow-header;
+        -webkit-box-shadow: $shadow-header;
+        box-shadow: $shadow-header;
+    }
+        .shadow-header {
+            @extend %shadow-header;
+        }
+
+    %shadow-card {
+        $shadow-card: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+        -moz-box-shadow: $shadow-card;
+        -webkit-box-shadow: $shadow-card;
+        box-shadow: $shadow-card;
+    }
+        .shadow-card {
+            @extend %shadow-card;
+        }
+
+    %shadow-side {
+        $shadow-side: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+        -moz-box-shadow: $shadow-side;
+        -webkit-box-shadow: $shadow-side;
+        box-shadow: $shadow-side;
+    }
+        .shadow-side {
+            @extend %shadow-side;
+        }
+
+    %shadow-tab {
+        $shadow-tab: -3px -3px 5px -3px rgba(0,0,0,0.16), -3px 5px 5px -3px rgba(0,0,0,0.23);
+        -moz-box-shadow: $shadow-tab;
+        -webkit-box-shadow: $shadow-tab;
+        box-shadow: $shadow-tab;
+    }
+        .shadow-tab {
+            @extend %shadow-tab;
+        }
+
+    %shadow-form {
+        $shadow-form: 0px 0px 5px 1px rgba(0,0,0,0.16), 0px 0px 5px 1px rgba(0,0,0,0.23);
+        -moz-box-shadow: $shadow-form !important;
+        -webkit-box-shadow: $shadow-form !important;
+        box-shadow: $shadow-form !important;
+    }
+        .shadow-form {
+            @extend %shadow-form;
+        }
+
+    %shadow-none {        
+        -moz-box-shadow: none;
+        -webkit-box-shadow: none;
+        box-shadow: none;
+    }
+
+/*
+* -- Shadows --
+*/
+
+.border-form {
+    border: 1px solid $grey-dark;
+}

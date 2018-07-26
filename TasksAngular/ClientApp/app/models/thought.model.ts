@@ -1,10 +1,10 @@
-﻿interface IThought {
+interface IThought {
     thoughtId: number;
     userId: number;
     description: string;
+    priorityId: number;
     createdDateTime: string;
     sortId: number;
-    priorityId: number;
     timeFrameId: number;
     timeFrameDateString: string;
     timeFrameTimeString: string;

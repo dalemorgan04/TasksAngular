@@ -1,5 +1,4 @@
-import { Component, NgZone, Output, EventEmitter, HostListener } from '@angular/core';
-import { trigger, state, style, transition, animate, keyframes } from '@angular/animations';
+import { Component, NgZone } from '@angular/core';
 import { NavService } from '../nav/nav.service';
 import { SidebarService } from '../../../shared/sidebar/sidebar.service';
 import { headerLeftArrow, headerRightArrow } from '../../../shared/animations';
@@ -8,7 +7,7 @@ import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons
 @Component({
     selector: 'header',
     templateUrl: './header.component.html',
-    styleUrls: ['./header.component.css'],
+    styleUrls: ['./header.component.scss'],
     animations: [ headerLeftArrow, headerRightArrow ]
 })
 export class HeaderComponent {

@@ -1,25 +1,50 @@
-<div class="container-fluid d-flex align-items-right p-0">
-    <div class="flex-fill pt-2 pb-2 pointer pl-5" (click)="toggleNav()">
-        <fa-icon 
-            style="color:var(--grey-dark);"
-            class="float-left"
+<div
+    class="
+        component-container
+        container-fluid
+        p-0
+        d-flex
+        flex-row
+        align-items-center
+        justify-content-around">
+    <div
+        (click)="toggleNav()"
+        class="
+            side-container
+            d-flex
+            justify-content-center">
+        <!--fxFlex="150px"
+        fxLayout="row"
+        fxLayoutAlign="center center">-->
+        <fa-icon
+            style="color: var(--grey-dark);"
+            class ="align-self-center"
             [@leftArrow]="leftArrowState"
             [icon]="leftIcon"
-            size="3x">
+            size="2x">
         </fa-icon>
     </div>
-    
-    <div class="flex-fill">
+
+    <div class=" center-container">
         <h1 class="logo">Thought Stream</h1>
     </div>
 
-    <div class="flex-fill pt-2 pointer pr-5" (click)="toggleSidebar()">
-        <fa-icon 
-            style="color:var(--grey-dark);"
+    <div
+        (click)="toggleSidebar()"
+        class="
+            side-container
+            d-flex
+            justify-content-center">
+        <!--fxFlex="150px"
+        fxLayout="row"
+        fxLayoutAlign="center center">-->
+        <fa-icon
+            style="color: var(--grey-dark);"
             class="float-right"
             [@rightArrow]="rightArrowState"
             [icon]="rightIcon"
-            size="3x">
+            size="2x">
         </fa-icon>
     </div>
+
 </div>

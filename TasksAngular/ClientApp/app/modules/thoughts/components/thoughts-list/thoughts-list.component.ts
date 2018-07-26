@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { DragulaService } from 'ng2-dragula/ng2-dragula';
-import { IMyDpOptions } from 'mydatepicker';
 import { ThoughtsService } from '../../thoughts.service';
 import '../../../../models/thought.model';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
@@ -8,11 +7,12 @@ import { faTimes } from '@fortawesome/free-solid-svg-icons';
 @Component({
     selector: 'thoughts-list',
     templateUrl: './thoughts-list.component.html',
-    styleUrls: ['thoughts-list.component.css']
+    styleUrls: ['thoughts-list.component.scss']
 })
 export class ThoughtsListComponent implements OnInit {
 
     public thoughtslist: IThought[];
+    public displayedColumns: string[] = ['description','timeFrameDueString'];
     public deleteIcon = faTimes;
 
     constructor(
@@ -20,7 +20,11 @@ export class ThoughtsListComponent implements OnInit {
         private dragula: DragulaService)
     {
         this.thoughtslist = [];
-        this.dragula.setOptions('bag-thoughts', { revertOnSpill: true });
+        this.dragula.setOptions('bag-thoughts',
+            {
+                revertOnSpill: true,
+                mirrorContainer: document.body
+            });
     }
     ngOnInit(): void {
         this.getThoughtsList();
@@ -56,6 +60,6 @@ export class ThoughtsListComponent implements OnInit {
         this.thoughtslist.sort((a, b) =>
               a.sortId > b.sortId ?  1
             : a.sortId < b.sortId ? -1 
-            : 0);
+            : 0 );
     }
 }

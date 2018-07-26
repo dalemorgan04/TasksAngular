@@ -1,0 +1,19 @@
+@import '../../../shared/styles/modules/_all.scss';
+
+.component-container {
+    z-index: 40;
+    @extend %blue-green-blend;
+    @extend %shadow-header;
+    
+    .side-container {
+        cursor: pointer;
+        flex: 0 0 150px;
+        width: 150px;
+    }
+
+    .center-container {
+        flex: 1 1 100%;
+        margin: 0;
+        text-align: center;
+    }
+}

@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { query, stagger, trigger, state, style, transition, animate } from '@angular/animations';
 import { NavService } from './nav.service';
 import { navbar } from '../../../shared/animations';
 import { faProjectDiagram, faLightbulb, faTasks, faRetweet, faCalendarAlt, faFolderOpen   } from '@fortawesome/free-solid-svg-icons';
@@ -7,7 +6,7 @@ import { faProjectDiagram, faLightbulb, faTasks, faRetweet, faCalendarAlt, faFol
 @Component({
     selector: 'nav',
     templateUrl: './nav.component.html',
-    styleUrls: ['./nav.component.css'],
+    styleUrls: ['./nav.component.scss'],
     animations: [ navbar ]
 })
 export class NavComponent implements OnInit {
@@ -23,8 +22,8 @@ export class NavComponent implements OnInit {
     public minifiedClass: boolean = true;
     private isMinified: boolean = false;
 
-    constructor( private navService: NavService )
-    { }
+    constructor(private navService: NavService) {
+    }
 
     ngOnInit() {
         this.navService.change.subscribe((isMinified: any) => {

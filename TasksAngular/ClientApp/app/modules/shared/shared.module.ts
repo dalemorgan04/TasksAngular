@@ -1,30 +1,64 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { SidebarService } from './sidebar/sidebar.service';
+import { SidebarModule } from './sidebar/sidebar.module';
 import { MyDatePickerModule } from 'mydatepicker';
 import { DayPickerComponent } from './datepicker/daypicker/daypicker.component';
 import { WeekPickerComponent } from './datepicker/weekpicker/weekpicker.component';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { FormsModule } from '@angular/forms';
+import { FlexLayoutModule } from "@angular/flex-layout";
+//Angular Material
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatMomentDateModule } from '@angular/material-moment-adapter';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatCardModule } from '@angular/material/card';
+import { MatTabsModule } from '@angular/material/tabs';
+import { MatExpansionModule } from '@angular/material/expansion';
+import { MatSelectModule } from '@angular/material/select';
 
 @NgModule({
     imports: [
         CommonModule,
+        SidebarModule,
         MyDatePickerModule,
-        NgbModule
+        FormsModule,
+        MatFormFieldModule,
+        MatButtonModule,
+        MatInputModule,
+        MatCheckboxModule,
+        MatMomentDateModule,
+        MatDatepickerModule,
+        MatSidenavModule,
+        MatCardModule,
+        MatTabsModule,
+        MatExpansionModule,
+        MatSelectModule,
+        FlexLayoutModule
     ],
     declarations: [
         DayPickerComponent,
         WeekPickerComponent
     ],
-    providers: [
-        SidebarService
-    ],
-    
     exports: [
         MyDatePickerModule,
+        SidebarModule,
         DayPickerComponent,
         WeekPickerComponent,
-        NgbModule
+        MatFormFieldModule,
+        MatInputModule,
+        MatButtonModule,
+        MatCheckboxModule,
+        MatMomentDateModule,
+        MatDatepickerModule,
+        MatSidenavModule,
+        MatCardModule,
+        MatTabsModule,
+        MatExpansionModule,
+        MatSelectModule,
+        FlexLayoutModule
     ]
 })
 export class SharedModule {}

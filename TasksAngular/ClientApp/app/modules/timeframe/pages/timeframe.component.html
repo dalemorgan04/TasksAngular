@@ -1,69 +1,88 @@
-<div class="container">
-     
-    <!--Tab buttons-->
-    <ul>
-        <li [class.selected]="tab =='open'" (click)="switchTab('open')">Anytime</li>
-        <li [class.selected]="tab =='day'"(click)="switchTab('day')">Day</li>
-        <li [class.selected]="tab =='week'" (click)="switchTab('week')">Week</li>
-        <li [class.selected]="tab =='month'" (click)="switchTab('month')">Month</li>
-    </ul>         
-    
-     
-    <div class="tabs" [ngSwitch] ="tab">
+<!-- Expansion -->
+<mat-accordion>
+    <mat-expansion-panel
+        class="shadow-form">
         
-        <!--Open-->
-        <div class="tab-open" *ngSwitchCase ="'open'" >
-            <h3>No due date</h3>
-        </div>
+        <mat-expansion-panel-header>
+            <!-- Title -->
+            <mat-panel-title>
+                Due
+            </mat-panel-title>
 
-        <!--Day-->
-        <div class="tab-day" *ngSwitchCase ="'day'">
+            <!-- Description -->
+            <mat-panel-description>
+                Anytime
+            </mat-panel-description>
 
-            <!--Date-->
-            <h3>Due on the day of...</h3>
-            <div class="input-group">
-                <daypicker></daypicker>
-            </div>
+        </mat-expansion-panel-header>
 
-            <!--Time-->
-            <h3>At the time...</h3>
-            
-            <label class="check fit pad-right">
-                <input type="checkbox"/>
-                <div class="box"></div>
-            </label>
 
-            <div class="input-group">
-                <label class="check fit pad-right">
-                    <input type="checkbox"/>
-                    <div class="box"></div>
-                </label>
-                
-                <!--<div class="input-container-text">
-                    <input class="timeframe-time" placeholder="Check box to choose time" readonly="readonly" disabled/>
-                    <span class="underline"></span>
-                </div>-->
-            </div>
-        </div>
+        <!-- Timeframe -->
+        <mat-card class="timeframe">
+            <mat-card-content>
+                <mat-tab-group (selectedTabChange)="tabChanged($event)">
 
-        <!--Week-->
-        <div class="tab-week" *ngSwitchCase ="'week'">
-            <h3>Due in the week of...</h3>
-            <div class="input-group fit">
-                <weekpicker></weekpicker>
-            </div>
-        </div>
+                    <!--Open-->
+                    <mat-tab label="Anytime"></mat-tab>
 
-        <!--Month-->
-        <div class="tab-month" *ngSwitchCase ="'month'">
-            <h3>Due in the month of...</h3>
-            <div class="input-group fit">
-                <div class="input-container-text">
-                    <input class="timeframe-month" placeholder="Click to choose a month" readonly="readonly"/>
-                    <span class="underline"></span>
-                </div>
-            </div>
-        </div>
+                    <mat-tab label="Day">
 
-    </div>
- </div>
+                        <!--Date-->
+                        <mat-form-field class="container-fluid">
+                            <input matInput [matDatepicker]="daypicker" placeholder="Due on the date" class="mt-2">
+                            <mat-datepicker-toggle matSuffix [for]="daypicker"></mat-datepicker-toggle>
+                            <mat-datepicker #daypicker></mat-datepicker>
+                        </mat-form-field>
+
+                        <!--Time-->
+                        <div class="container">
+                            <div class="row">
+                                <mat-form-field class="col-sm w-25">
+                                    <input matInput type="time" [disabled]="!hasTime" placeholder="Time"/>
+                                </mat-form-field>
+                                <div class="col-sm p-0 m-0 mt-3">
+                                    <mat-checkbox [(ngModel)]="hasTime" class="font-weight-light">
+                                        Include time
+                                    </mat-checkbox>
+                                </div>
+                            </div>
+                        </div>
+
+                    </mat-tab>
+
+                    <!--Week-->
+                    <mat-tab label="Week">
+                        <mat-form-field class="container-fluid">
+                            <input matInput [matDatepicker]="weekpicker" placeholder="Due in the week of" class="mt-2">
+                            <mat-datepicker-toggle matSuffix [for]="weekpicker"></mat-datepicker-toggle>
+                            <mat-datepicker #weekpicker panelClass ="weekpicker"></mat-datepicker>
+                        </mat-form-field>
+                    </mat-tab>
+
+                    <!--Month-->
+                    <mat-tab label="Month">
+                        
+                        <mat-form-field>
+                            <mat-select placeholder="Month">
+                                <mat-option *ngFor="let month of months" [value]="month.value">
+                                    {{month.viewValue}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+
+                        <mat-form-field>
+                            <mat-select placeholder="Year">
+                                <mat-option *ngFor="let year of years" [value]="year.value">
+                                    {{year.value}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+
+                    </mat-tab>
+
+                </mat-tab-group>
+            </mat-card-content>
+        </mat-card>
+
+    </mat-expansion-panel>
+</mat-accordion>

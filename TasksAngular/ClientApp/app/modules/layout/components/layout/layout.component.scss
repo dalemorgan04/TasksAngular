@@ -1,0 +1,40 @@
+@import '../../../shared/styles/modules/_all.scss';
+
+.app-container {
+  width: 100vw;
+  height: 100vh;
+  background: $grey-light;
+  overflow: hidden;
+
+  main, content {
+    height: 100%;
+    width: 100%;
+  }
+
+  header {
+    z-index: 30;
+    height: 50px;
+  }
+
+  main {
+    z-index: 0;
+  }
+
+  nav {
+    z-index: 20;
+    padding-bottom: 5px;
+  }
+
+  content {
+    z-index: 10;
+    padding: 0;
+    height: 100%;
+    width: 100%;
+  }
+
+  footer {
+    z-index: 10;
+    color: $black;
+    width: 100%;
+  }
+} 
