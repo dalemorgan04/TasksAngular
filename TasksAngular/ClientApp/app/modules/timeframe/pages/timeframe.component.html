@@ -5,14 +5,10 @@
         
         <mat-expansion-panel-header>
             <!-- Title -->
-            <mat-panel-title>
-                Due
-            </mat-panel-title>
+            <mat-panel-title> Due </mat-panel-title>
 
             <!-- Description -->
-            <mat-panel-description>
-                Anytime
-            </mat-panel-description>
+            <mat-panel-description> {{timeframeString}} </mat-panel-description>
 
         </mat-expansion-panel-header>
 
@@ -20,7 +16,9 @@
         <!-- Timeframe -->
         <mat-card class="timeframe">
             <mat-card-content>
-                <mat-tab-group (selectedTabChange)="tabChanged($event)">
+                <mat-tab-group
+                    (selectedTabChange)="tabChanged($event)"
+                    [selectedIndex]="tabIndex">
 
                     <!--Open-->
                     <mat-tab label="Anytime"></mat-tab>
@@ -29,7 +27,12 @@
 
                         <!--Date-->
                         <mat-form-field class="container-fluid">
-                            <input matInput [matDatepicker]="daypicker" placeholder="Due on the date" class="mt-2">
+                            <input matInput
+                                   [matDatepicker]="daypicker"
+                                   placeholder="Due on the date"
+                                   [(ngModel)] ="date"
+                                   (ngModelChange) ="updateTimeframe()"
+                                   class="mt-2">
                             <mat-datepicker-toggle matSuffix [for]="daypicker"></mat-datepicker-toggle>
                             <mat-datepicker #daypicker></mat-datepicker>
                         </mat-form-field>
@@ -38,10 +41,15 @@
                         <div class="container">
                             <div class="row">
                                 <mat-form-field class="col-sm w-25">
-                                    <input matInput type="time" [disabled]="!hasTime" placeholder="Time"/>
+                                    <input matInput
+                                           type="time"
+                                           [disabled]="!hasTime"
+                                           placeholder="Time"
+                                           [value]="time" />
+                                    <!--<input matInput placeholder="Favorite food" [value] ="time">-->
                                 </mat-form-field>
                                 <div class="col-sm p-0 m-0 mt-3">
-                                    <mat-checkbox [(ngModel)]="hasTime" class="font-weight-light">
+                                    <mat-checkbox [(ngModel)]="hasTime" (change)="updateTimeframe()" class="font-weight-light">
                                         Include time
                                     </mat-checkbox>
                                 </div>
@@ -55,13 +63,13 @@
                         <mat-form-field class="container-fluid">
                             <input matInput [matDatepicker]="weekpicker" placeholder="Due in the week of" class="mt-2">
                             <mat-datepicker-toggle matSuffix [for]="weekpicker"></mat-datepicker-toggle>
-                            <mat-datepicker #weekpicker panelClass ="weekpicker"></mat-datepicker>
+                            <mat-datepicker #weekpicker panelClass="weekpicker"></mat-datepicker>
                         </mat-form-field>
                     </mat-tab>
 
                     <!--Month-->
                     <mat-tab label="Month">
-                        
+
                         <mat-form-field>
                             <mat-select placeholder="Month">
                                 <mat-option *ngFor="let month of months" [value]="month.value">

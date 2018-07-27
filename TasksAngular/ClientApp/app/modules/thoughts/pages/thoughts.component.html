@@ -17,8 +17,7 @@
         <mat-card>
             <div
                 class="sidebar-content"
-                [ngSwitch]="tab"
-                [@tab] ="tabState">
+                [ngSwitch]="tab">
                 
                 <div *ngSwitchCase="'add'" [@fadeIn]="fadeIn" class="w-100 h-100">
                     <thoughts-add></thoughts-add>

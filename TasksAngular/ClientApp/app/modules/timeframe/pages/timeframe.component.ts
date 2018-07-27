@@ -1,16 +1,6 @@
-import { Component, OnInit, ViewChild, Input } from '@angular/core';
-
-import '../../../models/timeframe.model';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { MatTab, MatTabChangeEvent } from '@angular/material';
-
-
-export interface Month {
-    value: number;
-    viewValue: string;
-}
-export interface Year {
-    value: number;
-}
+import { ITimeframe, TimeframeType, IMonth, IYear, months, years } from '../../../models/timeframe.model';
 
 @Component({
     selector: 'timeframe',
@@ -19,46 +9,89 @@ export interface Year {
 })
 export class TimeframeComponent implements OnInit{
 
-    @Input() initialTimeframe: Timeframe;
+    @Input() timeframe: ITimeframe;
+    @Output() timeframeChange = new EventEmitter<ITimeframe>();
+    private timeframeString : string;
 
-    public timeframe : Timeframe;
-    public hasTime: boolean = false;
-    public tab: string;
     private matTab: MatTab;
+    public tabIndex: number;
+    public months: IMonth[] = months;
+    public years: IYear[] = years;
 
-
-    public months: Month[] = [
-        { value: 1, viewValue: 'January' },
-        { value: 2, viewValue: 'February' },
-        { value: 3, viewValue: 'March' },
-        { value: 4, viewValue: 'April' },
-        { value: 5, viewValue: 'May' },
-        { value: 6, viewValue: 'June' },
-        { value: 7, viewValue: 'July' },
-        { value: 8, viewValue: 'August' },
-        { value: 9, viewValue: 'September' },
-        { value: 10, viewValue: 'October' },
-        { value: 11, viewValue: 'November' },
-        { value: 12, viewValue: 'December' },
-    ];
-
-    public years: Year[] = [
-        { value: 2018 },
-        { value: 2019 },
-        { value: 2020 },
-        { value: 2021 },
-        { value: 2022 },
-        { value: 2023 }
-    ];
+    public date: Date;
+    public hasTime: boolean = false;
+    public time: number;
+    public weekNumber: number;
+    public month: number;
+    public year: number;
 
     ngOnInit(): void {
+        //Set all to defaults
+        this.date = new Date(); //now
+        this.time = this.date.getTime();
+        this.hasTime = false;
+        this.weekNumber = 1;
+        this.month = 0;
+        //Initialise from input
+        switch (this.timeframe.timeframeType) {
+            case TimeframeType.Open:
+                this.tabIndex = 0;
+                break;
+            case TimeframeType.Date:
+                this.tabIndex = 1;
+                this.date = this.timeframe.dateTime;
+                break;
+            case TimeframeType.Time:
+                this.tabIndex = 1;
+                this.date = this.timeframe.dateTime;
+                this.hasTime = true;
+                this.time = this.timeframe.dateTime.getTime();
+                break;
+            case TimeframeType.Week:
+                this.weekNumber = 2;
+                //this.month = this.timeframe.dateTime.getMonth();
+                //this.year = this.timeframe.dateTime.getFullYear();
+                this.tabIndex = 2;
+                break;
+            case TimeframeType.Month:
+                this.tabIndex = 3;
+                //this.month = this.timeframe.dateTime.getMonth();
+                //this.year = this.timeframe.dateTime.getFullYear();
+                break;
+        default:
+        }
     }
 
-    tabChanged( event : MatTabChangeEvent) {
+    updateTimeframe() {
+        switch (this.matTab.textLabel) {
+            case "Anytime":
+                this.timeframe.timeframeType = TimeframeType.Open;
+                this.timeframeString = "Anytime";
+                break;
+            case "Day":
+                if (this.hasTime) {
+                    this.timeframe.timeframeType = TimeframeType.Time;
+                    this.timeframeString = "Time";
+                } else {
+                    this.timeframe.timeframeType = TimeframeType.Date;
+                    this.timeframe.dateTime.toDateString();
+                    this.timeframeString = "Day";
+                }
+                break;
+            case "Week":
+                this.timeframe.timeframeType = TimeframeType.Week;
+                this.timeframeString = "Week";
+                break;
+            case "Month":
+                this.timeframe.timeframeType = TimeframeType.Month;
+                this.timeframeString = "Month";
+                break;
+        default:
+        }
+    }
+
+    tabChanged(event: MatTabChangeEvent) {
         this.matTab = event.tab;
-    }
-
-    getTimeframe() {
-
+        this.updateTimeframe();
     }
 }
