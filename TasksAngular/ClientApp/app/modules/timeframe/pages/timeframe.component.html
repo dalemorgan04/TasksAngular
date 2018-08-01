@@ -23,69 +23,80 @@
                     <!--Open-->
                     <mat-tab label="Anytime"></mat-tab>
 
-                    <mat-tab label="Day">
 
+                    <mat-tab label="Day" >
+                        <div fxLayout="row" fxLayoutAlign="center center" class="container-fluid mt-3">
                         <!--Date-->
-                        <mat-form-field class="container-fluid">
-                            <input matInput
-                                   [matDatepicker]="daypicker"
-                                   placeholder="Due on the date"
-                                   [(ngModel)] ="date"
-                                   (ngModelChange) ="updateTimeframe()"
-                                   class="mt-2">
-                            <mat-datepicker-toggle matSuffix [for]="daypicker"></mat-datepicker-toggle>
-                            <mat-datepicker #daypicker></mat-datepicker>
-                        </mat-form-field>
-
-                        <!--Time-->
-                        <div class="container">
-                            <div class="row">
-                                <mat-form-field class="col-sm w-25">
-                                    <input matInput
-                                           type="time"
-                                           [disabled]="!hasTime"
-                                           placeholder="Time"
-                                           [value]="time" />
-                                    <!--<input matInput placeholder="Favorite food" [value] ="time">-->
-                                </mat-form-field>
-                                <div class="col-sm p-0 m-0 mt-3">
-                                    <mat-checkbox [(ngModel)]="hasTime" (change)="updateTimeframe()" class="font-weight-light">
-                                        Include time
-                                    </mat-checkbox>
-                                </div>
-                            </div>
+                            <mat-datepicker-toggle fxFlex="60px" matSuffix [for]="daypicker"></mat-datepicker-toggle>
+                            <mat-form-field fxFlex="1 1 100%">
+                                <input matInput
+                                       [matDatepicker]="daypicker"
+                                       placeholder="Due on the date"
+                                       [formControl]="dateControl"
+                                       (ngModelChange)="updateTimeframe()"
+                                       class="mt-2">
+                                <mat-datepicker #daypicker></mat-datepicker>
+                            </mat-form-field>
                         </div>
-
+                        <!--Time-->
+                        <div fxLayout="row" fxLayoutAlign="center center" class="container-fluid">
+                            <mat-checkbox
+                                fxFlex="60px"
+                                [(ngModel)]="hasTime"
+                                (change)="updateTimeframe()"
+                                class="font-weight-light">
+                            </mat-checkbox>
+                            <mat-form-field class="m-0" fxFlex ="1 1 100%">
+                                <input matInput
+                                       type="time"
+                                       [disabled]="!hasTime"
+                                       placeholder="Time"
+                                       [(ngModel)] ="time"
+                                       (change)="updateTimeframe()"/>
+                            </mat-form-field>
+                        </div>
                     </mat-tab>
 
                     <!--Week-->
                     <mat-tab label="Week">
-                        <mat-form-field class="container-fluid">
-                            <input matInput [matDatepicker]="weekpicker" placeholder="Due in the week of" class="mt-2">
-                            <mat-datepicker-toggle matSuffix [for]="weekpicker"></mat-datepicker-toggle>
+                        <div fxLayout="row" fxLayoutAlign="center center" class="container-fluid mt-3">
+                            
+                            <mat-datepicker-toggle fxFlex="60px" matSuffix [for]="weekpicker"></mat-datepicker-toggle>
                             <mat-datepicker #weekpicker panelClass="weekpicker"></mat-datepicker>
-                        </mat-form-field>
+                            <!--Hidden input-->
+                            <mat-form-field fxFlex="0 0 0px" class="invisible m-0 p-0" style="width: 0;">
+                                <input matInput
+                                       [matDatepicker]="weekpicker"
+                                       [(ngModel)]="wcDate"
+                                       (ngModelChange)="updateTimeframe()">
+                            </mat-form-field>
+                            <!--Visible value string-->
+                            <mat-form-field fxFlex="1 1 100%">
+                                <textarea matInput placeholder="Due in the week of" [(ngModel)]="weekDisplayString"></textarea>
+                                <!--<input matInput placeholder="Due in the week of" [(ngModel)]="weekDisplayString">-->
+                            </mat-form-field>
+                        </div>
                     </mat-tab>
 
                     <!--Month-->
-                    <mat-tab label="Month">
+                    <mat-tab label="Month" class="container-fluid mt-3">
+                        <div fxLayout="row" class="container-fluid">
+                            <mat-form-field fxFlex="1 1 50%">
+                                <mat-select placeholder="Month" [value]="month">
+                                    <mat-option *ngFor="let month of months" [value]="month.number">
+                                        {{month.name}}
+                                    </mat-option>
+                                </mat-select>
+                            </mat-form-field>
 
-                        <mat-form-field>
-                            <mat-select placeholder="Month">
-                                <mat-option *ngFor="let month of months" [value]="month.value">
-                                    {{month.viewValue}}
-                                </mat-option>
-                            </mat-select>
-                        </mat-form-field>
-
-                        <mat-form-field>
-                            <mat-select placeholder="Year">
-                                <mat-option *ngFor="let year of years" [value]="year.value">
-                                    {{year.value}}
-                                </mat-option>
-                            </mat-select>
-                        </mat-form-field>
-
+                            <mat-form-field fxFlex ="1 1 50%">
+                                <mat-select placeholder="Year" [value]="year">
+                                    <mat-option *ngFor="let year of years" [value]="year">
+                                        {{year}}
+                                    </mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </div>
                     </mat-tab>
 
                 </mat-tab-group>

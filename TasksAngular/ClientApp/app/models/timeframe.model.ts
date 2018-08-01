@@ -6,41 +6,40 @@ export enum TimeframeType {
     Month = 4
 }
 
+export enum StringLengthType {
+    Short = 0,
+    Long = 1
+}
+
 export interface ITimeframe {
     timeframeType: TimeframeType,
     dateTime: Date;
 }
 
+export interface IWeek {
+    wcDate: Date,
+    toString: string;
+}
+
 export interface IMonth {
-    value: number;
-    viewValue: string;
+    number: number;
+    name: string;
 }
-
-export interface IYear {
-    value: number;
-}
-
 export const months: IMonth[] = 
 [
-        { value: 1, viewValue: 'January' },
-        { value: 2, viewValue: 'February' },
-        { value: 3, viewValue: 'March' },
-        { value: 4, viewValue: 'April' },
-        { value: 5, viewValue: 'May' },
-        { value: 6, viewValue: 'June' },
-        { value: 7, viewValue: 'July' },
-        { value: 8, viewValue: 'August' },
-        { value: 9, viewValue: 'September' },
-        { value: 10, viewValue: 'October' },
-        { value: 11, viewValue: 'November' },
-        { value: 12, viewValue: 'December' }
+    { number: 1, name: 'January' },
+    { number: 2, name: 'February' },
+    { number: 3, name: 'March' },
+    { number: 4, name: 'April' },
+    { number: 5, name: 'May' },
+    { number: 6, name: 'June' },
+    { number: 7, name: 'July' },
+    { number: 8, name: 'August' },
+    { number: 9, name: 'September' },
+    { number: 10, name: 'October' },
+    { number: 11, name: 'November' },
+    { number: 12, name: 'December' }
 ];
 
-export const years: IYear[] = [
-    { value: 2018 },
-    { value: 2019 },
-    { value: 2020 },
-    { value: 2021 },
-    { value: 2022 },
-    { value: 2023 }
-];
+export const years: number[] = [2018 ,2019,2020,2021,2022,2023];
+

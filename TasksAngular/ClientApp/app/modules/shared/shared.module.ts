@@ -4,7 +4,7 @@ import { SidebarModule } from './sidebar/sidebar.module';
 import { MyDatePickerModule } from 'mydatepicker';
 import { DayPickerComponent } from './datepicker/daypicker/daypicker.component';
 import { WeekPickerComponent } from './datepicker/weekpicker/weekpicker.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FlexLayoutModule } from "@angular/flex-layout";
 //Angular Material
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -18,6 +18,8 @@ import { MatCardModule } from '@angular/material/card';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatSelectModule } from '@angular/material/select';
+import { DateAdapter } from '@angular/material';
+import { CustomDateAdapter } from './datepicker/customDateAdapter/customDateAdapter.component';
 
 @NgModule({
     imports: [
@@ -25,6 +27,7 @@ import { MatSelectModule } from '@angular/material/select';
         SidebarModule,
         MyDatePickerModule,
         FormsModule,
+        ReactiveFormsModule,
         MatFormFieldModule,
         MatButtonModule,
         MatInputModule,
@@ -41,6 +44,9 @@ import { MatSelectModule } from '@angular/material/select';
     declarations: [
         DayPickerComponent,
         WeekPickerComponent
+    ],
+    providers: [
+        { provide: DateAdapter, useClass: CustomDateAdapter }
     ],
     exports: [
         MyDatePickerModule,

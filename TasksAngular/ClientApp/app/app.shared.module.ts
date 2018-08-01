@@ -5,8 +5,9 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 //Routing
 import { RouterModule } from '@angular/router';
-import { ThoughtsComponent } from './modules/thoughts/pages/thoughts.component';
+
 //Modules
+import { ThoughtsComponent } from './modules/thoughts/pages/thoughts.component';
 import { LayoutModule } from './modules/layout/layout.module';
 import { SharedModule } from './modules/shared/shared.module';
 import { TimeframeModule } from './modules/timeframe/timeframe.module';
