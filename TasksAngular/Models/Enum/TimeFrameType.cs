@@ -1,6 +1,6 @@
-﻿namespace TasksAngular.Models.Enum
+namespace TasksAngular.Models.Enum
 {
-    public enum TimeFrameType
+    public enum TimeframeType
     {
         Open  = 0,
         Time  = 1,

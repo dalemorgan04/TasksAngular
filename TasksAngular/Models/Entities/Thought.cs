@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
@@ -23,26 +23,26 @@ namespace TasksAngular.Models.Entities
         public static Thought Create(string description, int sortId, int timeFrameId, DateTime timeFrameDateTime, Project project)
         {
             DateTime validatedTimeFrameDateTime;
-            switch ((TimeFrameType)timeFrameId)
+            switch ((TimeframeType)timeFrameId)
             {
-                case TimeFrameType.Open:
+                case TimeframeType.Open:
                     validatedTimeFrameDateTime = new DateTime(2050, 1, 1);
                     break;
-                case TimeFrameType.Date:
+                case TimeframeType.Date:
                     validatedTimeFrameDateTime = new DateTime(timeFrameDateTime.Year, timeFrameDateTime.Month,
                         timeFrameDateTime.Day);
                     break;
-                case TimeFrameType.Time:
+                case TimeframeType.Time:
                     validatedTimeFrameDateTime = new DateTime(timeFrameDateTime.Year, timeFrameDateTime.Month, timeFrameDateTime.Day,
                                                               timeFrameDateTime.Hour, timeFrameDateTime.Minute, 0);
                     break;
-                case TimeFrameType.Week:
+                case TimeframeType.Week:
                     //Make sure a Monday
                     validatedTimeFrameDateTime =
                         new DateTime(timeFrameDateTime.Year, timeFrameDateTime.Month, timeFrameDateTime.Day)
                             .StartOfWeek(DayOfWeek.Monday);
                     break;
-                case TimeFrameType.Month:
+                case TimeframeType.Month:
                     validatedTimeFrameDateTime = new DateTime(timeFrameDateTime.Year, timeFrameDateTime.Month, 1);
                     break;
                 default:
@@ -52,6 +52,7 @@ namespace TasksAngular.Models.Entities
 
             Thought thought = new Thought()
             {
+                User = User.GetDefaultUser(), //TODO: Remove when users implemented
                 Description = description,
                 CreatedDateTime = DateTime.Now,
                 SortId = sortId,
@@ -64,22 +65,22 @@ namespace TasksAngular.Models.Entities
         public virtual void Update(string description, int timeFrameId, DateTime timeFrameDateTime, Project project)
         {
             TimeFrameId = timeFrameId;
-            switch ((TimeFrameType)timeFrameId)
+            switch ((TimeframeType)timeFrameId)
             {
-                case TimeFrameType.Open:
+                case TimeframeType.Open:
                     TimeFrameDateTime = new DateTime(2050, 1, 1);
                     break;
-                case TimeFrameType.Date:
+                case TimeframeType.Date:
                     TimeFrameDateTime = new DateTime(timeFrameDateTime.Year, timeFrameDateTime.Month, timeFrameDateTime.Day);
                     break;
-                case TimeFrameType.Time:
+                case TimeframeType.Time:
                     TimeFrameDateTime = new DateTime(timeFrameDateTime.Year, timeFrameDateTime.Month, timeFrameDateTime.Day, timeFrameDateTime.Hour, timeFrameDateTime.Minute, 0);
                     break;
-                case TimeFrameType.Week:
+                case TimeframeType.Week:
                     //Make sure a Monday
                     TimeFrameDateTime = new DateTime(timeFrameDateTime.Year, timeFrameDateTime.Month, timeFrameDateTime.Day).StartOfWeek(DayOfWeek.Monday);
                     break;
-                case TimeFrameType.Month:
+                case TimeframeType.Month:
                     TimeFrameDateTime = new DateTime(timeFrameDateTime.Year, timeFrameDateTime.Month, 1);
                     break;
             }

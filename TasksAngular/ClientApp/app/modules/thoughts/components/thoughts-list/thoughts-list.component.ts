@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { DragulaService } from 'ng2-dragula/ng2-dragula';
 import { ThoughtsService } from '../../thoughts.service';
-import '../../../../models/thought.model';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
+import { IThought } from '../../../../models/thought.model';
 
 @Component({
     selector: 'thoughts-list',
@@ -11,7 +11,7 @@ import { faTimes } from '@fortawesome/free-solid-svg-icons';
 })
 export class ThoughtsListComponent implements OnInit {
 
-    public thoughtslist: IThought[];
+    public thoughtslist: IThought[] = [];
     public displayedColumns: string[] = ['description','timeFrameDueString'];
     public deleteIcon = faTimes;
 
@@ -19,15 +19,20 @@ export class ThoughtsListComponent implements OnInit {
         private thoughtsService: ThoughtsService,
         private dragula: DragulaService)
     {
-        this.thoughtslist = [];
+        this.thoughtsService.thoughtslist$.subscribe(
+            thoughtslist => {
+                this.thoughtslist = thoughtslist;
+            }
+        );
         this.dragula.setOptions('bag-thoughts',
             {
                 revertOnSpill: true,
                 mirrorContainer: document.body
             });
     }
+
     ngOnInit(): void {
-        this.getThoughtsList();
+        this.thoughtsService.updateThoughtslist();
         this.dragula.drop.subscribe(
             (el: any) => {
                 var moveToSortId: number;
@@ -39,21 +44,13 @@ export class ThoughtsListComponent implements OnInit {
                 this.thoughtsService.updateSortOrder(Number(el[1].dataset.thoughtid), moveToSortId)
                     .subscribe(result => {
                         if (result) {
-                            this.getThoughtsList();            
+                            this.thoughtsService.updateThoughtslist();
                         } else {
                             alert('Couldnt update sort order');
                         }
                 });
             }
         );
-    }
-
-    private getThoughtsList(): void {
-        this.thoughtsService.getThoughtsList()
-            .subscribe(result => {
-                this.thoughtslist = result;
-                this.sortThoughtsList();
-            }, error => alert('Couldnt get list'));
     }
 
     private sortThoughtsList(): void {

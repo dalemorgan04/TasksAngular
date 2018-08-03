@@ -9,6 +9,7 @@ using Tasks.Service.Thoughts;
 using TasksAngular.Models;
 using TasksAngular.Models.Entities;
 using TasksAngular.Models.Seed;
+using TasksAngular.Service.Thoughts;
 
 namespace TasksAngular
 {

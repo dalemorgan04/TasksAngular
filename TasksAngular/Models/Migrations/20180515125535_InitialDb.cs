@@ -147,7 +147,7 @@ namespace TasksAngular.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "TimeFrameType",
+                name: "TimeframeType",
                 columns: table => new
                 {
                     TimeFrameId = table.Column<int>(nullable: false),
@@ -285,7 +285,7 @@ namespace TasksAngular.Migrations
                 name: "Thoughts");
 
             migrationBuilder.DropTable(
-                name: "TimeFrameType");
+                name: "TimeframeType");
 
             migrationBuilder.DropTable(
                 name: "HabitEndOnType");

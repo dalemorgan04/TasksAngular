@@ -231,7 +231,7 @@ namespace TasksAngular.Migrations
 
                     b.Property<int?>("ProjectId");
 
-                    b.Property<DateTime>("TimeFrameDateTime")
+                    b.Property<DateTime>("TimeframeDateTime")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime")
                         .HasDefaultValueSql("(datefromparts((2050),(1),(1)))");
@@ -268,7 +268,7 @@ namespace TasksAngular.Migrations
 
                     b.Property<int>("SortId");
 
-                    b.Property<DateTime>("TimeFrameDateTime")
+                    b.Property<DateTime>("TimeframeDateTime")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime")
                         .HasDefaultValueSql("(datefromparts((2050),(1),(1)))");
@@ -284,7 +284,7 @@ namespace TasksAngular.Migrations
                     b.ToTable("Thoughts");
                 });
 
-            modelBuilder.Entity("TasksAngular.Models.Entities.TimeFrameType", b =>
+            modelBuilder.Entity("TasksAngular.Models.Entities.TimeframeType", b =>
                 {
                     b.Property<int>("TimeFrameId");
 
@@ -294,7 +294,7 @@ namespace TasksAngular.Migrations
 
                     b.HasKey("TimeFrameId");
 
-                    b.ToTable("TimeFrameType");
+                    b.ToTable("TimeframeType");
                 });
 
             modelBuilder.Entity("TasksAngular.Models.Entities.User", b =>

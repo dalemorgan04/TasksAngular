@@ -1,7 +1,4 @@
-﻿using System;
-using TasksAngular.Models.Entities;
-
-namespace Tasks.Service.Thoughts.Dto
+namespace TasksAngular.Service.Thoughts.Dto
 {
     public class SortDto
     {

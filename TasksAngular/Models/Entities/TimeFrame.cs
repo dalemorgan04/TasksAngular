@@ -1,69 +1,69 @@
-﻿using System;
+using System;
 using System.Globalization;
 using TasksAngular.Infrastructure.Extension;
 using TasksAngular.Models.Enum;
 
 namespace TasksAngular.Models.Entities
 {
-    public class TimeFrame
+    public class Timeframe
     {
-        private readonly TimeFrameType timeFrameType;
-        private readonly DateTime timeFrameDateTime;
+        private readonly TimeframeType timeframeType;
+        private readonly DateTime timeframeDateTime;
 
-        public TimeFrameType TimeFrameType => timeFrameType;
-        public DateTime TimeFrameDateTime => timeFrameDateTime;
-        public String DateString => timeFrameDateTime.ToString("dd/MM/yyyy");
-        public string TimeString => timeFrameDateTime.ToString("HH:mm");
+        public TimeframeType TimeframeType => timeframeType;
+        public DateTime TimeframeDateTime => timeframeDateTime;
+        public String DateString => timeframeDateTime.ToString("dd/MM/yyyy");
+        public string TimeString => timeframeDateTime.ToString("HH:mm");
         public string WeekString => getWeekString();
         public String DueString => getDueString();
 
 
-        public TimeFrame()
+        public Timeframe()
         {
-            this.timeFrameType = TimeFrameType.Open;
-            this.timeFrameDateTime = new DateTime(2050,1,1); //Set date due to far off into the future
+            this.timeframeType = TimeframeType.Open;
+            this.timeframeDateTime = new DateTime(2050,1,1); //Set date due to far off into the future
         }
 
-        public TimeFrame(TimeFrameType timeFrameType, DateTime timeFrameDateTime)
+        public Timeframe(TimeframeType timeframeType, DateTime timeFrameDateTime)
         {
-            this.timeFrameType = timeFrameType;
-            switch (timeFrameType)
+            this.timeframeType = timeframeType;
+            switch (timeframeType)
             {
-                case TimeFrameType.Date:
-                    this.timeFrameDateTime = new DateTime(timeFrameDateTime.Year, timeFrameDateTime.Month, timeFrameDateTime.Day);
+                case TimeframeType.Date:
+                    this.timeframeDateTime = new DateTime(timeFrameDateTime.Year, timeFrameDateTime.Month, timeFrameDateTime.Day);
                     break;
-                case TimeFrameType.Time:
-                    this.timeFrameDateTime = new DateTime(timeFrameDateTime.Year, timeFrameDateTime.Month, timeFrameDateTime.Day,
+                case TimeframeType.Time:
+                    this.timeframeDateTime = new DateTime(timeFrameDateTime.Year, timeFrameDateTime.Month, timeFrameDateTime.Day,
                                                           timeFrameDateTime.Hour, timeFrameDateTime.Minute, 0);
                     break;
-                case TimeFrameType.Week:
-                    this.timeFrameDateTime = new DateTime(timeFrameDateTime.Year, timeFrameDateTime.Month, timeFrameDateTime.Day)
+                case TimeframeType.Week:
+                    this.timeframeDateTime = new DateTime(timeFrameDateTime.Year, timeFrameDateTime.Month, timeFrameDateTime.Day)
                                                           .StartOfWeek(DayOfWeek.Monday);
                     break;
-                case TimeFrameType.Month:
-                    this.timeFrameDateTime = new DateTime(timeFrameDateTime.Year, timeFrameDateTime.Month, 1);
+                case TimeframeType.Month:
+                    this.timeframeDateTime = new DateTime(timeFrameDateTime.Year, timeFrameDateTime.Month, 1);
                     break;
                 default:
-                    this.timeFrameDateTime = new DateTime(2050, 1, 1);
+                    this.timeframeDateTime = new DateTime(2050, 1, 1);
                     break;
             }
         }
 
         private string getDueString()
         {
-            switch (TimeFrameType)
+            switch (TimeframeType)
             {
-                case TimeFrameType.Open:
+                case TimeframeType.Open:
                     return "";
-                case TimeFrameType.Time:
-                    string timeString = TimeFrameDateTime.ToString("h:mmtt").ToLower();
+                case TimeframeType.Time:
+                    string timeString = TimeframeDateTime.ToString("h:mmtt").ToLower();
                     return $"{getDateString()} at {timeString}";
-                case TimeFrameType.Date:
+                case TimeframeType.Date:
                     return getDateString();
-                case TimeFrameType.Week:
+                case TimeframeType.Week:
                     return getWeekString();
-                case TimeFrameType.Month:
-                    return TimeFrameDateTime.ToString("MMMM yy");
+                case TimeframeType.Month:
+                    return TimeframeDateTime.ToString("MMMM yy");
                 default:
                     return "";
             }
@@ -71,16 +71,16 @@ namespace TasksAngular.Models.Entities
 
         private string getWeekString()
         {
-            if (timeFrameType != TimeFrameType.Week)
+            if (timeframeType != TimeframeType.Week)
             {
                 return "";
             }
             else
             {
 
-                DateTime from = new DateTime(timeFrameDateTime.Year, timeFrameDateTime.Month, timeFrameDateTime.Day);
-                DateTime to = new DateTime(timeFrameDateTime.AddDays(7).Year, timeFrameDateTime.AddDays(7).Month,
-                    timeFrameDateTime.AddDays(7).Day);
+                DateTime from = new DateTime(timeframeDateTime.Year, timeframeDateTime.Month, timeframeDateTime.Day);
+                DateTime to = new DateTime(timeframeDateTime.AddDays(7).Year, timeframeDateTime.AddDays(7).Month,
+                    timeframeDateTime.AddDays(7).Day);
                 var cal = DateTimeFormatInfo.CurrentInfo.Calendar;
                 int weekNo = cal.GetWeekOfYear(from, CalendarWeekRule.FirstDay, DayOfWeek.Monday);
                 string fromString;
@@ -106,8 +106,8 @@ namespace TasksAngular.Models.Entities
 
         private string getDateString()
         { 
-            int daysAway = Math.Abs((TimeFrameDateTime - DateTime.Now).Days);
-            bool inPast = TimeFrameDateTime < DateTime.Now;
+            int daysAway = Math.Abs((TimeframeDateTime - DateTime.Now).Days);
+            bool inPast = TimeframeDateTime < DateTime.Now;
             //If less than a week state the day name
             switch (daysAway)
             {
@@ -125,7 +125,7 @@ namespace TasksAngular.Models.Entities
                 default:
                     if (daysAway <= 7)
                     {
-                        string weekday = TimeFrameDateTime.ToString("dddd");
+                        string weekday = TimeframeDateTime.ToString("dddd");
                         if (inPast)
                         {
                             return $"Last {weekday}";
@@ -137,7 +137,7 @@ namespace TasksAngular.Models.Entities
                     }
                     else
                     {
-                        return TimeFrameDateTime.ToString("d/M/yy");
+                        return TimeframeDateTime.ToString("d/M/yy");
                     }
             }
         }

@@ -53,7 +53,6 @@
   <ItemGroup>
     <Folder Include="ClientApp\app\modules\timeframe\components\" />
     <Folder Include="Infrastructure\Extension\" />
-    <Folder Include="ViewModels\" />
   </ItemGroup>
 
   <ItemGroup>

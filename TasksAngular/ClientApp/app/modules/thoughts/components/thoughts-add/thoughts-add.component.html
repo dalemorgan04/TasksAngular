@@ -5,16 +5,17 @@
     <div
         fxFlex="0 0 30px"
         class="container-fluid mt-5">
-            <h1>Add a thought</h1>
+        <h1>Add a thought</h1>
+        <p>{{timeframe.dateTime}}</p>
     </div>
 
     <div
          fxFlex ="1 1 100%"
-         class="d-flex flex-column">
+         class="d-flex flex-column content">
     
-        <mat-card class="shadow-form mt-4 mb-4 p-0">
+        <mat-card class="shadow-form mt-4 mb-4 p-0 pt-3">
             <mat-form-field class="container-fluid">
-                <textarea matInput placeholder="What's your thought?"></textarea>
+                <textarea matInput placeholder="What's your thought?" [(ngModel)]="description"></textarea>
             </mat-form-field>
         </mat-card>
 
@@ -26,9 +27,10 @@
             align-self-end
             container-fluid d-flex flex-row
             justify-content-center
-            mt-4"
+            mt-4
+            add-button"
          fxFlex="0 0 40px">
-        <button mat-raised-button color="primary">Add</button>
+        <button mat-raised-button color="primary" (click)="addThought()">Add</button>
     </div>
 
 </div>

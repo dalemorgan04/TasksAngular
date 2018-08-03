@@ -1,12 +1,9 @@
-import { NativeDateAdapter } from '@angular/material';
+import { MomentDateAdapter } from '@angular/material-moment-adapter';
 
-
-/** Adapts the native JS Date for use with cdk-based components that work with dates. */
-export class CustomDateAdapter extends NativeDateAdapter {
+export class CustomDateAdapter extends MomentDateAdapter {
 
     getFirstDayOfWeek(): number {
         //Sunday - 0 , Monday - 1 etc.
         return 1;
     }
-
 }

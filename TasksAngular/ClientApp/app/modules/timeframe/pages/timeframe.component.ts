@@ -1,20 +1,21 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { MatTab, MatTabChangeEvent } from '@angular/material';
+import { MatTabChangeEvent } from '@angular/material';
 import { FormControl } from '@angular/forms';
-import { MomentDateAdapter } from '@angular/material-moment-adapter';
 import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material/core';
-import { ITimeframe, TimeframeType, StringLengthType, IMonth, IWeek, months, years} from '../../../models/timeframe.model';
+
+import { CustomDateAdapter } from '../../shared/datepicker/customDateAdapter/customDateAdapter.component';
 import * as moment from 'moment';
+import { ITimeframe, TimeframeType, StringLengthType, IMonth, IWeek, months, years} from '../../../models/timeframe.model';
 
 export const datepickerFormats = {
     parse: {
         dateInput: 'D/M/YYYY',
     },
     display: {
-        dateInput: 'D/M/YYYY',
+        dateInput: 'Do MMM YYYY',
         monthYearLabel: 'MMM YYYY',
-        dateA11yLabel: 'D/M/YYYY',
-        monthYearA11yLabel: 'MMMM YYYY',
+        dateA11yLabel: 'Do MMM YYYY',
+        monthYearA11yLabel: 'MMMM YYYY'
     },
 };
 
@@ -23,10 +24,7 @@ export const datepickerFormats = {
     templateUrl: './timeframe.component.html',
     styleUrls: ['./timeframe.component.scss'],
     providers: [
-        //// `MomentDateAdapter` can be automatically provided by importing `MomentDateModule` in your
-        //// application's root module. We provide it at the component level here, due to limitations of
-        //// our example generation script.
-        { provide: DateAdapter, useClass: MomentDateAdapter, deps: [MAT_DATE_LOCALE] },
+        { provide: DateAdapter, useClass: CustomDateAdapter, deps: [MAT_DATE_LOCALE] },
         { provide: MAT_DATE_FORMATS, useValue: datepickerFormats }
     ]
 })
@@ -84,22 +82,23 @@ export class TimeframeComponent implements OnInit{
         this.updateTimeframe();
     }
 
-    public updateTimeframe() {
+    public updateTimeframe() : void {
         switch (this.tabName) {
             case "Anytime":
                 this.timeframeString = "Anytime";
                 this.timeframe.timeframeType = TimeframeType.Open;
                 break;
             case "Day":
-                if (moment(this.dateControl.value).isValid()) {
-                    this.date = moment(this.dateControl.value).minutes(0).hours(0).toDate();
+                var mDate = moment(this.dateControl.value);
+                if (mDate.isValid()) {
+                    this.date = new Date(mDate.year(), mDate.month(), mDate.date());
                     //Time
                     if (this.hasTime) {
                         if (moment(this.time, "HH:mm").isValid()) {
                             this.timeframeString = moment(this.date).format('Do MMM YYYY') + ' at ' + this.time;
                             this.timeframe = {
                                 timeframeType: TimeframeType.Time,
-                                dateTime: moment(this.date +' '+ this.time, 'DD/MM/YYY HH:mm').toDate()
+                                dateTime: moment(mDate.format('DD/MM/YYYY')+' '+ this.time, 'DD/MM/YYYY HH:mm').toDate()
                             }
                         } else {
                             //Invalid time
@@ -120,19 +119,19 @@ export class TimeframeComponent implements OnInit{
                 break;
             case "Week":
                 this.wcDate = moment(this.wcDate).startOf('isoWeek').toDate();
-                var mDate = moment(this.wcDate),
+                var mWcDate = moment(this.wcDate),
                     weekNumber: number = this.getWeekNumberOfMonth(this.wcDate);
 
                 //e.g. 3rd Week of April (20/8/16 - 26/8/16)
                 this.weekDisplayString =
                     weekNumber + this.ordinalString(weekNumber) +
-                    ' week of ' + mDate.format('MMMM YYYY') +
-                    '\n(' + mDate.format('DD/MM/YY') + ' - ' + moment(mDate).add(6, 'days').format('DD/MM/YY') + ')';
+                    ' week of ' + mWcDate.format('MMMM YYYY') +
+                    '\n(' + mWcDate.format('DD/MM/YY') + ' - ' + moment(mWcDate).add(6, 'days').format('DD/MM/YY') + ')';
 
                 //e.g. W3 of Sep 2018 (20th-6th)
                 this.timeframeString =
-                    'W' + weekNumber + ' of ' + mDate.format('MMM') + ' ' + mDate.format('YYYY') +
-                    ' (' + mDate.format('Do') + '-' + moment(mDate).add(6, 'days').format('Do') + ')';
+                    'W' + weekNumber + ' of ' + mWcDate.format('MMM') + ' ' + mWcDate.format('YYYY') +
+                    ' (' + mWcDate.format('Do') + '-' + moment(mWcDate).add(6, 'days').format('Do') + ')';
 
                 this.timeframe = {
                     timeframeType: TimeframeType.Week,
@@ -149,31 +148,10 @@ export class TimeframeComponent implements OnInit{
                 break;
             default:
         }
-    }
-    
-    public getWeekDisplayString(weekCommencingDate : Date, length : StringLengthType) {
-        var result: string = '',
-            mDate: moment.Moment = moment(weekCommencingDate),
-            weekNumber : number = this.getWeekNumberOfMonth(weekCommencingDate);
-        switch (length) {
-            case StringLengthType.Short:
-                //Sep W3 2018 (20th-6th)
-                result =
-                    mDate.format('MMM') + ' Week ' + weekNumber + ' ' + mDate.format('YYYY') +
-                    ' (' + mDate.format('Do') + '-' + moment(mDate).add(6, 'days').format('Do') + ')';
-                break;
-            case StringLengthType.Long:
-                //3rd Week of April (20/8/16 - 26/8/16)
-                result =
-                    weekNumber + this.ordinalString(weekNumber) +
-                    ' week of ' + mDate.format('MMMM YYYY') + 
-                    '\n(' + mDate.format('DD/MM/YY') + ' - ' + moment(mDate).add(6,'days').format('DD/MM/YY') + ')';
-                break;
-        }
-        return result;
+        this.timeframeChange.emit(this.timeframe);
     }
 
-    public getWeekNumberOfMonth( weekComencingDate : Date) {
+    private getWeekNumberOfMonth( weekComencingDate : Date) : number {
         var mDate: moment.Moment = moment(weekComencingDate),
             month: number = mDate.month(),
             weekCounter: number = 0,
@@ -186,29 +164,7 @@ export class TimeframeComponent implements OnInit{
         return weekCounter;
     }
 
-    public getWeeksInMonth() {
-        var weeks = new Array<IWeek>();
-        var mDate: moment.Moment = moment(new Date(this.year, this.month, 1)).startOf('isoWeek'),
-            weekNumber:  number = 1,
-            loopCounter: number = 0;
-        while (mDate.month() <= this.month || loopCounter > 10) {
-            loopCounter++; //Prevent infinite loop
-            if (mDate.month() === this.month) {
-                weeks.push(
-                    {
-                        wcDate: mDate.toDate(),
-                        toString:
-                            weekNumber + this.ordinalString(weekNumber) + ' week (' +
-                            mDate.format('Do') + '-' + moment(mDate).add(6,'days').format('Do') + ')'
-                    });
-                weekNumber++;
-            }
-            mDate.add(1, 'week');
-        }
-        this.weeks = weeks;
-    }
-
-    private ordinalString(n : number) {
+    private ordinalString(n : number) : string {
         if (n === 0) return '';
         if (n > 3 && n < 21) return 'th';
         switch (n % 10) {

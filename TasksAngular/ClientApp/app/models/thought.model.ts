@@ -1,4 +1,6 @@
-interface IThought {
+import { TimeframeType } from './timeframe.model';
+
+export interface IThought {
     thoughtId: number;
     userId: number;
     description: string;
@@ -10,4 +12,10 @@ interface IThought {
     timeFrameTimeString: string;
     timeFrameWeekString: string;
     timeFrameDueString: string;
+}
+
+export interface IAddThought {
+    description: string;
+    timeframeType: TimeframeType;
+    dateTime: Date;
 }

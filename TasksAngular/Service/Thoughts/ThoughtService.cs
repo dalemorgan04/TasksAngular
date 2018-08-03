@@ -1,17 +1,14 @@
 using System;
 using System.Collections.Generic;
-using System.Data;
-using System.Data.Common;
 using System.Data.SqlClient;
 using System.Linq;
-using System.Linq.Expressions;
 using AutoMapper;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
+using Tasks.Service.Thoughts;
 using Tasks.Service.Thoughts.Dto;
 using TasksAngular.Models.Entities;
 
-namespace Tasks.Service.Thoughts
+namespace TasksAngular.Service.Thoughts
 {
     public class ThoughtService : IThoughtService
     {
@@ -24,69 +21,80 @@ namespace Tasks.Service.Thoughts
 
         public IList<ThoughtDto> GetThoughts()
         {
-            var thoughtsList = context.Thoughts
-                    .Include(t => t.User)
-                    .ToList();
-            List<ThoughtDto> thoughtDtoList = Mapper.Map<List<Thought>, List<ThoughtDto>>(thoughtsList);
-            return thoughtDtoList;
+            using (context)
+            {
+                var thoughtsList = context.Thoughts
+                        .Include(t => t.User)
+                        .ToList();
+                List<ThoughtDto> thoughtDtoList = Mapper.Map<List<Thought>, List<ThoughtDto>>(thoughtsList);
+                return thoughtDtoList;
+            }
         }
 
         public ThoughtDto GetThoughts(int id)
         {
-            Thought thought = context.Thoughts
-                .SingleOrDefault(t => t.ThoughtId == id);
+            using (context)
+            {
+                Thought thought = context.Thoughts
+                    .SingleOrDefault(t => t.ThoughtId == id);
 
-            ThoughtDto thoughtDto = Mapper.Map<Thought, ThoughtDto>(thought);
-            return thoughtDto;
+                ThoughtDto thoughtDto = Mapper.Map<Thought, ThoughtDto>(thought);
+                return thoughtDto;
+            }
         }
         
         public async void Save(ThoughtDto thoughtDto)
         {
-            Thought thought;
-            if (thoughtDto.ThoughtId > 0)
+            using (context)
             {
-                thought = context.Thoughts
-                    .SingleOrDefaultAsync(t => t.ThoughtId == thoughtDto.ThoughtId)
-                    .Result;
-
-                thought.Update(
-                    thoughtDto.Description,
-                    (int)thoughtDto.TimeFrame.TimeFrameType,
-                    thoughtDto.TimeFrame.TimeFrameDateTime,
-                    thoughtDto.Project);
-
-                try
+                Thought thought;
+                if (thoughtDto.ThoughtId > 0)
                 {
-                    context.Update<Thought>(thought);
-                    await context.SaveChangesAsync();
+                    thought = context.Thoughts
+                        .SingleOrDefaultAsync(t => t.ThoughtId == thoughtDto.ThoughtId)
+                        .Result;
+
+                    thought.Update(
+                        thoughtDto.Description,
+                        (int)thoughtDto.Timeframe.TimeframeType,
+                        thoughtDto.Timeframe.TimeframeDateTime,
+                        thoughtDto.Project);
+
+                    try
+                    {
+                        context.Update<Thought>(thought);
+                        await context.SaveChangesAsync();
+                    }
+                    catch (Exception e)
+                    {
+                        Console.WriteLine(e);
+                        throw;
+                    }
                 }
-                catch (Exception e)
+                else
                 {
-                    Console.WriteLine(e);
-                    throw;
+                    thought = Thought.Create(thoughtDto.Description, thoughtDto.SortId, (int)thoughtDto.Timeframe.TimeframeType, thoughtDto.Timeframe.TimeframeDateTime, thoughtDto.Project );
+                    context.Thoughts.Add(thought);
+                    context.SaveChanges();
                 }
-            }
-            else
-            {
-                thought = Thought.Create(thoughtDto.Description, thoughtDto.SortId, (int)thoughtDto.TimeFrame.TimeFrameType, thoughtDto.TimeFrame.TimeFrameDateTime, thoughtDto.Project );
-                
-                context.SaveChanges();
             }
         }
 
         public void Delete(int thoughtId)
         {
-            
         }
 
         public void UpdateSortId(int thoughtId, int moveToSortId)
         {
-            var parameters = new List<SqlParameter>()
+            using (context)
             {
-                new SqlParameter("@thoughtId", thoughtId),
-                new SqlParameter("@moveToSortId", moveToSortId)
-            };
-            var rows = context.Database.ExecuteSqlCommand("EXEC usp_UpdateThoughtSortOrder @thoughtId ,@moveToSortId", parameters.ToArray());
+                var parameters = new List<SqlParameter>()
+                {
+                    new SqlParameter("@thoughtId", thoughtId),
+                    new SqlParameter("@moveToSortId", moveToSortId)
+                };
+                var rows = context.Database.ExecuteSqlCommand("EXEC usp_UpdateThoughtSortOrder @thoughtId ,@moveToSortId", parameters.ToArray());
+            }
         }
     }
 }

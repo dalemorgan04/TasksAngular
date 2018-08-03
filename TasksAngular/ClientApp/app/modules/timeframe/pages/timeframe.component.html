@@ -14,7 +14,7 @@
 
 
         <!-- Timeframe -->
-        <mat-card class="timeframe">
+        <mat-card class="timeframe m-0 p-0">
             <mat-card-content>
                 <mat-tab-group
                     (selectedTabChange)="tabChanged($event)"
@@ -73,7 +73,6 @@
                             <!--Visible value string-->
                             <mat-form-field fxFlex="1 1 100%">
                                 <textarea matInput placeholder="Due in the week of" [(ngModel)]="weekDisplayString"></textarea>
-                                <!--<input matInput placeholder="Due in the week of" [(ngModel)]="weekDisplayString">-->
                             </mat-form-field>
                         </div>
                     </mat-tab>
@@ -82,7 +81,7 @@
                     <mat-tab label="Month" class="container-fluid mt-3">
                         <div fxLayout="row" class="container-fluid">
                             <mat-form-field fxFlex="1 1 50%">
-                                <mat-select placeholder="Month" [value]="month">
+                                <mat-select placeholder="Month" [(value)]="month" (selectionChange)="updateTimeframe()">
                                     <mat-option *ngFor="let month of months" [value]="month.number">
                                         {{month.name}}
                                     </mat-option>
@@ -90,7 +89,7 @@
                             </mat-form-field>
 
                             <mat-form-field fxFlex ="1 1 50%">
-                                <mat-select placeholder="Year" [value]="year">
+                                <mat-select placeholder="Year" [(value)]="year" (selectionChange)="updateTimeframe()">
                                     <mat-option *ngFor="let year of years" [value]="year">
                                         {{year}}
                                     </mat-option>
