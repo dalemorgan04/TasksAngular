@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, SimpleChanges } from '@angular/core';
 import { MatTabChangeEvent } from '@angular/material';
 import { FormControl } from '@angular/forms';
 import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material/core';
@@ -31,9 +31,19 @@ export const datepickerFormats = {
 
 export class TimeframeComponent implements OnInit{
 
-    @Input() timeframe: ITimeframe;
+    //@Input() timeframe: ITimeframe;
+    private _timeframe: ITimeframe;
+    @Input()
+    set timeframe(value: ITimeframe) {
+        this._timeframe = value;
+        this.validateTimeframe();
+    }
+    get timeframe(): ITimeframe {
+        return this._timeframe;
+    }
     @Output() timeframeChange = new EventEmitter<ITimeframe>();
-    private timeframeString : string;
+
+    private timeframeString: string;
 
     private tabName: string;
     public tabIndex: number;
@@ -52,15 +62,15 @@ export class TimeframeComponent implements OnInit{
 
     ngOnInit(): void {
         //If not defined then set default timeframe to now and open
-        if (!this.timeframe) {
-            this.timeframe = 
+        if (!this._timeframe) {
+            this._timeframe = 
             {
                 timeframeType: TimeframeType.Open,
                 dateTime: new Date()
             }
         }
         //Initialise all properties
-        switch (this.timeframe.timeframeType) {
+        switch (this._timeframe.timeframeType) {
             case TimeframeType.Open:  this.tabIndex = 0;
             case TimeframeType.Date:  this.tabIndex = 1;
             case TimeframeType.Time:  this.tabIndex = 1;
@@ -68,46 +78,73 @@ export class TimeframeComponent implements OnInit{
             case TimeframeType.Month: this.tabIndex = 3;
             default: this.tabIndex = 0;
         }
-        var mDateTime: moment.Moment = moment(this.timeframe.dateTime);
+        var mDateTime: moment.Moment = moment(this._timeframe.dateTime);
         this.date = mDateTime.toDate();
         this.dateControl.setValue(this.date);
         this.time = mDateTime.format("HH:mm");
-        this.hasTime = this.timeframe.timeframeType === TimeframeType.Time;
+        this.hasTime = this._timeframe.timeframeType === TimeframeType.Time;
         this.month = mDateTime.month();
         this.year = mDateTime.year();
     }
 
     public tabChanged(event: MatTabChangeEvent) {
         this.tabName = event.tab.textLabel;
-        this.updateTimeframe();
+        var selectedTimeframeType : TimeframeType;
+        switch (this.tabName) {
+            case "Anytime": selectedTimeframeType = TimeframeType.Open;
+            case "Day": selectedTimeframeType = this.hasTime ? TimeframeType.Time : TimeframeType.Date;
+            case "Week": selectedTimeframeType = TimeframeType.Week;
+            case "Month": selectedTimeframeType = TimeframeType.Month;
+            default: selectedTimeframeType = TimeframeType.Open;
+        }
+        this._timeframe.timeframeType = selectedTimeframeType;
     }
 
-    public updateTimeframe() : void {
-        switch (this.tabName) {
-            case "Anytime":
+    public updateTimeframe() {
+        this.validateTimeframe();
+        this.timeframeChange.emit(this._timeframe);
+    }
+    
+    public validateTimeframe() : void {
+        switch (this._timeframe.timeframeType) {
+            case TimeframeType.Open:
                 this.timeframeString = "Anytime";
-                this.timeframe.timeframeType = TimeframeType.Open;
                 break;
-            case "Day":
+            case TimeframeType.Date:
                 var mDate = moment(this.dateControl.value);
                 if (mDate.isValid()) {
                     this.date = new Date(mDate.year(), mDate.month(), mDate.date());
+                    //Day
+                        this.timeframeString = moment(this.date).format("Do MMM YYYY");
+                        this._timeframe = {
+                            timeframeType: TimeframeType.Date,
+                            dateTime: this.date
+                        }
+                } else {
+                    //Invalid day, even if time checked
+                    this.timeframeString = "Choose a date";
+                }
+                break;
+            case TimeframeType.Time:
+                var mDateForTime = moment(this.dateControl.value);
+                if (mDateForTime.isValid()) {
+                    this.date = new Date(mDateForTime.year(), mDateForTime.month(), mDateForTime.date());
                     //Time
                     if (this.hasTime) {
                         if (moment(this.time, "HH:mm").isValid()) {
                             this.timeframeString = moment(this.date).format('Do MMM YYYY') + ' at ' + this.time;
-                            this.timeframe = {
+                            this._timeframe = {
                                 timeframeType: TimeframeType.Time,
-                                dateTime: moment(mDate.format('DD/MM/YYYY')+' '+ this.time, 'DD/MM/YYYY HH:mm').toDate()
+                                dateTime: moment(mDateForTime.format('DD/MM/YYYY') + ' ' + this.time, 'DD/MM/YYYY HH:mm').toDate()
                             }
                         } else {
                             //Invalid time
                             this.timeframeString = "Choose a time";
                         }
                     } else {
-                    //Day
+                        //Day
                         this.timeframeString = moment(this.date).format("Do MMM YYYY");
-                        this.timeframe = {
+                        this._timeframe = {
                             timeframeType: TimeframeType.Date,
                             dateTime: this.date
                         }
@@ -117,7 +154,7 @@ export class TimeframeComponent implements OnInit{
                     this.timeframeString = "Choose a date";
                 }
                 break;
-            case "Week":
+            case TimeframeType.Week:
                 this.wcDate = moment(this.wcDate).startOf('isoWeek').toDate();
                 var mWcDate = moment(this.wcDate),
                     weekNumber: number = this.getWeekNumberOfMonth(this.wcDate);
@@ -133,22 +170,21 @@ export class TimeframeComponent implements OnInit{
                     'W' + weekNumber + ' of ' + mWcDate.format('MMM') + ' ' + mWcDate.format('YYYY') +
                     ' (' + mWcDate.format('Do') + '-' + moment(mWcDate).add(6, 'days').format('Do') + ')';
 
-                this.timeframe = {
+                this._timeframe = {
                     timeframeType: TimeframeType.Week,
                     dateTime: this.wcDate
                 }
                 break;
-            case "Month":
+            case TimeframeType.Month:
                 var monthAsDate = new Date(this.year, this.month, 1);
                 this.timeframeString = moment(monthAsDate).format('MMMM YYYY');
-                this.timeframe = {
+                this._timeframe = {
                     timeframeType: TimeframeType.Month,
                     dateTime: monthAsDate
                 }
                 break;
             default:
         }
-        this.timeframeChange.emit(this.timeframe);
     }
 
     private getWeekNumberOfMonth( weekComencingDate : Date) : number {
