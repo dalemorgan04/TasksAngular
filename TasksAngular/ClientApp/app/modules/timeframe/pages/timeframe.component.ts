@@ -91,10 +91,18 @@ export class TimeframeComponent implements OnInit{
         this.tabName = event.tab.textLabel;
         var selectedTimeframeType : TimeframeType;
         switch (this.tabName) {
-            case "Anytime": selectedTimeframeType = TimeframeType.Open;
-            case "Day": selectedTimeframeType = this.hasTime ? TimeframeType.Time : TimeframeType.Date;
-            case "Week": selectedTimeframeType = TimeframeType.Week;
-            case "Month": selectedTimeframeType = TimeframeType.Month;
+            case "Anytime":
+                selectedTimeframeType = TimeframeType.Open;
+                break;
+            case "Day":
+                selectedTimeframeType = this.hasTime ? TimeframeType.Time : TimeframeType.Date;
+                break;
+            case "Week":
+                selectedTimeframeType = TimeframeType.Week;
+                break;
+            case "Month":
+                selectedTimeframeType = TimeframeType.Month;
+                break;
             default: selectedTimeframeType = TimeframeType.Open;
         }
         this._timeframe.timeframeType = selectedTimeframeType;
