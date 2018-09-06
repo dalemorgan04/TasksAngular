@@ -1,7 +1,7 @@
 <div class="component-container">
 
     <div class="content-container">
-        <thoughts-list></thoughts-list>
+        <thoughts-list/>
     </div>
 
     <div
@@ -20,11 +20,11 @@
                 [ngSwitch]="tab">
                 
                 <div *ngSwitchCase="'add'" [@fadeIn]="fadeIn" class="w-100 h-100">
-                    <thoughts-add></thoughts-add>
+                    <thoughts-add/>
                 </div>
 
                 <div *ngSwitchCase="'edit'" [@fadeIn]="fadeIn">
-                    <h3>Edit</h3>
+                    <thoughts-edit/>
                 </div>
 
             </div>

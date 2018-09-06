@@ -16,8 +16,15 @@ const httpOptions = {
 export class ThoughtsService
 {
     private baseUrl: string = '';
+
     private thoughtslistSource = new Subject<IThought[]>();
     public thoughtslist$ = this.thoughtslistSource.asObservable();
+
+    private thoughtIdSelected: Subject<number> = new Subject<number>();
+    public thoughtIdSelected$: Observable<number> = this.thoughtIdSelected.asObservable();
+
+    private editTabIsVisible: Subject<boolean> = new Subject<boolean>();
+    public editTabIsVisible$: Observable<boolean> = this.editTabIsVisible.asObservable();
 
     constructor(
         private http: HttpClient,
@@ -57,6 +64,10 @@ export class ThoughtsService
                     return response;
                 })
             );
+    }
+
+    public selectThought(id: number): Observable<boolean> {
+        return (this.thoughtIdSelected) as number;
     }
 
     private errorHandler(error: Response | any) {
