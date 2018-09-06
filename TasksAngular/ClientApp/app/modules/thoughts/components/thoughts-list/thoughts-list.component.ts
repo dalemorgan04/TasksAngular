@@ -9,11 +9,13 @@ import { IThought } from '../../../../models/thought.model';
     templateUrl: './thoughts-list.component.html',
     styleUrls: ['thoughts-list.component.scss']
 })
+
 export class ThoughtsListComponent implements OnInit {
 
     public thoughtslist: IThought[] = [];
     public displayedColumns: string[] = ['description','timeFrameDueString'];
     public deleteIcon = faTimes;
+    public selectedThought: number; 
 
     constructor(
         private thoughtsService: ThoughtsService,
@@ -58,5 +60,13 @@ export class ThoughtsListComponent implements OnInit {
               a.sortId > b.sortId ?  1
             : a.sortId < b.sortId ? -1 
             : 0 );
+    }
+
+    public selectThought(thoughtId : number): void {
+        this.selectedThought = thoughtId;
+    }
+
+    public deselectThought(e: Event): void {
+        this.selectedThought = 0;
     }
 }

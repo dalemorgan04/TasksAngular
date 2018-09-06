@@ -4681,6 +4681,11 @@
       "resolved": "https://registry.npmjs.org/neo-async/-/neo-async-2.5.1.tgz",
       "integrity": "sha1-rLkJ4yex6H7J7xX0G4omlRKtQe4="
     },
+    "ng-click-outside": {
+      "version": "4.0.0",
+      "resolved": "https://registry.npmjs.org/ng-click-outside/-/ng-click-outside-4.0.0.tgz",
+      "integrity": "sha512-b5JIWKjaALmKWmy8SXQjxrRIaPqExmqktcZXRwHflzR0UqUKKBT/2C33jBMI425QD75BPqpAiGq5xujzEybkUw=="
+    },
     "ng2-dragula": {
       "version": "1.5.0",
       "resolved": "https://registry.npmjs.org/ng2-dragula/-/ng2-dragula-1.5.0.tgz",

@@ -1,4 +1,4 @@
-<mat-card>
+<mat-card (clickOutside)="deselectThought($event)">
     <table>
         <thead>
         <tr >
@@ -13,6 +13,8 @@
                [dragulaModel]='thoughtslist'>
         <tr 
             *ngFor="let thought of thoughtslist"
+            (click)="selectThought(thought.thoughtId)"
+            [class.selected] ="selectedThought === thought.thoughtId"
             [attr.data-thoughtid]="thought.thoughtId"
             [attr.data-sortid]="thought.sortId">
 

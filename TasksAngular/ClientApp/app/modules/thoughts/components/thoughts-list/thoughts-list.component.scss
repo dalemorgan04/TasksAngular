@@ -19,6 +19,10 @@ mat-card {
         display: flex;
         cursor: pointer;
 
+        &.selected{
+            background: $green-light;
+        }
+
         .description {
             flex: 1 1 50%;
             text-align:left;
@@ -39,6 +43,7 @@ mat-card {
         &:hover fa-icon {
             visibility: visible;
         }
+
     }
 }
 

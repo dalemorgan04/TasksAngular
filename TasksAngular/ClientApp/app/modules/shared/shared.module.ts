@@ -6,6 +6,7 @@ import { DayPickerComponent } from './datepicker/daypicker/daypicker.component';
 import { WeekPickerComponent } from './datepicker/weekpicker/weekpicker.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FlexLayoutModule } from "@angular/flex-layout";
+import { ClickOutsideModule } from 'ng-click-outside'; 
 //Angular Material
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
@@ -39,7 +40,8 @@ import { CustomDateAdapter } from './datepicker/customDateAdapter/customDateAdap
         MatTabsModule,
         MatExpansionModule,
         MatSelectModule,
-        FlexLayoutModule
+        FlexLayoutModule,
+        ClickOutsideModule
     ],
     declarations: [
         DayPickerComponent,
@@ -64,7 +66,8 @@ import { CustomDateAdapter } from './datepicker/customDateAdapter/customDateAdap
         MatTabsModule,
         MatExpansionModule,
         MatSelectModule,
-        FlexLayoutModule
+        FlexLayoutModule,
+        ClickOutsideModule
     ]
 })
 export class SharedModule {}
