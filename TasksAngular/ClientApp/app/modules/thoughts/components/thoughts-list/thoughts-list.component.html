@@ -1,4 +1,4 @@
-<mat-card (clickOutside)="deselectThought($event)">
+<mat-card>
     <table>
         <thead>
         <tr >
@@ -30,25 +30,3 @@
         </tbody>
     </table>
 </mat-card>
-
-<!--<mat-card>
-    <table mat-table [dataSource]="thoughtslist">
-    
-        <ng-container matColumnDef="description">
-            <th mat-header-cell *matHeaderCellDef></th>
-            <td mat-cell *matCellDef="let element"> {{element.description}} </td>
-        </ng-container>
-        
-        <ng-container matColumnDef="timeFrameDueString">
-            <th mat-header-cell *matHeaderCellDef> Due </th>
-            <td mat-cell *matCellDef="let element"> {{element.timeFrameDueString}} </td>
-        </ng-container>
-
-        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-        <tbody
-            [dragula]="'bag-thoughts'"
-            [dragulaModel]='thoughtslist'>
-            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-        </tbody>
-    </table>
-</mat-card>-->

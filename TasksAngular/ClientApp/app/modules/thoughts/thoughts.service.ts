@@ -20,11 +20,8 @@ export class ThoughtsService
     private thoughtslistSource = new Subject<IThought[]>();
     public thoughtslist$ = this.thoughtslistSource.asObservable();
 
-    private thoughtIdSelected: Subject<number> = new Subject<number>();
-    public thoughtIdSelected$: Observable<number> = this.thoughtIdSelected.asObservable();
-
-    private editTabIsVisible: Subject<boolean> = new Subject<boolean>();
-    public editTabIsVisible$: Observable<boolean> = this.editTabIsVisible.asObservable();
+    private thoughtIdSelected :number;
+    public thoughtIdSelected$ :Observable<number> = this.thoughtIdSelected.asObservable();    
 
     constructor(
         private http: HttpClient,
@@ -44,7 +41,7 @@ export class ThoughtsService
                 this.thoughtslistSource.next(result);
             });
     }
-    
+
     public updateSortOrder(id: number, moveToSortId: number) : Observable<boolean> {        
         let data : string = JSON.stringify({ Id: id, MoveToSortId: moveToSortId});
         return this.http.post<boolean>('api/Thoughts/Sort', data)

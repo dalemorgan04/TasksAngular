@@ -31,7 +31,6 @@ export const datepickerFormats = {
 
 export class TimeframeComponent implements OnInit{
 
-    //@Input() timeframe: ITimeframe;
     private _timeframe: ITimeframe;
     @Input()
     set timeframe(value: ITimeframe) {
