@@ -3,8 +3,10 @@ import { HttpClient, HttpHeaders} from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import { map } from 'rxjs/operators';
 import '../../models/thought.model';
-import { IThought, IAddThought } from '../../models/thought.model';
+import { IThought, IAddThought, IEditThought } from '../../models/thought.model';
 import { Subject } from 'rxjs';
+import { TimeframeType } from '../../models/timeframe.model';
+import { now } from 'moment';
 
 const httpOptions = {
     headers: new HttpHeaders({
@@ -17,11 +19,12 @@ export class ThoughtsService
 {
     private baseUrl: string = '';
 
-    private thoughtslistSource = new Subject<IThought[]>();
-    public thoughtslist$ = this.thoughtslistSource.asObservable();
+    private thoughtslistSource: Subject<IThought[]>    = new Subject<IThought[]>();
+    public thoughtslist$: Observable<IThought[]> = this.thoughtslistSource.asObservable();
 
-    private thoughtIdSelected :number;
-    public thoughtIdSelected$ :Observable<number> = this.thoughtIdSelected.asObservable();    
+    private thoughtSelected: Subject<IEditThought> = new Subject<IEditThought>();
+    public thoughtSelected$: Observable<IEditThought> = this.thoughtSelected.asObservable();
+    private thoughtIdSelected: number = 0;
 
     constructor(
         private http: HttpClient,
@@ -40,7 +43,7 @@ export class ThoughtsService
             .subscribe(result => {
                 this.thoughtslistSource.next(result);
             });
-    }
+    }    
 
     public updateSortOrder(id: number, moveToSortId: number) : Observable<boolean> {        
         let data : string = JSON.stringify({ Id: id, MoveToSortId: moveToSortId});
@@ -63,8 +66,21 @@ export class ThoughtsService
             );
     }
 
-    public selectThought(id: number): Observable<boolean> {
-        return (this.thoughtIdSelected) as number;
+    private getThought(thought: IThought): IThought {
+
+    }
+
+    public deselectThought(): void {
+        let thought : IEditThought = {
+            description: '',
+            timeframeType: TimeframeType.Open,
+            dateTime: new Date()
+        }
+        this.thoughtSelected.next(thought);
+    }
+
+    public selectThought(id: number): void {
+        
     }
 
     private errorHandler(error: Response | any) {

@@ -19,3 +19,9 @@ export interface IAddThought {
     timeframeType: TimeframeType;
     dateTime: Date;
 }
+
+export interface IEditThought {
+    description: string;
+    timeframeType: TimeframeType;
+    dateTime: Date;
+}
