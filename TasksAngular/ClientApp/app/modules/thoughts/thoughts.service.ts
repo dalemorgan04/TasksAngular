@@ -66,8 +66,14 @@ export class ThoughtsService
             );
     }
 
-    private getThought(thought: IThought): IThought {
+    private getThought(thoughtId: number): IThought {
 
+        return this.http.get<IThought>('api/Thoughts/GetById', { thoughtId })
+            .pipe(
+                map((response: Response) => {
+                    return response;
+                })
+            );
     }
 
     public deselectThought(): void {
