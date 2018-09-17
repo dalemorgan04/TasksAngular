@@ -16,7 +16,7 @@ export class ThoughtsEditComponent implements OnInit {
     
     constructor(private thoughtsService: ThoughtsService) {
         this.thoughtsService.thoughtSelected$.subscribe(
-            thought => {
+            (thought: IEditThought) => {                
                 this.selectedThought = thought;
             }
         );
@@ -34,26 +34,6 @@ export class ThoughtsEditComponent implements OnInit {
 
     public thoughtSelected() {
 
-    }
-
-    public addThought() : void {
-        var errorMessage = this.validateThought();
-        if (errorMessage !== '') {
-            alert(errorMessage);
-        } else {
-            var thought: IAddThought = {
-                description: this.description,
-                timeframeType: this.timeframe.timeframeType,
-                dateTime: this.timeframe.dateTime
-            }
-            this.thoughtsService.addThought(thought)
-                .subscribe(result => {
-                    if (result) {
-                        this.thoughtsService.updateThoughtslist();
-                        this.resetAddTab();
-                    }
-                });
-        }
     }
 
 

@@ -22,8 +22,8 @@ export class ThoughtsService
     private thoughtslistSource: Subject<IThought[]>    = new Subject<IThought[]>();
     public thoughtslist$: Observable<IThought[]> = this.thoughtslistSource.asObservable();
 
-    private thoughtSelected: Subject<IEditThought> = new Subject<IEditThought>();
-    public thoughtSelected$: Observable<IEditThought> = this.thoughtSelected.asObservable();
+    private thoughtSelectedSource: Subject<IEditThought> = new Subject<IEditThought>();
+    public thoughtSelected$: Observable<IEditThought> = this.thoughtSelectedSource.asObservable();
 
     constructor(
         private http: HttpClient,
@@ -56,7 +56,6 @@ export class ThoughtsService
 
     public addThought( thought:IAddThought ) : Observable<boolean> {
         let data: string = JSON.stringify(thought);
-        //let data: string = JSON.stringify({ "Description" : "test" });
         return this.http.post<boolean>('api/Thoughts/Add', data, httpOptions)
             .pipe(
                 map((response: Response) => {
@@ -69,10 +68,13 @@ export class ThoughtsService
         let params = new HttpParams().set('thoughtId', JSON.stringify(thoughtId));
         this.http.get<IEditThought>('api/Thoughts/GetEdit', { params })
             .pipe(
-                map((response: IEditThought) => {
-                    this.thoughtSelected.next(response);
+                map((data: IEditThought) => {
+                    return data;
                 })
-            );
+            )
+            .subscribe((result: IEditThought) => {
+                this.thoughtSelectedSource.next(result);
+            });
     }
 
     public deselectThought(): void {
@@ -81,7 +83,7 @@ export class ThoughtsService
             timeframeType: TimeframeType.Open,
             dateTime: new Date()
         }
-        this.thoughtSelected.next(thought);
+        this.thoughtSelectedSource.next(thought);
     }
 
     private errorHandler(error: Response | any) {
