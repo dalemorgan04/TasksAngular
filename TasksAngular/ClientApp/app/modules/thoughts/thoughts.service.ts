@@ -24,7 +24,6 @@ export class ThoughtsService
 
     private thoughtSelected: Subject<IEditThought> = new Subject<IEditThought>();
     public thoughtSelected$: Observable<IEditThought> = this.thoughtSelected.asObservable();
-    private thoughtIdSelected: number = 0;
 
     constructor(
         private http: HttpClient,
@@ -34,7 +33,7 @@ export class ThoughtsService
     }
 
     public updateThoughtslist() : void {
-        this.http.get<IThought[]>('api/Thoughts/Index')
+        this.http.get<IThought[]>('api/Thoughts/List')
             .pipe(
                 map((data: any) => {
                     return data.thoughtsList;
@@ -66,13 +65,12 @@ export class ThoughtsService
             );
     }
 
-    private getEditThought(thoughtId: number): Observable<IEditThought> {
+    public selectThought(thoughtId: number): void {
         let params = new HttpParams().set('thoughtId', JSON.stringify(thoughtId));
-        return this.http.get<IEditThought>('api/Thoughts/GetEditThought', { params })
+        this.http.get<IEditThought>('api/Thoughts/GetEdit', { params })
             .pipe(
-                map((response: Response) => {
-                    this.thoughtSelected.next(response)
-                return response;
+                map((response: IEditThought) => {
+                    this.thoughtSelected.next(response);
                 })
             );
     }
@@ -84,10 +82,6 @@ export class ThoughtsService
             dateTime: new Date()
         }
         this.thoughtSelected.next(thought);
-    }
-
-    public selectThought(id: number): void {
-        this.getEditThought(id);
     }
 
     private errorHandler(error: Response | any) {

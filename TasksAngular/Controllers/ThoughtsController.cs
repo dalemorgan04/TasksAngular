@@ -22,8 +22,8 @@ namespace TasksAngular.Controllers
         }
 
         [HttpGet]
-        [Route("api/Thoughts/Index")]
-        public ThoughtsViewModel GetThoughtsTable()
+        [Route("api/Thoughts/List")]
+        public ThoughtsViewModel GetThoughtsList()
         {
             List<ThoughtDto> thoughtDtoList = thoughtService.GetThoughts().ToList();
             ThoughtsViewModel viewModel = new ThoughtsViewModel()
@@ -52,11 +52,17 @@ namespace TasksAngular.Controllers
         }
 
         [HttpGet]
-        [Route("")]
+        [Route("api/Thoughts/GetEdit")]
         public EditThoughtViewModel GetEditThought(int thoughtId)
         {
             var thoughtDto = this.thoughtService.GetThought(thoughtId);
-
+            var viewModel = new EditThoughtViewModel()
+            {
+                DateTime = thoughtDto.Timeframe.TimeframeDateTime,
+                Description = thoughtDto.Description,
+                TimeframeType = thoughtDto.Timeframe.TimeframeType
+            };
+            return viewModel;
         }
 
         [HttpPost]
