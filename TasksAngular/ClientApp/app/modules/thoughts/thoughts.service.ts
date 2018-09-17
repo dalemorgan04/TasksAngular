@@ -1,5 +1,5 @@
 import { Injectable, Inject } from '@angular/core';
-import { HttpClient, HttpHeaders} from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import { map } from 'rxjs/operators';
 import '../../models/thought.model';
@@ -66,12 +66,13 @@ export class ThoughtsService
             );
     }
 
-    private getThought(thoughtId: number): IThought {
-
-        return this.http.get<IThought>('api/Thoughts/GetById', { thoughtId })
+    private getEditThought(thoughtId: number): Observable<IEditThought> {
+        let params = new HttpParams().set('thoughtId', JSON.stringify(thoughtId));
+        return this.http.get<IEditThought>('api/Thoughts/GetEditThought', { params })
             .pipe(
                 map((response: Response) => {
-                    return response;
+                    this.thoughtSelected.next(response)
+                return response;
                 })
             );
     }
@@ -86,7 +87,7 @@ export class ThoughtsService
     }
 
     public selectThought(id: number): void {
-        
+        this.getEditThought(id);
     }
 
     private errorHandler(error: Response | any) {

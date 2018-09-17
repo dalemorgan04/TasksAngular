@@ -51,6 +51,14 @@ namespace TasksAngular.Controllers
             return viewModel;
         }
 
+        [HttpGet]
+        [Route("")]
+        public EditThoughtViewModel GetEditThought(int thoughtId)
+        {
+            var thoughtDto = this.thoughtService.GetThought(thoughtId);
+
+        }
+
         [HttpPost]
         [Route("api/Thoughts/Add")]
         public Boolean AddThought([FromBody]AddThoughtViewModel thought)

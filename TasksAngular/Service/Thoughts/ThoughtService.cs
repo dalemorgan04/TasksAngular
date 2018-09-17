@@ -31,7 +31,7 @@ namespace TasksAngular.Service.Thoughts
             }
         }
 
-        public ThoughtDto GetThoughts(int id)
+        public ThoughtDto GetThought(int id)
         {
             using (context)
             {

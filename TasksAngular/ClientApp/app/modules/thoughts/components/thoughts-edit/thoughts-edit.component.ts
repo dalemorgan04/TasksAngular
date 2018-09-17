@@ -1,7 +1,7 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { ThoughtsService } from '../../thoughts.service';
 import { ITimeframe, TimeframeType} from '../../../../models/timeframe.model';
-import { IAddThought } from '../../../../models/thought.model';
+import { IAddThought, IThought, IEditThought } from '../../../../models/thought.model';
 import * as moment from 'moment';
 
 @Component({
@@ -12,8 +12,15 @@ import * as moment from 'moment';
 export class ThoughtsEditComponent implements OnInit {
     public description : string = '';
     public timeframe: ITimeframe;
+    public selectedThought: IEditThought;
     
-    constructor(private thoughtsService: ThoughtsService) { }
+    constructor(private thoughtsService: ThoughtsService) {
+        this.thoughtsService.thoughtSelected$.subscribe(
+            thought => {
+                this.selectedThought = thought;
+            }
+        );
+    }
     ngOnInit() {
         this.resetAddTab();
     }
@@ -23,6 +30,10 @@ export class ThoughtsEditComponent implements OnInit {
         var defaultTimeframeType: TimeframeType = TimeframeType.Time;
         this.timeframe = { dateTime: defaultDate, timeframeType: defaultTimeframeType };
         this.description = '';
+    }
+
+    public thoughtSelected() {
+
     }
 
     public addThought() : void {
@@ -44,6 +55,7 @@ export class ThoughtsEditComponent implements OnInit {
                 });
         }
     }
+
 
 
     private validateThought(): string {

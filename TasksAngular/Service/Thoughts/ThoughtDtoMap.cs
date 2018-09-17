@@ -9,6 +9,7 @@ namespace TasksAngular.Service.Thoughts
     {
         public ThoughtDtoMap()
         {
+            //Entities <-> Dtos
             CreateMap<Thought, ThoughtDto>()
                 .ForMember(dest => dest.Timeframe,
                     input => input.MapFrom(i => new Timeframe((TimeframeType) i.TimeFrameId, i.TimeFrameDateTime)));
@@ -16,7 +17,7 @@ namespace TasksAngular.Service.Thoughts
                 .ForMember(dest => dest.TimeFrameId,
                     input => input.MapFrom(t => (int) t.Timeframe.TimeframeType))
                 .ForMember(dest => dest.TimeFrameDateTime,
-                    input => input.MapFrom(t => t.Timeframe.TimeframeDateTime));
+                    input => input.MapFrom(t => t.Timeframe.TimeframeDateTime));            
         }
     }
 }

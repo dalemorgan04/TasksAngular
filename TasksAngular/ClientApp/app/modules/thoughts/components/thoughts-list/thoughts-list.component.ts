@@ -62,11 +62,13 @@ export class ThoughtsListComponent implements OnInit {
             : 0 );
     }
 
-    public selectThought(thoughtId : number): void {
+    public selectThought(thoughtId: number): void {
         this.selectedThought = thoughtId;
+        this.thoughtsService.selectThought(this.selectedThought);
     }
 
     public deselectThought(e: Event): void {
         this.selectedThought = 0;
+        this.thoughtsService.deselectThought();
     }
 }

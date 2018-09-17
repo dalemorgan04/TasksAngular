@@ -19,7 +19,7 @@ namespace TasksAngular.Controllers
         public IActionResult Index()
         {
 
-            var thoughts = thoughtService.GetThoughts(4006);
+            var thoughts = thoughtService.GetThought(4006);
             return View();
         }
 
