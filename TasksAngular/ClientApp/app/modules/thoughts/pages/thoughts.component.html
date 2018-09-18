@@ -9,11 +9,11 @@
         [@sidebar] ="sidebarState">
             
         <ul>
-            <li class="disabled" [class.selected]="tab =='delete'" (click)="switchTab('delete')"><span>Delete</span></li>
-            <li [class.selected]="tab =='edit'" (click)="switchTab('edit')"><span>Edit</span></li>
-            <li class="active" (click)="switchTab('add')"><span>Add</span></li>
+            <!--<li class="disabled" [class.selected]="tab =='delete'" (click)="openDelete()"><span>Delete</span></li>-->
+            <li [class.selected]="tab =='edit'" (click)="openEditTab()"><span>Edit</span></li>
+            <li class="active" (click)="openAddTab()"><span>Add</span></li>
         </ul>
-
+            
         <mat-card>
             <div
                 class="sidebar-content"

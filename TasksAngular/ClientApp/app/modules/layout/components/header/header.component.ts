@@ -34,7 +34,7 @@ export class HeaderComponent {
                 ? 'minified'
                 : 'expanded';
         });
-        this.sidebarService.change.subscribe((isOpen: any) => {
+        this.sidebarService.isOpen$().subscribe((isOpen: boolean) => {
             this.isSidebarOpen = isOpen;
             this.rightArrowState = this.isSidebarOpen
                 ? 'expanded'

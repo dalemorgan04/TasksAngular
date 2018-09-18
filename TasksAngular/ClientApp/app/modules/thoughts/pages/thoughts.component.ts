@@ -14,7 +14,6 @@ import { sidebar, fadeIn } from '../../shared/animations';
 })
 export class ThoughtsComponent {
 
-    private isOpen: boolean = false;
     public sidebarState: string = 'expanded';
     public tab: string = 'add';
     public tabState: string = 'active';
@@ -24,26 +23,32 @@ export class ThoughtsComponent {
         private sidebarService: SidebarService) { }
 
     ngOnInit() {
-        this.sidebarService.change.subscribe((isOpen: any) => {
-            this.isOpen = isOpen;
-            this.toggleSidebar();
+        this.sidebarService.isOpen$().subscribe((isOpen: boolean) => {            
+            this.toggleSidebar(isOpen);
+        });
+        this.sidebarService.activeTabName$().subscribe((activeTabName: string) => {
+            this.tab = activeTabName;
         });
     }
 
-    toggleSidebar() {
-        this.sidebarState = this.sidebarState === 'expanded'
-            ? 'minified'
-            : 'expanded';
+    toggleSidebar(isOpen: boolean) {
+        if (isOpen) {
+            this.sidebarState = 'expanded';
+        } else {
+            this.sidebarState = 'minified';
+        }
     }
 
-    switchTab(tab: string) {
-        
-        if (this.tab !== tab) {
-            this.tab = tab;
+    openAddTab() {
+        if (this.tab !== 'add') {
+            this.sidebarService.switchTab('add');
         }
 
-        //this.tabState = this.tabState === 'active'
-        //    ? 'inactive'
-        //    : 'active';
+    }
+
+    openEditTab() {
+        if (this.tab !== 'edit') {
+            this.sidebarService.switchTab('edit');
+        }
     }
 }

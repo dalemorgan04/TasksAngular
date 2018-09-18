@@ -17,22 +17,17 @@ const httpOptions = {
 @Injectable()
 export class ThoughtsService
 {
-    private baseUrl: string = '';
+    private thoughtslist: Subject<IThought[]>    = new Subject<IThought[]>();    
+    private selectedThought: Subject<IEditThought> = new Subject<IEditThought>();
+    
+    constructor( private http: HttpClient )
+    {}
 
-    private thoughtslistSource: Subject<IThought[]>    = new Subject<IThought[]>();
-    public thoughtslist$: Observable<IThought[]> = this.thoughtslistSource.asObservable();
-
-    private thoughtSelectedSource: Subject<IEditThought> = new Subject<IEditThought>();
-    public thoughtSelected$: Observable<IEditThought> = this.thoughtSelectedSource.asObservable();
-
-    constructor(
-        private http: HttpClient,
-        @Inject('BASE_URL') baseUrl: string)
-    {
-        this.baseUrl = baseUrl;
+    public getThoughtslist(): Observable<IThought[]> {
+        return this.thoughtslist.asObservable();
     }
 
-    public updateThoughtslist() : void {
+    public refreshThoughtslist() : void {
         this.http.get<IThought[]>('api/Thoughts/List')
             .pipe(
                 map((data: any) => {
@@ -40,9 +35,9 @@ export class ThoughtsService
                 })
             )
             .subscribe(result => {
-                this.thoughtslistSource.next(result);
+                this.thoughtslist.next(result);
             });
-    }    
+    }
 
     public updateSortOrder(id: number, moveToSortId: number) : Observable<boolean> {        
         let data : string = JSON.stringify({ Id: id, MoveToSortId: moveToSortId});
@@ -64,6 +59,10 @@ export class ThoughtsService
             );
     }
 
+    public getSelectedThought(): Observable<IEditThought> {
+        return this.selectedThought.asObservable();
+    }
+
     public selectThought(thoughtId: number): void {
         let params = new HttpParams().set('thoughtId', JSON.stringify(thoughtId));
         this.http.get<IEditThought>('api/Thoughts/GetEdit', { params })
@@ -73,7 +72,7 @@ export class ThoughtsService
                 })
             )
             .subscribe((result: IEditThought) => {
-                this.thoughtSelectedSource.next(result);
+                this.selectedThought.next(result);
             });
     }
 
@@ -83,7 +82,7 @@ export class ThoughtsService
             timeframeType: TimeframeType.Open,
             dateTime: new Date()
         }
-        this.thoughtSelectedSource.next(thought);
+        this.selectedThought.next(thought);
     }
 
     private errorHandler(error: Response | any) {

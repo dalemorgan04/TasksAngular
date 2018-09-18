@@ -38,7 +38,7 @@ export class ThoughtsAddComponent implements OnInit {
             this.thoughtsService.addThought(thought)
                 .subscribe(result => {
                     if (result) {
-                        this.thoughtsService.updateThoughtslist();
+                        this.thoughtsService.refreshThoughtslist();
                         this.resetAddTab();
                     }
                 });

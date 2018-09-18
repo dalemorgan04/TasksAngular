@@ -15,7 +15,7 @@ export class ThoughtsEditComponent implements OnInit {
     public selectedThought: IEditThought;
     
     constructor(private thoughtsService: ThoughtsService) {
-        this.thoughtsService.thoughtSelected$.subscribe(
+        this.thoughtsService.getSelectedThought().subscribe(
             (thought: IEditThought) => {                
                 this.selectedThought = thought;
             }

@@ -21,7 +21,7 @@ export class ThoughtsListComponent implements OnInit {
         private thoughtsService: ThoughtsService,
         private dragula: DragulaService)
     {
-        this.thoughtsService.thoughtslist$.subscribe(
+        this.thoughtsService.getThoughtslist().subscribe(
             thoughtslist => {
                 this.thoughtslist = thoughtslist;
             }
@@ -34,7 +34,7 @@ export class ThoughtsListComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        this.thoughtsService.updateThoughtslist();
+        this.thoughtsService.refreshThoughtslist();
         this.dragula.drop.subscribe(
             (el: any) => {
                 var moveToSortId: number;
@@ -46,7 +46,7 @@ export class ThoughtsListComponent implements OnInit {
                 this.thoughtsService.updateSortOrder(Number(el[1].dataset.thoughtid), moveToSortId)
                     .subscribe(result => {
                         if (result) {
-                            this.thoughtsService.updateThoughtslist();
+                            this.thoughtsService.refreshThoughtslist();
                         } else {
                             alert('Couldnt update sort order');
                         }
