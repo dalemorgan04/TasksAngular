@@ -58,6 +58,7 @@ namespace TasksAngular.Controllers
             var thoughtDto = this.thoughtService.GetThought(thoughtId);
             var viewModel = new EditThoughtViewModel()
             {
+                IsSelected = true,
                 DateTime = thoughtDto.Timeframe.TimeframeDateTime,
                 Description = thoughtDto.Description,
                 TimeframeType = thoughtDto.Timeframe.TimeframeType

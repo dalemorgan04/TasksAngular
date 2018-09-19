@@ -2,6 +2,7 @@ import { Component, NgZone, ViewChild } from '@angular/core';
 import { SidebarService } from '../../shared/sidebar/sidebar.service';
 import { MatDrawer } from '@angular/material/sidenav';
 import { sidebar, fadeIn } from '../../shared/animations';
+import { ThoughtsService } from '../thoughts.service';
 
 @Component({
     selector: 'thoughts',
@@ -20,10 +21,12 @@ export class ThoughtsComponent {
 
     constructor(
         public zone: NgZone,
-        private sidebarService: SidebarService) { }
+        private sidebarService: SidebarService,
+        private thoughtService: ThoughtsService
+    ) { }
 
     ngOnInit() {
-        this.sidebarService.isOpen$().subscribe((isOpen: boolean) => {            
+        this.sidebarService.isOpen$().subscribe((isOpen: boolean) => {
             this.toggleSidebar(isOpen);
         });
         this.sidebarService.activeTabName$().subscribe((activeTabName: string) => {
@@ -40,6 +43,7 @@ export class ThoughtsComponent {
     }
 
     openAddTab() {
+        
         if (this.tab !== 'add') {
             this.sidebarService.switchTab('add');
             this.sidebarService.open();
@@ -48,6 +52,7 @@ export class ThoughtsComponent {
     }
 
     openEditTab() {
+        this.thoughtService.deselectThought();
         if (this.tab !== 'edit') {
             this.sidebarService.switchTab('edit');
             this.sidebarService.open();
