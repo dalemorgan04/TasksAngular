@@ -42,6 +42,7 @@ export class ThoughtsComponent {
     openAddTab() {
         if (this.tab !== 'add') {
             this.sidebarService.switchTab('add');
+            this.sidebarService.open();
         }
 
     }
@@ -49,6 +50,7 @@ export class ThoughtsComponent {
     openEditTab() {
         if (this.tab !== 'edit') {
             this.sidebarService.switchTab('edit');
+            this.sidebarService.open();
         }
     }
 }

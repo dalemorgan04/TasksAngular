@@ -7,6 +7,7 @@ import { IThought, IAddThought, IEditThought } from '../../models/thought.model'
 import { Subject } from 'rxjs';
 import { TimeframeType } from '../../models/timeframe.model';
 import { now } from 'moment';
+import { SidebarService } from '../shared/sidebar/sidebar.service';
 
 const httpOptions = {
     headers: new HttpHeaders({
@@ -20,7 +21,7 @@ export class ThoughtsService
     private thoughtslist: Subject<IThought[]>    = new Subject<IThought[]>();    
     private selectedThought: Subject<IEditThought> = new Subject<IEditThought>();
     
-    constructor( private http: HttpClient )
+    constructor( private http: HttpClient, private sidebarService : SidebarService )
     {}
 
     public getThoughtslist(): Observable<IThought[]> {
@@ -74,6 +75,8 @@ export class ThoughtsService
             .subscribe((result: IEditThought) => {
                 this.selectedThought.next(result);
             });
+        this.sidebarService.switchTab('edit');
+        this.sidebarService.open();
     }
 
     public deselectThought(): void {

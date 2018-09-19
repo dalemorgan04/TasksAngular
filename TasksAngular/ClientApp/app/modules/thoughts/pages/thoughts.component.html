@@ -10,8 +10,8 @@
             
         <ul>
             <!--<li class="disabled" [class.selected]="tab =='delete'" (click)="openDelete()"><span>Delete</span></li>-->
-            <li [class.selected]="tab =='edit'" (click)="openEditTab()"><span>Edit</span></li>
-            <li class="active" (click)="openAddTab()"><span>Add</span></li>
+            <li [class.active]="tab =='edit'" (click)="openEditTab()"><span>Edit</span></li>
+            <li [class.active]="tab =='add'" (click)="openAddTab()"><span>Add</span></li>
         </ul>
             
         <mat-card>
