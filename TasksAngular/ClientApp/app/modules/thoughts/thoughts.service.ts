@@ -72,7 +72,7 @@ export class ThoughtsService
                     return data;
                 })
             )
-            .subscribe((result: IEditThought) => {
+            .subscribe((result: IEditThought) => {                
                 this.selectedThought.next(result);
             });
         this.sidebarService.switchTab('edit');
@@ -80,7 +80,9 @@ export class ThoughtsService
     }
 
     public deselectThought(): void {
-        let thought : IEditThought = {
+
+        let thought: IEditThought = {
+            isSelected: false,
             description: '',
             timeframeType: TimeframeType.Open,
             dateTime: new Date()

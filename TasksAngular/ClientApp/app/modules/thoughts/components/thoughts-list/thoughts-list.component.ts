@@ -26,11 +26,19 @@ export class ThoughtsListComponent implements OnInit {
                 this.thoughtslist = thoughtslist;
             }
         );
+        this.thoughtsService.getSelectedThought().subscribe(
+            selectedThought => {
+                if () {
+
+                }
+            }
+        );
         this.dragula.setOptions('bag-thoughts',
             {
                 revertOnSpill: true,
                 mirrorContainer: document.body
-            });
+            }
+        );
     }
 
     ngOnInit(): void {

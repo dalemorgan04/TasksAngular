@@ -21,6 +21,7 @@ export interface IAddThought {
 }
 
 export interface IEditThought {
+    isSelected: boolean;
     description: string;
     timeframeType: TimeframeType;
     dateTime: Date;
