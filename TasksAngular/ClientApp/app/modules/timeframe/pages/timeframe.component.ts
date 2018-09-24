@@ -35,6 +35,13 @@ export class TimeframeComponent implements OnInit{
     @Input()
     set timeframe(value: ITimeframe) {
         this._timeframe = value;
+        switch (this._timeframe.timeframeType) {
+            case TimeframeType.Time:
+                this.hasTime = true;
+                break;
+            default:
+                this.hasTime = false;                
+        }
         this.validateTimeframe();
     }
     get timeframe(): ITimeframe {
