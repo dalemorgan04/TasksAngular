@@ -28,9 +28,12 @@ export class ThoughtsListComponent implements OnInit {
         );
         this.thoughtsService.getSelectedThought().subscribe(
             selectedThought => {
-                if () {
-
+                if (selectedThought.isSelected) {
+                    this.selectedThought = 0;
+                } else {
+                    //TODO this.selectedThought = needs id number - put it in the viewmodel
                 }
+
             }
         );
         this.dragula.setOptions('bag-thoughts',

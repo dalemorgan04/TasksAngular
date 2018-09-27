@@ -52,7 +52,7 @@ namespace TasksAngular.Models.Entities
 
             Thought thought = new Thought()
             {
-                User = User.GetDefaultUser(), //TODO: Remove when users implemented
+                User = User.GetDefaultUser(),
                 Description = description,
                 CreatedDateTime = DateTime.Now,
                 SortId = sortId,
