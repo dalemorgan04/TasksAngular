@@ -40,7 +40,7 @@ export class TimeframeComponent implements OnInit{
                 this.hasTime = true;
                 break;
             default:
-                this.hasTime = false;                
+                this.hasTime = false;
         }
         this.validateTimeframe();
     }
@@ -121,9 +121,11 @@ export class TimeframeComponent implements OnInit{
     
     public validateTimeframe() : void {
         switch (this._timeframe.timeframeType) {
+
             case TimeframeType.Open:
-                this.timeframeString = "Anytime";
+                this.timeframeString = this.getOpenString();
                 break;
+
             case TimeframeType.Date:
                 var mDate = moment(this.dateControl.value);
                 if (mDate.isValid()) {
@@ -199,6 +201,35 @@ export class TimeframeComponent implements OnInit{
                 break;
             default:
         }
+    }
+
+    private timeframeIsValid(timeframe:ITimeframe) : boolean {
+        //TODO: Clean up logic - split all strings into separate funcs. Have checkValid and then UpdateTimeframe, then maybe have InvalidTimeframe. Repeat this logic in cs version object
+        return true;
+    }
+
+    private getOpenString() {
+        return "Anytime";
+    }
+
+    private getDateString() {
+
+    }
+
+    private getTimeString() {
+
+    }
+
+    private getDateTimeString() {
+
+    }
+
+    private getWeekString() {
+
+    }
+
+    private getMonthString() {
+
     }
 
     private getWeekNumberOfMonth( weekComencingDate : Date) : number {

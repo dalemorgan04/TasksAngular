@@ -82,7 +82,7 @@ export class ThoughtsService
     public deselectThought(): void {
 
         let thought: IEditThought = {
-            isSelected: false,
+            id: 0,
             description: '',
             timeframeType: TimeframeType.Open,
             dateTime: new Date()

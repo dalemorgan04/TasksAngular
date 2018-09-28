@@ -20,8 +20,8 @@ export interface IAddThought {
     dateTime: Date;
 }
 
-export interface IEditThought {
-    isSelected: boolean;
+export interface IEditThought {    
+    id: number;
     description: string;
     timeframeType: TimeframeType;
     dateTime: Date;

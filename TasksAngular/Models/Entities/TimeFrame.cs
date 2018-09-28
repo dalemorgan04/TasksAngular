@@ -69,41 +69,6 @@ namespace TasksAngular.Models.Entities
             }
         }
 
-        private string getWeekString()
-        {
-            if (timeframeType != TimeframeType.Week)
-            {
-                return "";
-            }
-            else
-            {
-
-                DateTime from = new DateTime(timeframeDateTime.Year, timeframeDateTime.Month, timeframeDateTime.Day);
-                DateTime to = new DateTime(timeframeDateTime.AddDays(7).Year, timeframeDateTime.AddDays(7).Month,
-                    timeframeDateTime.AddDays(7).Day);
-                var cal = DateTimeFormatInfo.CurrentInfo.Calendar;
-                int weekNo = cal.GetWeekOfYear(from, CalendarWeekRule.FirstDay, DayOfWeek.Monday);
-                string fromString;
-                string toString = to.ToString("d/M/yy");
-                if (from.Year == to.Year)
-                {
-                    if (from.Month == to.Month)
-                    {
-                        fromString = from.ToString("d");
-                    }
-                    else
-                    {
-                        fromString = from.ToString("d/M");
-                    }
-                }
-                else
-                {
-                    fromString = from.ToString("d/M/yy");
-                }
-                return $"W{weekNo} ({fromString} - {toString})";
-            }
-        }
-
         private string getDateString()
         { 
             int daysAway = Math.Abs((TimeframeDateTime - DateTime.Now).Days);
@@ -141,5 +106,56 @@ namespace TasksAngular.Models.Entities
                     }
             }
         }
+
+        private string getTimeString()
+        {
+
+        }
+
+        private string getDateTimeString()
+        {
+
+        }
+
+        private string getWeekString()
+        {
+            if (timeframeType != TimeframeType.Week)
+            {
+                return "";
+            }
+            else
+            {
+
+                DateTime from = new DateTime(timeframeDateTime.Year, timeframeDateTime.Month, timeframeDateTime.Day);
+                DateTime to = new DateTime(timeframeDateTime.AddDays(7).Year, timeframeDateTime.AddDays(7).Month,
+                    timeframeDateTime.AddDays(7).Day);
+                var cal = DateTimeFormatInfo.CurrentInfo.Calendar;
+                int weekNo = cal.GetWeekOfYear(from, CalendarWeekRule.FirstDay, DayOfWeek.Monday);
+                string fromString;
+                string toString = to.ToString("d/M/yy");
+                if (from.Year == to.Year)
+                {
+                    if (from.Month == to.Month)
+                    {
+                        fromString = from.ToString("d");
+                    }
+                    else
+                    {
+                        fromString = from.ToString("d/M");
+                    }
+                }
+                else
+                {
+                    fromString = from.ToString("d/M/yy");
+                }
+                return $"W{weekNo} ({fromString} - {toString})";
+            }
+        }
+
+        private string getMonthString()
+        {
+
+        }
+
     }
 }

@@ -8,7 +8,7 @@ namespace TasksAngular.ViewModels.Thoughts
 {
     public class EditThoughtViewModel
     {
-        public bool IsSelected { get; set; }
+        public int  Id { get; set; }
         public string Description { get; set; }
         public TimeframeType TimeframeType { get; set; }
         public DateTime DateTime { get; set; }
