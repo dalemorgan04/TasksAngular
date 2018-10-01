@@ -33,7 +33,7 @@
                                        [matDatepicker]="daypicker"
                                        placeholder="Due on the date"
                                        [formControl]="dateControl"
-                                       (ngModelChange)="updateTimeframe()"
+                                       (ngModelChange)="onDayTabChange()"
                                        class="mt-2">
                                 <mat-datepicker #daypicker></mat-datepicker>
                             </mat-form-field>
@@ -43,7 +43,7 @@
                             <mat-checkbox
                                 fxFlex="60px"
                                 [(ngModel)]="hasTime"
-                                (change)="updateTimeframe()"
+                                (change)="onDayTabChange()"
                                 class="font-weight-light">
                             </mat-checkbox>
                             <mat-form-field class="m-0" fxFlex ="1 1 100%">
@@ -52,7 +52,7 @@
                                        [disabled]="!hasTime"
                                        placeholder="Time"
                                        [(ngModel)] ="time"
-                                       (change)="updateTimeframe()"/>
+                                       (change)="onDayTabChange()"/>
                             </mat-form-field>
                         </div>
                     </mat-tab>

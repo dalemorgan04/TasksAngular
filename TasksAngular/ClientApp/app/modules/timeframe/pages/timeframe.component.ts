@@ -30,8 +30,7 @@ export const datepickerFormats = {
 })
 
 export class TimeframeComponent implements OnInit{
-
-    private timeframe: ITimeframe;
+    
     @Input()
     set timeframe(value: ITimeframe) {
         this.timeframe = value;
@@ -108,57 +107,16 @@ export class TimeframeComponent implements OnInit{
         }
 
         //Validate Timeframe
-
         switch (this.timeframe.timeframeType) {
 
             case TimeframeType.Open:
-                this.timeframeString = this.getOpenString();
-                break;
+                //Nothing to validate on Open
 
-            case TimeframeType.Date:
-                var mDate = moment(this.dateControl.value);
-                if (mDate.isValid()) {
-                    this.date = new Date(mDate.year(), mDate.month(), mDate.date());
-                    //Day
-                        this.timeframeString = moment(this.date).format("Do MMM YYYY");
-                        this.timeframe = {
-                            timeframeType: TimeframeType.Date,
-                            dateTime: this.date
-                        }
-                } else {
-                    //Invalid day, even if time checked
-                    this.timeframeString = "Choose a date";
-                }
-                break;
+            case TimeframeType.Date:                  
+
+
             case TimeframeType.Time:
-                var mDateForTime = moment(this.dateControl.value);
-                if (mDateForTime.isValid()) {
-                    this.date = new Date(mDateForTime.year(), mDateForTime.month(), mDateForTime.date());
-                    //Time
-                    if (this.hasTime) {
-                        if (moment(this.time, "HH:mm").isValid()) {
-                            this.timeframeString = moment(this.date).format('Do MMM YYYY') + ' at ' + this.time;
-                            this.timeframe = {
-                                timeframeType: TimeframeType.Time,
-                                dateTime: moment(mDateForTime.format('DD/MM/YYYY') + ' ' + this.time, 'DD/MM/YYYY HH:mm').toDate()
-                            }
-                        } else {
-                            //Invalid time
-                            this.timeframeString = "Choose a time";
-                        }
-                    } else {
-                        //Day
-                        this.timeframeString = moment(this.date).format("Do MMM YYYY");
-                        this.timeframe = {
-                            timeframeType: TimeframeType.Date,
-                            dateTime: this.date
-                        }
-                    }
-                } else {
-                    //Invalid day, even if time checked
-                    this.timeframeString = "Choose a date";
-                }
-                break;
+
             case TimeframeType.Week:
                 this.wcDate = moment(this.wcDate).startOf('isoWeek').toDate();
                 var mWcDate = moment(this.wcDate),
@@ -201,6 +159,7 @@ export class TimeframeComponent implements OnInit{
             default: this.tabIndex = 0;
         }
         var mDateTime: moment.Moment = moment(this.timeframe.dateTime);
+        this.timeframeString = this.getDateTimeString(this.timeframe);
         this.date = mDateTime.toDate();
         this.dateControl.setValue(this.date);
         this.time = mDateTime.format("HH:mm");
@@ -209,33 +168,29 @@ export class TimeframeComponent implements OnInit{
         this.year = mDateTime.year();
     }
 
-    private timeframeIsValid(timeframe:ITimeframe) : boolean {
-        //TODO: Clean up logic - split all strings into separate funcs. Have checkValid and then UpdateTimeframe, then maybe have InvalidTimeframe. Repeat this logic in cs version object
-        return true;
-    }
+    private getDateTimeString(timeframe : ITimeframe) : string {
+        switch (timeframe.timeframeType) {
 
-    private getOpenString() {
-        return "Anytime";
-    }
+            case TimeframeType.Open:
+                return "Anytime";
+            
+            case TimeframeType.Time:
+                return this.timeframeString = moment(this.date).format('Do MMM YYYY') + ' at ' + this.time;
 
-    private getDateString() {
-
-    }
-
-    private getTimeString() {
-
-    }
-
-    private getDateTimeString() {
-
-    }
-
-    private getWeekString() {
-
-    }
-
-    private getMonthString() {
-
+            case TimeframeType.Date:
+                return moment(this.timeframe.dateTime).format("Do MMM YYYY");
+                
+            case TimeframeType.Week:
+                this.wcDate = moment(this.wcDate).startOf('isoWeek').toDate();
+                let mWcDate = moment(this.wcDate),
+                    weekNumber: number = this.getWeekNumberOfMonth(this.wcDate);
+                return 'W' + weekNumber + ' of ' + mWcDate.format('MMM') + ' ' + mWcDate.format('YYYY') +
+                    ' (' + mWcDate.format('Do') + '-' + moment(mWcDate).add(6, 'days').format('Do') + ')';
+            case TimeframeType.Month:
+                break;
+            default:
+        }
+        return "";
     }
 
     private getWeekNumberOfMonth( weekComencingDate : Date) : number {
@@ -260,5 +215,56 @@ export class TimeframeComponent implements OnInit{
             case 3:  return "rd";
             default: return "th";
         }
+    }
+
+    public onDayTabChange() {
+        let mDateTime = moment(this.dateControl.value);
+        if (mDateTime.isValid()) {
+            this.timeframe.dateTime = new Date(mDateTime.year(), mDateTime.month(), mDateTime.date());
+            //Time
+            if (this.hasTime) {
+                if ( moment(this.timeframe.dateTime, "HH:mm").isValid()) {                    
+                    this.timeframe = {
+                        timeframeType: TimeframeType.Time,
+                        dateTime: moment( mDateTime.format('DD/MM/YYYY') + ' ' + this.time, 'DD/MM/YYYY HH:mm').toDate()
+                    }
+                } else {
+                    //Invalid time
+                    this.timeframeString = "Choose a time";
+                }
+            } else {
+            //Day
+                this.timeframe = {
+                    timeframeType: TimeframeType.Date,
+                    dateTime: this.date
+                }
+            }
+        } else {
+            //Invalid day, even if time checked
+            this.timeframeString = "Choose a date";
+        }
+    }
+
+    public onWeekTabChange() {
+        this.wcDate = moment(this.wcDate).startOf('isoWeek').toDate();
+        var mWcDate = moment(this.wcDate),
+            weekNumber: number = this.getWeekNumberOfMonth(this.wcDate);
+
+        //e.g. 3rd Week of April (20/8/16 - 26/8/16)
+        this.weekDisplayString =
+            weekNumber + this.ordinalString(weekNumber) +
+            ' week of ' + mWcDate.format('MMMM YYYY') +
+            '\n(' + mWcDate.format('DD/MM/YY') + ' - ' + moment(mWcDate).add(6, 'days').format('DD/MM/YY') + ')';
+
+        //e.g. W3 of Sep 2018 (20th-6th)
+        this.timeframeString =
+            'W' + weekNumber + ' of ' + mWcDate.format('MMM') + ' ' + mWcDate.format('YYYY') +
+            ' (' + mWcDate.format('Do') + '-' + moment(mWcDate).add(6, 'days').format('Do') + ')';
+
+        this.timeframe = {
+            timeframeType: TimeframeType.Week,
+            dateTime: this.wcDate
+        }
+        break;
     }
 }
