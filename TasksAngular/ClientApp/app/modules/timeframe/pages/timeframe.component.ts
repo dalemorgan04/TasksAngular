@@ -180,12 +180,14 @@ export class TimeframeComponent implements OnInit{
             case TimeframeType.Date:
                 return moment(this.timeframe.dateTime).format("Do MMM YYYY");
                 
-            case TimeframeType.Week:
-                this.wcDate = moment(this.wcDate).startOf('isoWeek').toDate();
-                let mWcDate = moment(this.wcDate),
+            case TimeframeType.Week:                
+                let
+                    mWcDate = moment(this.wcDate),
                     weekNumber: number = this.getWeekNumberOfMonth(this.wcDate);
-                return 'W' + weekNumber + ' of ' + mWcDate.format('MMM') + ' ' + mWcDate.format('YYYY') +
+                return +
+                    'W' + weekNumber + ' of ' + mWcDate.format('MMM') + ' ' + mWcDate.format('YYYY') +
                     ' (' + mWcDate.format('Do') + '-' + moment(mWcDate).add(6, 'days').format('Do') + ')';
+
             case TimeframeType.Month:
                 break;
             default:
@@ -246,9 +248,12 @@ export class TimeframeComponent implements OnInit{
     }
 
     public onWeekTabChange() {
-        this.wcDate = moment(this.wcDate).startOf('isoWeek').toDate();
-        var mWcDate = moment(this.wcDate),
+
+        var
+            mWcDate = moment(this.wcDate),
             weekNumber: number = this.getWeekNumberOfMonth(this.wcDate);
+
+        this.wcDate = moment(this.wcDate).startOf('isoWeek').toDate();
 
         //e.g. 3rd Week of April (20/8/16 - 26/8/16)
         this.weekDisplayString =
@@ -265,6 +270,6 @@ export class TimeframeComponent implements OnInit{
             timeframeType: TimeframeType.Week,
             dateTime: this.wcDate
         }
-        break;
+        
     }
 }
