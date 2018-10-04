@@ -56,20 +56,20 @@ namespace TasksAngular.Models.Entities
                 case TimeframeType.Open:
                     return "";
                 case TimeframeType.Time:
-                    string timeString = TimeframeDateTime.ToString("h:mmtt").ToLower();
-                    return $"{getDateString()} at {timeString}";
+                    string timeString = getTimeString();
+                    return $"{getRelativeDateString()} at {timeString}";
                 case TimeframeType.Date:
-                    return getDateString();
+                    return getRelativeDateString();
                 case TimeframeType.Week:
                     return getWeekString();
                 case TimeframeType.Month:
-                    return TimeframeDateTime.ToString("MMMM yy");
+                    return getMonthString();
                 default:
                     return "";
             }
         }
 
-        private string getDateString()
+        private string getRelativeDateString()
         { 
             int daysAway = Math.Abs((TimeframeDateTime - DateTime.Now).Days);
             bool inPast = TimeframeDateTime < DateTime.Now;
@@ -102,19 +102,19 @@ namespace TasksAngular.Models.Entities
                     }
                     else
                     {
-                        return TimeframeDateTime.ToString("d/M/yy");
+                        return getDateString();
                     }
             }
         }
 
-        private string getTimeString()
+        private string getDateString()
         {
-
+            return TimeframeDateTime.ToString("Do MMM YYYY");
         }
 
-        private string getDateTimeString()
+        private string getTimeString()
         {
-
+            return TimeframeDateTime.ToString("h:mmtt").ToLower();
         }
 
         private string getWeekString()
@@ -154,7 +154,7 @@ namespace TasksAngular.Models.Entities
 
         private string getMonthString()
         {
-
+            return TimeframeDateTime.ToString("MMMM yy");
         }
 
     }
