@@ -72,7 +72,7 @@ export class ThoughtsService
                     return data;
                 })
             )
-            .subscribe((result: IEditThought) => {                
+            .subscribe((result: IEditThought) => {
                 this.selectedThought.next(result);
             });
         this.sidebarService.switchTab('edit');
