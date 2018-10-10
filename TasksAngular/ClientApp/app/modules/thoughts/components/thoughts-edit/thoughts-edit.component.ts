@@ -16,7 +16,7 @@ export class ThoughtsEditComponent implements OnInit {
     
     constructor(private thoughtsService: ThoughtsService) {
         this.thoughtsService.getSelectedThought().subscribe(
-            (thought: IEditThought) => {                
+            (thought: IEditThought) => {
                 this.selectedThought = thought;
                 this.thoughtSelected();
             }
@@ -36,7 +36,7 @@ export class ThoughtsEditComponent implements OnInit {
     private thoughtSelected() {
         this.description = this.selectedThought.description;
         this.timeframe = {
-            dateTime: this.selectedThought.dateTime,            
+            dateTime: this.selectedThought.dateTime,
             timeframeType: this.selectedThought.timeframeType
         };
     }
