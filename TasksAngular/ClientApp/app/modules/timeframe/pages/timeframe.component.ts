@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter, SimpleChanges } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, SimpleChanges, SimpleChange } from '@angular/core';
 import { MatTabChangeEvent } from '@angular/material';
 import { FormControl } from '@angular/forms';
 import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material/core';
@@ -32,7 +32,7 @@ export const datepickerFormats = {
 export class TimeframeComponent implements OnInit{
 
     private _timeframe: ITimeframe;
-    @Input()
+    @Input() //TODO: CHange this input to be an observable not an object. You can only monitor simplechanges using ngOnChange
     set timeframe(value: ITimeframe) {
         this._timeframe = value;
         switch (this._timeframe.timeframeType) {
@@ -67,6 +67,10 @@ export class TimeframeComponent implements OnInit{
 
     ngOnInit(): void {
         this.updateTimeframe();
+    }
+
+    ngOnChanges(changes: { [timeframe: ITimeframe] : SimpleChange }) {
+
     }
 
     public updateTimeframe(): void {
