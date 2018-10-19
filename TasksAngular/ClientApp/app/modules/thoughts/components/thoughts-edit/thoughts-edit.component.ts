@@ -3,6 +3,7 @@ import { ThoughtsService } from '../../thoughts.service';
 import { ITimeframe, TimeframeType} from '../../../../models/timeframe.model';
 import { IAddThought, IThought, IEditThought } from '../../../../models/thought.model';
 import * as moment from 'moment';
+import { Observable } from 'rxjs';
 
 @Component({
     selector: 'thoughts-edit',
@@ -12,6 +13,7 @@ import * as moment from 'moment';
 export class ThoughtsEditComponent implements OnInit {
     public description : string = '';
     public timeframe: ITimeframe;
+    public $timeframeIn: Observable<ITimeframe>;
     public selectedThought: IEditThought;
     
     constructor(private thoughtsService: ThoughtsService) {
@@ -23,7 +25,7 @@ export class ThoughtsEditComponent implements OnInit {
         );
     }
     ngOnInit() {
-        this.resetAddTab();
+        this.resetAddTab();        
     }
 
     private resetAddTab() : void {

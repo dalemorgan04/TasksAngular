@@ -6,6 +6,8 @@ import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/materia
 import { CustomDateAdapter } from '../../shared/datepicker/customDateAdapter/customDateAdapter.component';
 import * as moment from 'moment';
 import { ITimeframe, TimeframeType, StringLengthType, IMonth, IWeek, months, years} from '../../../models/timeframe.model';
+import { Observable } from 'rxjs';
+import { TimeframeService } from '../timeframe.service';
 
 export const datepickerFormats = {
     parse: {
@@ -32,19 +34,20 @@ export const datepickerFormats = {
 export class TimeframeComponent implements OnInit{
 
     private _timeframe: ITimeframe;
-    @Input() //TODO: CHange this input to be an observable not an object. You can only monitor simplechanges using ngOnChange
-    set timeframe(value: ITimeframe) {
-        this._timeframe = value;
-        switch (this._timeframe.timeframeType) {
-            case TimeframeType.Time:
-                this.hasTime = true;
-                break;
-            default:
-                this.hasTime = false;
-        }
-        this.updateTimeframe();
-    }
-    get timeframe(): ITimeframe { return this._timeframe }
+    @Input() //TODO: Change this input to be an observable not an object. You can only monitor simplechanges using ngOnChange
+    set timeframe($timeframe: Observable<ITimeframe>) {
+        $timeframe.subscribe( (result : ITimeframe) => {
+            this._timeframe = result;
+            switch (this._timeframe.timeframeType) {
+                case TimeframeType.Time:
+                    this.hasTime = true;
+                    break;
+                default:
+                    this.hasTime = false;
+            }
+            this.updateTimeframe();
+        });
+    }    
 
     @Output() timeframeChange = new EventEmitter<ITimeframe>();
 
@@ -65,12 +68,18 @@ export class TimeframeComponent implements OnInit{
     public years: number[] = years;
     public year: number;
 
-    ngOnInit(): void {
-        this.updateTimeframe();
+    constructor(private timeframeService: TimeframeService) {
+        this.timeframeService.getTimeframe().subscribe(
+            (timeframe: ITimeframe) => {
+                this._timeframe = timeframe;
+                this.updateTimeframe();
+                this.timeframeService.updateTimeframe(this._timeframe);
+            }//TODO: Check here if this works
+        );
     }
 
-    ngOnChanges(changes: { [timeframe: ITimeframe] : SimpleChange }) {
-
+    ngOnInit(): void {
+        this.updateTimeframe();
     }
 
     public updateTimeframe(): void {

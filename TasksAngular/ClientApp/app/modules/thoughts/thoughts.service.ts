@@ -5,7 +5,7 @@ import { map } from 'rxjs/operators';
 import '../../models/thought.model';
 import { IThought, IAddThought, IEditThought } from '../../models/thought.model';
 import { Subject } from 'rxjs';
-import { TimeframeType } from '../../models/timeframe.model';
+import { TimeframeType, ITimeframe } from '../../models/timeframe.model';
 import { now } from 'moment';
 import { SidebarService } from '../shared/sidebar/sidebar.service';
 
@@ -20,6 +20,7 @@ export class ThoughtsService
 {
     private thoughtslist: Subject<IThought[]>    = new Subject<IThought[]>();    
     private selectedThought: Subject<IEditThought> = new Subject<IEditThought>();
+    private $timeframe: Subject<ITimeframe> = new Subject<ITimeframe>();
     
     constructor( private http: HttpClient, private sidebarService : SidebarService )
     {}
@@ -88,6 +89,14 @@ export class ThoughtsService
             dateTime: new Date()
         }
         this.selectedThought.next(thought);
+    }
+
+    public getTimeframe(): Observable<ITimeframe> {
+        return this.$timeframe.asObservable();
+    }
+
+    public updateTimeframe(timeframe: ITimeframe) {
+        this.$timeframe.next(timeframe);
     }
 
     private errorHandler(error: Response | any) {

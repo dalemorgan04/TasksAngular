@@ -4,6 +4,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { SharedModule } from '../shared/shared.module';
 import { TimeframeComponent } from './pages/timeframe.component';
+import { TimeframeService } from './timeframe.service';
 
 @NgModule({
     imports: [
@@ -14,6 +15,9 @@ import { TimeframeComponent } from './pages/timeframe.component';
     ],
     declarations: [
         TimeframeComponent
+    ],
+    providers: [
+        TimeframeService
     ],
     exports: [
         TimeframeComponent
