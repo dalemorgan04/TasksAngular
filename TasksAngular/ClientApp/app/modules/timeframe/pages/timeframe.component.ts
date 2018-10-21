@@ -33,24 +33,7 @@ export const datepickerFormats = {
 
 export class TimeframeComponent implements OnInit{
 
-    private _timeframe: ITimeframe;
-    @Input() //TODO: Change this input to be an observable not an object. You can only monitor simplechanges using ngOnChange
-    set timeframe($timeframe: Observable<ITimeframe>) {
-        $timeframe.subscribe( (result : ITimeframe) => {
-            this._timeframe = result;
-            switch (this._timeframe.timeframeType) {
-                case TimeframeType.Time:
-                    this.hasTime = true;
-                    break;
-                default:
-                    this.hasTime = false;
-            }
-            this.updateTimeframe();
-        });
-    }    
-
-    @Output() timeframeChange = new EventEmitter<ITimeframe>();
-
+    private _timeframe: ITimeframe; //Timeframe is controlled all through the service
     private timeframeString: string;
 
     private tabName: string;
@@ -71,10 +54,8 @@ export class TimeframeComponent implements OnInit{
     constructor(private timeframeService: TimeframeService) {
         this.timeframeService.getTimeframe().subscribe(
             (timeframe: ITimeframe) => {
-                this._timeframe = timeframe;
-                this.updateTimeframe();
-                this.timeframeService.updateTimeframe(this._timeframe);
-            }//TODO: Check here if this works
+                this.onTimeframeChange(timeframe);
+            }
         );
     }
 
@@ -82,76 +63,16 @@ export class TimeframeComponent implements OnInit{
         this.updateTimeframe();
     }
 
-    public updateTimeframe(): void {
-
-        //If not defined then set default timeframe to now and open
-        if (!this._timeframe) {
-            this._timeframe =
-                {
-                    timeframeType: TimeframeType.Open,
-                    dateTime: new Date()
-                }
-        }
-
-        //Activate tab
+    private onTimeframeChange(timeframe: ITimeframe) {
+        this._timeframe = timeframe;
         switch (this._timeframe.timeframeType) {
-            case TimeframeType.Open: this.tabIndex = 0;
-            case TimeframeType.Date: this.tabIndex = 1;
-            case TimeframeType.Time: this.tabIndex = 1;
-            case TimeframeType.Week: this.tabIndex = 2;
-            case TimeframeType.Month: this.tabIndex = 3;
-            default: this.tabIndex = 0;
-        }
-
-        //Update all properties
-        var mDateTime: moment.Moment = moment(this._timeframe.dateTime);
-        this.date = mDateTime.toDate();
-        this.dateControl.setValue(this.date);
-        this.time = mDateTime.format("HH:mm");
-        this.hasTime = this._timeframe.timeframeType === TimeframeType.Time;
-        this.month = mDateTime.month();
-        this.year = mDateTime.year();
-
-        //Update timeframe Strings
-        switch (this._timeframe.timeframeType) {
-
-            case TimeframeType.Open:
-                this.timeframeString = "Anytime";
-
             case TimeframeType.Time:
-                this.timeframeString = moment(this.date).format('Do MMM YYYY') + ' at ' + this.time;
-
-            case TimeframeType.Date:
-                this.timeframeString = moment(this._timeframe.dateTime).format("Do MMM YYYY");
-
-            case TimeframeType.Week:
-                let
-                    mWcDate = moment(this.wcDate),
-                    weekNumber: number = this.getWeekNumberOfMonth(this.wcDate);
-                    //e.g. W3 of Sep 2018 (20th-6th)
-                this.timeframeString = 
-                    'W' + weekNumber + ' of ' + mWcDate.format('MMM') + ' ' + mWcDate.format('YYYY') +
-                    ' (' + mWcDate.format('Do') + '-' + moment(mWcDate).add(6, 'days').format('Do') + ')';
-                    //e.g. 3rd Week of April (20/8/16 - 26/8/16)
-                this.weekDisplayString =
-                    weekNumber + this.ordinalString(weekNumber) +
-                    ' week of ' + mWcDate.format('MMMM YYYY') +
-                    '\n(' + mWcDate.format('DD/MM/YY') + ' - ' + moment(mWcDate).add(6, 'days').format('DD/MM/YY') + ')';
-
-            case TimeframeType.Month:
-                var monthAsDate = new Date(this.year, this.month, 1);
-                this.timeframeString = moment(monthAsDate).format('MMMM YYYY');
-                this._timeframe = {
-                    timeframeType: TimeframeType.Month,
-                    dateTime: monthAsDate
-                }
+                this.hasTime = true;
                 break;
             default:
-                this.timeframeString = "";
+                this.hasTime = false;
         }
-
-        //Signal change
-        this.timeframeChange.emit(this._timeframe);
+        this.updateTimeframe();
     }
 
     public onDayTabChange() {
@@ -222,6 +143,75 @@ export class TimeframeComponent implements OnInit{
         }
         this._timeframe.timeframeType = selectedTimeframeType;
         this.updateTimeframe();
+    }
+
+    private updateTimeframe(): void {
+
+        //If not defined then set default timeframe to now and open
+        if (!this._timeframe) {
+            this._timeframe =
+                {
+                    timeframeType: TimeframeType.Open,
+                    dateTime: new Date()
+                }
+        }
+
+        //Activate tab
+        switch (this._timeframe.timeframeType) {
+            case TimeframeType.Open: this.tabIndex = 0;
+            case TimeframeType.Date: this.tabIndex = 1;
+            case TimeframeType.Time: this.tabIndex = 1;
+            case TimeframeType.Week: this.tabIndex = 2;
+            case TimeframeType.Month: this.tabIndex = 3;
+            default: this.tabIndex = 0;
+        }
+
+        //Update all properties
+        var mDateTime: moment.Moment = moment(this._timeframe.dateTime);
+        this.date = mDateTime.toDate();
+        this.dateControl.setValue(this.date);
+        this.time = mDateTime.format("HH:mm");
+        this.hasTime = this._timeframe.timeframeType === TimeframeType.Time;
+        this.month = mDateTime.month();
+        this.year = mDateTime.year();
+
+        //Update timeframe Strings
+        switch (this._timeframe.timeframeType) {
+
+            case TimeframeType.Open:
+                this.timeframeString = "Anytime";
+
+            case TimeframeType.Time:
+                this.timeframeString = moment(this.date).format('Do MMM YYYY') + ' at ' + this.time;
+
+            case TimeframeType.Date:
+                this.timeframeString = moment(this._timeframe.dateTime).format("Do MMM YYYY");
+
+            case TimeframeType.Week:
+                let
+                    mWcDate = moment(this.wcDate),
+                    weekNumber: number = this.getWeekNumberOfMonth(this.wcDate);
+                //e.g. W3 of Sep 2018 (20th-6th)
+                this.timeframeString =
+                    'W' + weekNumber + ' of ' + mWcDate.format('MMM') + ' ' + mWcDate.format('YYYY') +
+                    ' (' + mWcDate.format('Do') + '-' + moment(mWcDate).add(6, 'days').format('Do') + ')';
+                //e.g. 3rd Week of April (20/8/16 - 26/8/16)
+                this.weekDisplayString =
+                    weekNumber + this.ordinalString(weekNumber) +
+                    ' week of ' + mWcDate.format('MMMM YYYY') +
+                    '\n(' + mWcDate.format('DD/MM/YY') + ' - ' + moment(mWcDate).add(6, 'days').format('DD/MM/YY') + ')';
+
+            case TimeframeType.Month:
+                var monthAsDate = new Date(this.year, this.month, 1);
+                this.timeframeString = moment(monthAsDate).format('MMMM YYYY');
+                this._timeframe = {
+                    timeframeType: TimeframeType.Month,
+                    dateTime: monthAsDate
+                }
+                break;
+            default:
+                this.timeframeString = "";
+        }
     }
 
     private getWeekNumberOfMonth( weekComencingDate : Date) : number {

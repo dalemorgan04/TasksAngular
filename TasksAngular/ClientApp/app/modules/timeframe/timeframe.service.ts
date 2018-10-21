@@ -8,6 +8,7 @@ import { ITimeframe } from '../../models/timeframe.model';
 @Injectable()
 export class TimeframeService {
 
+    private _timeframe: ITimeframe;
     private $timeframe: Subject<ITimeframe> = new Subject<ITimeframe>();
 
     constructor() { }
@@ -18,6 +19,5 @@ export class TimeframeService {
 
     public updateTimeframe(timeframe: ITimeframe) {
         this.$timeframe.next(timeframe);
-    }
-
+    }    
 }

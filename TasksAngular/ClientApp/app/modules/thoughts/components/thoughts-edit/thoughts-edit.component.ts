@@ -4,6 +4,7 @@ import { ITimeframe, TimeframeType} from '../../../../models/timeframe.model';
 import { IAddThought, IThought, IEditThought } from '../../../../models/thought.model';
 import * as moment from 'moment';
 import { Observable } from 'rxjs';
+import { TimeframeService } from '../../../timeframe/timeframe.service';
 
 @Component({
     selector: 'thoughts-edit',
@@ -16,7 +17,10 @@ export class ThoughtsEditComponent implements OnInit {
     public $timeframeIn: Observable<ITimeframe>;
     public selectedThought: IEditThought;
     
-    constructor(private thoughtsService: ThoughtsService) {
+    constructor(
+        private thoughtsService: ThoughtsService,
+        private timeframeService: TimeframeService)
+    {
         this.thoughtsService.getSelectedThought().subscribe(
             (thought: IEditThought) => {
                 this.selectedThought = thought;
