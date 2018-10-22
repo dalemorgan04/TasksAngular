@@ -18,6 +18,6 @@ export class TimeframeService {
     }
 
     public updateTimeframe(timeframe: ITimeframe) {
-        this.$timeframe.next(timeframe);
+        //this.$timeframe.next(timeframe);
     }    
 }

@@ -3,6 +3,7 @@ import { ThoughtsService } from '../../thoughts.service';
 import { ITimeframe, TimeframeType} from '../../../../models/timeframe.model';
 import { IAddThought } from '../../../../models/thought.model';
 import * as moment from 'moment';
+import { TimeframeService } from '../../../timeframe/timeframe.service';
 
 @Component({
     selector: 'thoughts-add',
@@ -11,9 +12,19 @@ import * as moment from 'moment';
 })
 export class ThoughtsAddComponent implements OnInit {
     public description : string = '';
-    public timeframe: ITimeframe;
+    public timeframe: ITimeframe;    
     
-    constructor(private thoughtsService: ThoughtsService) { }
+    constructor(
+        private thoughtsService: ThoughtsService,
+        private timeframeService: TimeframeService)
+    {
+        this.timeframeService.getTimeframe().subscribe(
+            (timeframe : ITimeframe) => {
+                this.timeframe = timeframe;
+            }
+        );
+    }
+
     ngOnInit() {
         this.resetAddTab();
     }
@@ -44,7 +55,6 @@ export class ThoughtsAddComponent implements OnInit {
                 });
         }
     }
-
 
     private validateThought(): string {
         if (this.description === '') {

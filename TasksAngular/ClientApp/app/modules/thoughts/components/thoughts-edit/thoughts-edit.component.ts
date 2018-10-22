@@ -14,7 +14,6 @@ import { TimeframeService } from '../../../timeframe/timeframe.service';
 export class ThoughtsEditComponent implements OnInit {
     public description : string = '';
     public timeframe: ITimeframe;
-    public $timeframeIn: Observable<ITimeframe>;
     public selectedThought: IEditThought;
     
     constructor(
@@ -26,10 +25,10 @@ export class ThoughtsEditComponent implements OnInit {
                 this.selectedThought = thought;
                 this.thoughtSelected();
             }
-        );
+        );        
     }
     ngOnInit() {
-        this.resetAddTab();        
+        this.resetAddTab();
     }
 
     private resetAddTab() : void {
@@ -45,6 +44,7 @@ export class ThoughtsEditComponent implements OnInit {
             dateTime: this.selectedThought.dateTime,
             timeframeType: this.selectedThought.timeframeType
         };
+        this.timeframeService.updateTimeframe(this.timeframe);
     }
 
     private validateThought(): string {
