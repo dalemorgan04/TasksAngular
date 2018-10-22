@@ -158,11 +158,21 @@ export class TimeframeComponent implements OnInit{
 
         //Activate tab
         switch (this._timeframe.timeframeType) {
-            case TimeframeType.Open: this.tabIndex = 0;
-            case TimeframeType.Date: this.tabIndex = 1;
-            case TimeframeType.Time: this.tabIndex = 1;
-            case TimeframeType.Week: this.tabIndex = 2;
-            case TimeframeType.Month: this.tabIndex = 3;
+            case TimeframeType.Open:
+                this.tabIndex = 0;
+                break;
+            case TimeframeType.Date:
+                this.tabIndex = 1;
+                break;
+            case TimeframeType.Time:
+                this.tabIndex = 1;
+                break;
+            case TimeframeType.Week:
+                this.tabIndex = 2;
+                break;
+            case TimeframeType.Month:
+                this.tabIndex = 3;
+                break;
             default: this.tabIndex = 0;
         }
 
@@ -180,12 +190,15 @@ export class TimeframeComponent implements OnInit{
 
             case TimeframeType.Open:
                 this.timeframeString = "Anytime";
+                break;
 
             case TimeframeType.Time:
                 this.timeframeString = moment(this.date).format('Do MMM YYYY') + ' at ' + this.time;
+                break;
 
             case TimeframeType.Date:
                 this.timeframeString = moment(this._timeframe.dateTime).format("Do MMM YYYY");
+                break;
 
             case TimeframeType.Week:
                 let
@@ -200,6 +213,7 @@ export class TimeframeComponent implements OnInit{
                     weekNumber + this.ordinalString(weekNumber) +
                     ' week of ' + mWcDate.format('MMMM YYYY') +
                     '\n(' + mWcDate.format('DD/MM/YY') + ' - ' + moment(mWcDate).add(6, 'days').format('DD/MM/YY') + ')';
+                break;
 
             case TimeframeType.Month:
                 var monthAsDate = new Date(this.year, this.month, 1);
@@ -209,6 +223,7 @@ export class TimeframeComponent implements OnInit{
                     dateTime: monthAsDate
                 }
                 break;
+
             default:
                 this.timeframeString = "";
         }

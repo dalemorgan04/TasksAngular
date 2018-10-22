@@ -25,7 +25,12 @@ export class ThoughtsEditComponent implements OnInit {
                 this.selectedThought = thought;
                 this.thoughtSelected();
             }
-        );        
+        );
+        this.timeframeService.getTimeframe().subscribe(
+            (timeframe : ITimeframe) => {
+                this.timeframe = timeframe;
+            }
+        );
     }
     ngOnInit() {
         this.resetAddTab();
@@ -44,7 +49,6 @@ export class ThoughtsEditComponent implements OnInit {
             dateTime: this.selectedThought.dateTime,
             timeframeType: this.selectedThought.timeframeType
         };
-        this.timeframeService.updateTimeframe(this.timeframe);
     }
 
     private validateThought(): string {

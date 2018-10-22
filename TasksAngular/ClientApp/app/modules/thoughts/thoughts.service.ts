@@ -8,6 +8,7 @@ import { Subject } from 'rxjs';
 import { TimeframeType, ITimeframe } from '../../models/timeframe.model';
 import { now } from 'moment';
 import { SidebarService } from '../shared/sidebar/sidebar.service';
+import { TimeframeService } from '../timeframe/timeframe.service';
 
 const httpOptions = {
     headers: new HttpHeaders({
@@ -20,9 +21,11 @@ export class ThoughtsService
 {
     private thoughtslist: Subject<IThought[]>    = new Subject<IThought[]>();    
     private selectedThought: Subject<IEditThought> = new Subject<IEditThought>();
-    private $timeframe: Subject<ITimeframe> = new Subject<ITimeframe>();
     
-    constructor( private http: HttpClient, private sidebarService : SidebarService )
+    constructor(
+        private http: HttpClient,
+        private sidebarService: SidebarService,
+        private timeframeService: TimeframeService)
     {}
 
     public getThoughtslist(): Observable<IThought[]> {
@@ -74,7 +77,12 @@ export class ThoughtsService
                 })
             )
             .subscribe((result: IEditThought) => {
+                var timeframe: ITimeframe = {
+                    dateTime: result.dateTime,
+                    timeframeType: result.timeframeType
+                }
                 this.selectedThought.next(result);
+                this.timeframeService.updateTimeframe(timeframe);
             });
         this.sidebarService.switchTab('edit');
         this.sidebarService.open();
@@ -89,14 +97,11 @@ export class ThoughtsService
             dateTime: new Date()
         }
         this.selectedThought.next(thought);
-    }
-
-    public getTimeframe(): Observable<ITimeframe> {
-        return this.$timeframe.asObservable();
-    }
-
-    public updateTimeframe(timeframe: ITimeframe) {
-        this.$timeframe.next(timeframe);
+        let timeframe: ITimeframe = {
+            timeframeType: TimeframeType.Open,
+            dateTime: new Date()
+        }
+        this.timeframeService.updateTimeframe(timeframe);
     }
 
     private errorHandler(error: Response | any) {
