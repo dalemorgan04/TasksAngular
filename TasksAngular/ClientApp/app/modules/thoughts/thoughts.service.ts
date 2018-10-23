@@ -44,7 +44,7 @@ export class ThoughtsService
             });
     }
 
-    public updateSortOrder(id: number, moveToSortId: number) : Observable<boolean> {        
+    public updateSortOrder(id: number, moveToSortId: number) : Observable<boolean> {
         let data : string = JSON.stringify({ Id: id, MoveToSortId: moveToSortId});
         return this.http.post<boolean>('api/Thoughts/Sort', data)
             .pipe(

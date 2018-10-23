@@ -37,7 +37,7 @@ export class TimeframeComponent implements OnInit{
     private timeframeString: string;
 
     private tabName: string;
-    public tabIndex: number;
+    public tabSelected: number;
 
     public date: Date;
     public dateControl = new FormControl(moment());
@@ -65,14 +65,37 @@ export class TimeframeComponent implements OnInit{
 
     private onTimeframeChange(timeframe: ITimeframe) {
         this._timeframe = timeframe;
+
         switch (this._timeframe.timeframeType) {
             case TimeframeType.Time:
                 this.hasTime = true;
                 break;
             default:
                 this.hasTime = false;
-        }
+        }        
+
         this.updateTimeframe();
+
+        switch (this._timeframe.timeframeType) {
+            case TimeframeType.Open:
+                this.tabSelected = 0;
+                break;
+            case TimeframeType.Date:
+                this.tabSelected = 0;
+                break;
+            case TimeframeType.Time:
+                this.tabSelected = 2;
+                break;
+            case TimeframeType.Week:
+                this.tabSelected = 3;
+                break;
+            case TimeframeType.Month:
+                this.tabSelected = 4;
+                break;
+            default:
+                this.tabSelected = 0;
+                break;
+        }
     }
 
     public onDayTabChange() {
@@ -124,14 +147,21 @@ export class TimeframeComponent implements OnInit{
     }
 
     public onTabSwitched(event: MatTabChangeEvent) {
+
+        this.tabSelected = event.index;
         this.tabName = event.tab.textLabel;
+
         var selectedTimeframeType : TimeframeType;
         switch (this.tabName) {
             case "Anytime":
                 selectedTimeframeType = TimeframeType.Open;
                 break;
             case "Day":
-                selectedTimeframeType = this.hasTime ? TimeframeType.Time : TimeframeType.Date;
+                if (this.hasTime) {
+                    selectedTimeframeType = TimeframeType.Time;
+                } else {
+                    selectedTimeframeType = TimeframeType.Date;
+                }
                 break;
             case "Week":
                 selectedTimeframeType = TimeframeType.Week;
@@ -154,26 +184,6 @@ export class TimeframeComponent implements OnInit{
                     timeframeType: TimeframeType.Open,
                     dateTime: new Date()
                 }
-        }
-
-        //Activate tab
-        switch (this._timeframe.timeframeType) {
-            case TimeframeType.Open:
-                this.tabIndex = 0;
-                break;
-            case TimeframeType.Date:
-                this.tabIndex = 1;
-                break;
-            case TimeframeType.Time:
-                this.tabIndex = 1;
-                break;
-            case TimeframeType.Week:
-                this.tabIndex = 2;
-                break;
-            case TimeframeType.Month:
-                this.tabIndex = 3;
-                break;
-            default: this.tabIndex = 0;
         }
 
         //Update all properties
