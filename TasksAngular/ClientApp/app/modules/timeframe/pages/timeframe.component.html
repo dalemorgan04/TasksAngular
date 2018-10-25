@@ -16,9 +16,7 @@
         <!-- Timeframe -->
         <mat-card class="timeframe m-0 p-0">
             <mat-card-content>
-                <mat-tab-group
-                    (selectedIndexChange)="tabSelected.setValue($event)"
-                    (selectedIndex)="tabSelected.value">
+                <mat-tab-group [(selectedIndex)]="tabSelected">
 
                     <!--Day-->
                     <mat-tab label="Day">

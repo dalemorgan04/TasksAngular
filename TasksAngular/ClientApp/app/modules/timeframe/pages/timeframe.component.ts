@@ -36,9 +36,11 @@ export class TimeframeComponent implements OnInit{
     private _timeframe: ITimeframe; //Timeframe is controlled all through the service
     private timeframeString: string;
 
+    //TODO
+
     private tabName: string;
-    public tabSelected =  new FormControl(0);
-    
+    public tabSelected: number = 0;
+    public test: number;
 
     public date: Date;
     public dateControl = new FormControl(moment());
@@ -76,28 +78,27 @@ export class TimeframeComponent implements OnInit{
         }        
 
         this.updateTimeframe();
-        
-        this.tabSelected.setValue(1);
-        //switch (this._timeframe.timeframeType) {
-        //    case TimeframeType.Open:
-        //        this.tabSelected = 0;
-        //        break;
-        //    case TimeframeType.Date:
-        //        this.tabSelected = 1;
-        //        break;
-        //    case TimeframeType.Time:
-        //        this.tabSelected = 2;
-        //        break;
-        //    case TimeframeType.Week:
-        //        this.tabSelected = 3;
-        //        break;
-        //    case TimeframeType.Month:
-        //        this.tabSelected = 4;
-        //        break;
-        //    default:
-        //        this.tabSelected = 0;
-        //        break;
-        //}
+
+        switch (this._timeframe.timeframeType) {
+            case TimeframeType.Open:
+                this.tabSelected = 0;
+                break;
+            case TimeframeType.Date:
+                this.tabSelected = 1;
+                break;
+            case TimeframeType.Time:
+                this.tabSelected = 1;
+                break;
+            case TimeframeType.Week:
+                this.tabSelected = 2;
+                break;
+            case TimeframeType.Month:
+                this.tabSelected = 3;
+                break;
+            default:
+                this.tabSelected = 0;
+                break;
+        }
     }
 
     public onDayTabChange() {
