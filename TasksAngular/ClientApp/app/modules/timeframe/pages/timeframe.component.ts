@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter, SimpleChanges, SimpleChange } from '@angular/core';
-import { MatTabChangeEvent } from '@angular/material';
+import { MatTabChangeEvent, MatTabGroup } from '@angular/material';
 import { FormControl } from '@angular/forms';
 import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material/core';
 
@@ -37,7 +37,8 @@ export class TimeframeComponent implements OnInit{
     private timeframeString: string;
 
     private tabName: string;
-    public tabSelected: number;
+    public tabSelected =  new FormControl(0);
+    
 
     public date: Date;
     public dateControl = new FormControl(moment());
@@ -75,27 +76,28 @@ export class TimeframeComponent implements OnInit{
         }        
 
         this.updateTimeframe();
-
-        switch (this._timeframe.timeframeType) {
-            case TimeframeType.Open:
-                this.tabSelected = 0;
-                break;
-            case TimeframeType.Date:
-                this.tabSelected = 0;
-                break;
-            case TimeframeType.Time:
-                this.tabSelected = 2;
-                break;
-            case TimeframeType.Week:
-                this.tabSelected = 3;
-                break;
-            case TimeframeType.Month:
-                this.tabSelected = 4;
-                break;
-            default:
-                this.tabSelected = 0;
-                break;
-        }
+        
+        this.tabSelected.setValue(1);
+        //switch (this._timeframe.timeframeType) {
+        //    case TimeframeType.Open:
+        //        this.tabSelected = 0;
+        //        break;
+        //    case TimeframeType.Date:
+        //        this.tabSelected = 1;
+        //        break;
+        //    case TimeframeType.Time:
+        //        this.tabSelected = 2;
+        //        break;
+        //    case TimeframeType.Week:
+        //        this.tabSelected = 3;
+        //        break;
+        //    case TimeframeType.Month:
+        //        this.tabSelected = 4;
+        //        break;
+        //    default:
+        //        this.tabSelected = 0;
+        //        break;
+        //}
     }
 
     public onDayTabChange() {

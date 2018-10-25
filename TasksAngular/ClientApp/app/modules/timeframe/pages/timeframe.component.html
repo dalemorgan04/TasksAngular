@@ -17,14 +17,45 @@
         <mat-card class="timeframe m-0 p-0">
             <mat-card-content>
                 <mat-tab-group
-                    (selectedTabChange)="onTabSwitched($event)"
-                    [(selectedIndex)]="tabSelected">
+                    (selectedIndexChange)="tabSelected.setValue($event)"
+                    (selectedIndex)="tabSelected.value">
+
+                    <!--Day-->
+                    <mat-tab label="Day">
+                        <div fxLayout="row" fxLayoutAlign="center center" class="container-fluid mt-3">
+                            <!--Date-->
+                            <mat-datepicker-toggle fxFlex="60px" matSuffix [for]="daypicker"></mat-datepicker-toggle>
+                            <mat-form-field fxFlex="1 1 100%">
+                                <input matInput
+                                       [matDatepicker]="daypicker"
+                                       placeholder="Due on the date"
+                                       [formControl]="dateControl"
+                                       (change)="onDayTabChange()"
+                                       class="daletest">
+                                <mat-datepicker #daypicker></mat-datepicker>
+                            </mat-form-field>
+                        </div>
+                        <!--Time-->
+                        <div fxLayout="row" fxLayoutAlign="center center" class="container-fluid">
+                            <mat-checkbox fxFlex="60px"
+                                          [(ngModel)]="hasTime"
+                                          (change)="onDayTabChange()"
+                                          class="font-weight-light">
+                            </mat-checkbox>
+                            <mat-form-field class="m-0" fxFlex="1 1 100%">
+                                <input matInput
+                                       type="time"
+                                       [disabled]="!hasTime"
+                                       placeholder="Time"
+                                       [(ngModel)]="time"
+                                       (change)="onDayTabChange()" />
+                            </mat-form-field>
+                        </div>
+                    </mat-tab>
+
                     <!--Open-->
                     <mat-tab label="Anytime">Test</mat-tab>
 
-                    <mat-tab label="Day">
-                        Test For Day
-                    </mat-tab>
 
                     <!--Week-->
                     <mat-tab label="Week">
