@@ -17,13 +17,7 @@ export class ThoughtsAddComponent implements OnInit {
     constructor(
         private thoughtsService: ThoughtsService,
         private timeframeService: TimeframeService)
-    {
-        this.timeframeService.getTimeframe().subscribe(
-            (timeframe : ITimeframe) => {
-                this.timeframe = timeframe;
-            }
-        );
-    }
+    {}
 
     ngOnInit() {
         this.resetAddTab();

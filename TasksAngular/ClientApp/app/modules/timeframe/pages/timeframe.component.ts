@@ -33,10 +33,14 @@ export const datepickerFormats = {
 
 export class TimeframeComponent implements OnInit{
 
-    private _timeframe: ITimeframe; //Timeframe is controlled all through the service
-    private timeframeString: string;
+    @Input()
+    public timeframe: Observable<ITimeframe>; //Change this away from observable, have input on change look up ngOnChanges
 
-    //TODO
+    @Output()
+    public timeframeChange: EventEmitter<ITimeframe> = new EventEmitter();
+    
+    private _timeframe: ITimeframe;
+    private timeframeString: string;
 
     private tabName: string;
     public tabSelected: number = 0;
@@ -55,11 +59,10 @@ export class TimeframeComponent implements OnInit{
     public year: number;
 
     constructor(private timeframeService: TimeframeService) {
-        this.timeframeService.getTimeframe().subscribe(
+        this.timeframe.subscribe(
             (timeframe: ITimeframe) => {
                 this.onTimeframeChange(timeframe);
-            }
-        );
+        });
     }
 
     ngOnInit(): void {
@@ -75,7 +78,7 @@ export class TimeframeComponent implements OnInit{
                 break;
             default:
                 this.hasTime = false;
-        }        
+        }
 
         this.updateTimeframe();
 
@@ -128,6 +131,7 @@ export class TimeframeComponent implements OnInit{
             this.timeframeString = "Choose a date";
         }
         this.updateTimeframe();
+        this.timeframeChange.emit(this._timeframe);
     }
 
     public onWeekTabChange() {
@@ -137,6 +141,7 @@ export class TimeframeComponent implements OnInit{
             dateTime: this.wcDate
         }
         this.updateTimeframe();
+        this.timeframeChange.emit(this._timeframe);
     }
 
     public onMonthTabChange() {
@@ -147,6 +152,7 @@ export class TimeframeComponent implements OnInit{
             dateTime: monthAsDate
         }
         this.updateTimeframe();
+        this.timeframeChange.emit(this._timeframe);
     }
 
     public onTabSwitched(event: MatTabChangeEvent) {
@@ -176,6 +182,7 @@ export class TimeframeComponent implements OnInit{
         }
         this._timeframe.timeframeType = selectedTimeframeType;
         this.updateTimeframe();
+        this.timeframeChange.emit(this._timeframe);
     }
 
     private updateTimeframe(): void {

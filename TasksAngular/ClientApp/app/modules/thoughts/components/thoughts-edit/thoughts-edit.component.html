@@ -18,9 +18,11 @@
                 <textarea matInput placeholder="What's your thought?" [(ngModel)]="description"></textarea>
             </mat-form-field>
         </mat-card>
-
-        <!-- Controlled via timeframe service -->
-        <timeframe></timeframe>
+        
+        <timeframe
+                   [timeframe]="getTimeframe() | async"
+                   (timeframeChange) ="timeframeComponentOutput">
+        </timeframe>
 
     </div>
 
