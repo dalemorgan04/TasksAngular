@@ -33,19 +33,16 @@ export const datepickerFormats = {
 
 export class TimeframeComponent implements OnInit{
 
-    @Input()
-    public timeframe: Observable<ITimeframe>; //Change this away from observable, have input on change look up ngOnChanges
+    @Input()  public dateTime: Date; //Change this away from observable, have input on change look up ngOnChanges
+    @Output() public dateTimeChange: EventEmitter<ITimeframe> = new EventEmitter<ITimeframe>();
 
-    @Output()
-    public timeframeChange: EventEmitter<ITimeframe> = new EventEmitter();
-    
-    private _timeframe: ITimeframe;
-    private timeframeString: string;
+    @Input()  public timeframeType: TimeframeType;
+    @Output() public timeframeTypeChange: EventEmitter<TimeframeType> = new EventEmitter<TimeframeType>();        
 
     private tabName: string;
-    public tabSelected: number = 0;
-    public test: number;
+    public tabSelected: number = 0;    
 
+    private timeframeString: string;
     public date: Date;
     public dateControl = new FormControl(moment());
     public hasTime: boolean = false;
@@ -58,21 +55,24 @@ export class TimeframeComponent implements OnInit{
     public years: number[] = years;
     public year: number;
 
-    constructor(private timeframeService: TimeframeService) {
-        this.timeframe.subscribe(
-            (timeframe: ITimeframe) => {
-                this.onTimeframeChange(timeframe);
-        });
-    }
-
     ngOnInit(): void {
+        if (!this.dateTime) {
+            this.dateTime = new Date();
+        }
+        if (!this.timeframeType) {
+            this.timeframeType = TimeframeType.Open;
+        }
         this.updateTimeframe();
     }
 
-    private onTimeframeChange(timeframe: ITimeframe) {
-        this._timeframe = timeframe;
+    ngOnChanges(changes: SimpleChanges) {
+        var change = changes.item;
+    }
 
-        switch (this._timeframe.timeframeType) {
+    private onTimeframeChange(timeframe: ITimeframe) {
+        
+
+        switch (this.timeframeType) {
             case TimeframeType.Time:
                 this.hasTime = true;
                 break;
@@ -82,7 +82,7 @@ export class TimeframeComponent implements OnInit{
 
         this.updateTimeframe();
 
-        switch (this._timeframe.timeframeType) {
+        switch (this.timeframeType) {
             case TimeframeType.Open:
                 this.tabSelected = 0;
                 break;
@@ -107,14 +107,11 @@ export class TimeframeComponent implements OnInit{
     public onDayTabChange() {
         let mDateTime = moment(this.dateControl.value);
         if (mDateTime.isValid()) {
-            this._timeframe.dateTime = new Date(mDateTime.year(), mDateTime.month(), mDateTime.date());
+            this.dateTime = new Date(mDateTime.year(), mDateTime.month(), mDateTime.date());
             //Time
             if (this.hasTime) {
-                if (moment(this._timeframe.dateTime, "HH:mm").isValid()) {
-                    this._timeframe = {
-                        timeframeType: TimeframeType.Time,
-                        dateTime: moment( mDateTime.format('DD/MM/YYYY') + ' ' + this.time, 'DD/MM/YYYY HH:mm').toDate()
-                    }
+                if (moment(this.dateTime, "HH:mm").isValid()) {
+                    this.dateTime = moment( mDateTime.format('DD/MM/YYYY') + ' ' + this.time, 'DD/MM/YYYY HH:mm').toDate()
                 } else {
                     //Invalid time
                     this.timeframeString = "Choose a time";
@@ -182,19 +179,12 @@ export class TimeframeComponent implements OnInit{
         }
         this._timeframe.timeframeType = selectedTimeframeType;
         this.updateTimeframe();
-        this.timeframeChange.emit(this._timeframe);
+        this.timeframeTypeChange.emit(selectedTimeframeType);
     }
 
     private updateTimeframe(): void {
 
-        //If not defined then set default timeframe to now and open
-        if (!this._timeframe) {
-            this._timeframe =
-                {
-                    timeframeType: TimeframeType.Open,
-                    dateTime: new Date()
-                }
-        }
+
 
         //Update all properties
         var mDateTime: moment.Moment = moment(this._timeframe.dateTime);
