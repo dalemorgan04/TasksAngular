@@ -5,8 +5,8 @@
     <div fxFlex="0 0 30px"
          class="container-fluid mt-5">
         <h1>Edit a thought</h1>
-        <p>{{timeframe.dateTime}}</p>
-        <p>{{timeframe.timeframeType}}</p>
+        <p>{{dateTime}}</p>
+        <p>{{timeframeType}}</p>
     </div>
 
     <div
@@ -20,8 +20,8 @@
         </mat-card>
         
         <timeframe
-                   [timeframe]="getTimeframe() | async"
-                   (timeframeChange) ="timeframeComponentOutput">
+            [(timeframeType)]="timeframeType"
+            [(dateTime)] ="dateTime">
         </timeframe>
 
     </div>
