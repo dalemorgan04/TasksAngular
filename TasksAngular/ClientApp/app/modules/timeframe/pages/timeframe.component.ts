@@ -25,7 +25,7 @@ export const datepickerFormats = {
 @Component({
     selector: 'timeframe',
     templateUrl: './timeframe.component.html',
-    styleUrls: ['./timeframe.component.scss'],
+    //styleUrls: ['./timeframe.component.scss'],
     providers: [
         { provide: DateAdapter, useClass: CustomDateAdapter, deps: [MAT_DATE_LOCALE] },
         { provide: MAT_DATE_FORMATS, useValue: datepickerFormats }
@@ -34,6 +34,8 @@ export const datepickerFormats = {
 
 export class TimeframeComponent implements OnInit{
 
+    tabs = ['First', 'Second', 'Third', 'Fourth'];
+
     @Input()  public dateTime: Date;
     @Output() public dateTimeChange: EventEmitter<Date> = new EventEmitter<Date>();
 
@@ -41,7 +43,7 @@ export class TimeframeComponent implements OnInit{
     @Output() public timeframeTypeChange: EventEmitter<TimeframeType> = new EventEmitter<TimeframeType>();        
 
     private tabName: string;
-    public tabSelected: number = 0;    
+    public tabSelected: number = 0;
 
     private timeframeString: string;
     public date: Date;
@@ -77,28 +79,27 @@ export class TimeframeComponent implements OnInit{
             default:
                 this.hasTime = false;
         }
-
         this.updateTimeframe();
 
+
+        var switchToTab: number =  0;
         switch (this.timeframeType) {
             case TimeframeType.Open:
-                this.tabSelected = 0;
+                switchToTab = 0;
                 break;
             case TimeframeType.Date:
-                this.tabSelected = 1;
-                break;
             case TimeframeType.Time:
-                this.tabSelected = 1;
+                switchToTab = 1;
                 break;
             case TimeframeType.Week:
-                this.tabSelected = 2;
+                switchToTab = 2;
                 break;
             case TimeframeType.Month:
-                this.tabSelected = 3;
+                switchToTab = 3;
                 break;
-            default:
-                this.tabSelected = 0;
-                break;
+        }
+        if (this.tabSelected != switchToTab) {
+           this.tabSelected = switchToTab
         }
     }
 
@@ -146,31 +147,31 @@ export class TimeframeComponent implements OnInit{
     }
 
     public onTabSwitched(event: MatTabChangeEvent) {
-        this.tabSelected = event.index;
-        this.tabName = event.tab.textLabel;
-        var selectedTimeframeType : TimeframeType;
-        switch (this.tabName) {
-            case "Anytime":
-                selectedTimeframeType = TimeframeType.Open;
-                break;
-            case "Day":
-                if (this.hasTime) {
-                    selectedTimeframeType = TimeframeType.Time;
-                } else {
-                    selectedTimeframeType = TimeframeType.Date;
-                }
-                break;
-            case "Week":
-                selectedTimeframeType = TimeframeType.Week;
-                break;
-            case "Month":
-                selectedTimeframeType = TimeframeType.Month;
-                break;
-            default: selectedTimeframeType = TimeframeType.Open;
-        }
-        this.timeframeType = selectedTimeframeType;
-        this.updateTimeframe();
-        this.timeframeTypeChange.emit(this.timeframeType);
+        ////this.tabSelected = event.index;
+        //this.tabName = event.tab.textLabel;
+        //var selectedTimeframeType : TimeframeType;
+        //switch (this.tabName) {
+        //    case "Anytime":
+        //        selectedTimeframeType = TimeframeType.Open;
+        //        break;
+        //    case "Day":
+        //        if (this.hasTime) {
+        //            selectedTimeframeType = TimeframeType.Time;
+        //        } else {
+        //            selectedTimeframeType = TimeframeType.Date;
+        //        }
+        //        break;
+        //    case "Week":
+        //        selectedTimeframeType = TimeframeType.Week;
+        //        break;
+        //    case "Month":
+        //        selectedTimeframeType = TimeframeType.Month;
+        //        break;
+        //    default: selectedTimeframeType = TimeframeType.Open;
+        //}
+        //this.timeframeType = selectedTimeframeType;
+        //this.updateTimeframe();
+        //this.timeframeTypeChange.emit(this.timeframeType);
     }
 
     private updateTimeframe(): void {

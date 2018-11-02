@@ -1,0 +1,111 @@
+<!-- Expansion -->
+<mat-accordion>
+    <mat-expansion-panel
+        class="shadow-form">
+        
+        <mat-expansion-panel-header>
+            <!-- Title -->
+            <mat-panel-title> Due </mat-panel-title>
+
+            <!-- Description -->
+            <mat-panel-description> {{timeframeString}} </mat-panel-description>
+
+        </mat-expansion-panel-header>
+
+    </mat-expansion-panel>
+</mat-accordion>
+
+
+        <!-- Timeframe -->
+        <mat-card class="timeframe m-0 p-0">
+            <mat-card-content>
+                <mat-tab-group [selectedIndex]="tabSelected">
+
+                    <!--Day-->
+                    <mat-tab label="Day">
+                        <div fxLayout="row" fxLayoutAlign="center center" class="container-fluid mt-3">
+                            <!--Date-->
+                            <mat-datepicker-toggle fxFlex="60px" matSuffix [for]="daypicker"></mat-datepicker-toggle>
+                            <mat-form-field fxFlex="1 1 100%">
+                                <input matInput
+                                       [matDatepicker]="daypicker"
+                                       placeholder="Due on the date"
+                                       [formControl]="dateControl"
+                                       (change)="onDayTabChange()"
+                                       class="daletest">
+                                <mat-datepicker #daypicker></mat-datepicker>
+                            </mat-form-field>
+                        </div>
+                        <!--Time-->
+                        <div fxLayout="row" fxLayoutAlign="center center" class="container-fluid">
+                            <mat-checkbox fxFlex="60px"
+                                          [(ngModel)]="hasTime"
+                                          (change)="onDayTabChange()"
+                                          class="font-weight-light">
+                            </mat-checkbox>
+                            <mat-form-field class="m-0" fxFlex="1 1 100%">
+                                <input matInput
+                                       type="time"
+                                       [disabled]="!hasTime"
+                                       placeholder="Time"
+                                       [(ngModel)]="time"
+                                       (change)="onDayTabChange()" />
+                            </mat-form-field>
+                        </div>
+                    </mat-tab>
+
+                    <!--Open-->
+                    <mat-tab label="Anytime">
+                        <div fxLayout="row" class="container-fluid">
+                            Test
+                        </div>
+                    </mat-tab>
+                    <mat-tab label="Anytime2">
+                        <div fxLayout="row" class="container-fluid">
+                            Test2
+                        </div>
+                    </mat-tab>
+
+                    <!--Week-->
+                    <mat-tab label="Week">
+                        <div fxLayout="row" fxLayoutAlign="center center" class="container-fluid mt-3">
+                            <mat-datepicker-toggle fxFlex="60px" matSuffix [for]="weekpicker"></mat-datepicker-toggle>
+                            <mat-datepicker #weekpicker panelClass="weekpicker"></mat-datepicker>
+                            <!--Hidden input-->
+                            <mat-form-field fxFlex="0 0 0px" class="invisible m-0 p-0" style="width: 0;">
+                                <input matInput
+                                       [matDatepicker]="weekpicker"
+                                       [(ngModel)]="wcDate"
+                                       (ngModelChange)="onWeekTabChange()">
+                            </mat-form-field>
+                            <!--Visible value string-->
+                            <mat-form-field fxFlex="1 1 100%">
+                                <textarea matInput placeholder="Due in the week of" [(ngModel)]="weekDisplayString"></textarea>
+                            </mat-form-field>
+                        </div>
+                    </mat-tab>
+
+                    <!--Month-->
+                    <mat-tab label="Month" class="container-fluid mt-3">
+                        <div fxLayout="row" class="container-fluid">
+                            <mat-form-field fxFlex="1 1 50%">
+                                <mat-select placeholder="Month" [(value)]="month" (selectionChange)="updateTimeframe()">
+                                    <mat-option *ngFor="let month of months" [value]="month.number">
+                                        {{month.name}}
+                                    </mat-option>
+                                </mat-select>
+                            </mat-form-field>
+
+                            <mat-form-field fxFlex="1 1 50%">
+                                <mat-select placeholder="Year" [(value)]="year" (selectionChange)="updateTimeframe()">
+                                    <mat-option *ngFor="let year of years" [value]="year">
+                                        {{year}}
+                                    </mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </div>
+                    </mat-tab>
+
+                </mat-tab-group>
+            </mat-card-content>
+        </mat-card>
