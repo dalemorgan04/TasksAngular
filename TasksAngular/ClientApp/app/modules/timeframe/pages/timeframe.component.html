@@ -1,18 +1,111 @@
-<mat-tab-group [selectedIndex]="tabSelected"
-               (selectedIndexChange)="tabSelected">
-    <mat-tab *ngFor="let tab of tabs; let index = index" [label]="tab">
-        <ng-template matTabContent>
-            <p>Content goes here</p>
-            Contents for {{tab}} tab
-        </ng-template>
-    </mat-tab>
-</mat-tab-group>
+<!-- Expansion -->
+<mat-accordion>
+    <mat-expansion-panel class="shadow-form">
+
+        <mat-expansion-panel-header>
+            <!-- Title -->
+            <mat-panel-title> Due </mat-panel-title>
+
+            <!-- Description -->
+            <mat-panel-description> {{timeframeString}} </mat-panel-description>
+
+        </mat-expansion-panel-header>
+
+        <!-- Timeframe -->
+        <div class="m-0 p-0">
+
+            <!-- Buttons -->
+            <div class="container-fluid radio-buttons pl-4" fxLayout="row" fxLayoutAlign="start center">
+                <div class="mr-3">Due</div>
+                <mat-radio-group [(ngModel)]="timeframeType" fxLayout="column" fxLayoutAlign="start start" >
+                    <mat-radio-button class="example-radio-button" [value]="0"><span class="highlight">anytime</span>, no due date</mat-radio-button>
+                    <mat-radio-button class="example-radio-button" [value]="1">on the <span class="highlight">day</span> of ...</mat-radio-button>
+                    <mat-radio-button class="example-radio-button" [value]="3">sometime in the <span class="highlight">week</span>  of...</mat-radio-button>
+                    <mat-radio-button class="example-radio-button" [value]="4">sometime in the <span class="highlight">month</span>  of...</mat-radio-button>
+                </mat-radio-group>                
+            </div>
+
+                <!--Day-->
+
+                <div *ngIf=" timeframeType == 1 || timeframeType == 2">
+                    <div fxLayout="row" fxLayoutAlign="center center" class="container-fluid mt-3">
+                        <!--Date-->
+                        <mat-datepicker-toggle fxFlex="60px" matSuffix [for]="daypicker"></mat-datepicker-toggle>
+                        <mat-form-field fxFlex="1 1 100%">
+                            <input matInput
+                                    [matDatepicker]="daypicker"
+                                    placeholder="Due on the date"
+                                    [formControl]="dateControl"
+                                    (change)="onDayTabChange()"
+                                    class="daletest">
+                            <mat-datepicker #daypicker></mat-datepicker>
+                        </mat-form-field>
+                    </div>
+                    <!--Time-->
+                    <div fxLayout="row" fxLayoutAlign="center center" class="container-fluid">
+                        <mat-checkbox fxFlex="60px"
+                                        [(ngModel)]="hasTime"
+                                        (change)="onDayTabChange()"
+                                        class="font-weight-light">
+                        </mat-checkbox>
+                        <mat-form-field class="m-0" fxFlex="1 1 100%">
+                            <input matInput
+                                    type="time"
+                                    [disabled]="!hasTime"
+                                    placeholder="Time"
+                                    [(ngModel)]="time"
+                                    (change)="onDayTabChange()" />
+                        </mat-form-field>
+                    </div>
+                </div>
 
 
-<mat-tab-group>
-    <mat-tab>
-        <ng-template matTabContent>
-            <p>Content goes here</p>
-        </ng-template>
-    </mat-tab>
-</mat-tab-group>
+                <!--Week-->
+                <div *ngIf="timeframeType == 3">
+
+                    <div fxLayout="row" fxLayoutAlign="center center" class="container-fluid mt-3">
+                        <mat-datepicker-toggle fxFlex="60px" matSuffix [for]="weekpicker"></mat-datepicker-toggle>
+                        <mat-datepicker #weekpicker panelClass="weekpicker"></mat-datepicker>
+                        <!--Hidden input-->
+                        <mat-form-field fxFlex="0 0 0px" class="invisible m-0 p-0" style="width: 0;">
+                            <input matInput
+                                    [matDatepicker]="weekpicker"
+                                    [(ngModel)]="wcDate"
+                                    (ngModelChange)="onWeekTabChange()">
+                        </mat-form-field>
+                        <!--Visible value string-->
+                        <mat-form-field fxFlex="1 1 100%">
+                            <textarea matInput placeholder="Due in the week of" [(ngModel)]="weekDisplayString"></textarea>
+                        </mat-form-field>
+                    </div>
+
+                </div>
+
+                <!--Month-->
+                <div *ngIf="timeframeType == 4">
+
+                    <div fxLayout="row" class="container-fluid">
+                        <mat-form-field fxFlex="1 1 50%">
+                            <mat-select placeholder="Month" [(value)]="month" (selectionChange)="updateTimeframe()">
+                                <mat-option *ngFor="let month of months" [value]="month.number">
+                                    {{month.name}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+
+                        <mat-form-field fxFlex="1 1 50%">
+                            <mat-select placeholder="Year" [(value)]="year" (selectionChange)="updateTimeframe()">
+                                <mat-option *ngFor="let year of years" [value]="year">
+                                    {{year}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+
+                </div>            
+        </div>
+
+    </mat-expansion-panel>
+</mat-accordion>
+
+

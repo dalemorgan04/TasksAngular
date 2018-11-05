@@ -12,6 +12,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatRadioModule } from '@angular/material/radio';
 import { MatMomentDateModule } from '@angular/material-moment-adapter';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatSidenavModule } from '@angular/material/sidenav';
@@ -33,6 +34,7 @@ import { CustomDateAdapter } from './datepicker/customDateAdapter/customDateAdap
         MatButtonModule,
         MatInputModule,
         MatCheckboxModule,
+        MatRadioModule,
         MatMomentDateModule,
         MatDatepickerModule,
         MatSidenavModule,
@@ -59,6 +61,7 @@ import { CustomDateAdapter } from './datepicker/customDateAdapter/customDateAdap
         MatInputModule,
         MatButtonModule,
         MatCheckboxModule,
+        MatRadioModule,
         MatMomentDateModule,
         MatDatepickerModule,
         MatSidenavModule,

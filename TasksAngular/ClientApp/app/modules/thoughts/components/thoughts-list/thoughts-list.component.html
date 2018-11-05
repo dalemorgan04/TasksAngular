@@ -1,32 +1,30 @@
 <mat-card>
     <table>
         <thead>
-        <tr >
-            <th class = "description"></th>
-            <th class = "due">Due</th>
-            <th class = "option"></th>
-        </tr>
+            <tr>
+                <th class="description"></th>
+                <th class="due">Due</th>
+                <th class="option"></th>
+            </tr>
         </thead>
 
-        <tbody
-               [dragula]="'bag-thoughts'"
+        <tbody [dragula]="'bag-thoughts'"
                [dragulaModel]='thoughtslist'>
-        <tr 
-            *ngFor="let thought of thoughtslist"
-            (dblclick)="selectThought(thought.thoughtId)"
-            [class.selected] ="selectedThought === thought.thoughtId"
-            [attr.data-thoughtid]="thought.thoughtId"
-            [attr.data-sortid]="thought.sortId">
+            <tr *ngFor="let thought of thoughtslist"
+                (dblclick)="selectThought(thought.thoughtId)"
+                [class.selected]="selectedThought === thought.thoughtId"
+                [attr.data-thoughtid]="thought.thoughtId"
+                [attr.data-sortid]="thought.sortId">
 
-            <td class = "description"> {{thought.description}}</td>
-            <td class = "due"> {{thought.timeFrameDueString}} </td>
-            <td class = "option">
-                <fa-icon style="color: var(--grey-dark);"
-                         size="lg"
-                         [icon]="deleteIcon">
-                </fa-icon>
-            </td>
-        </tr>
+                <td class="description"> {{thought.description}}</td>
+                <td class="due"> {{thought.timeFrameDueString}} </td>
+                <td class="option">
+                    <fa-icon style="color: var(--grey-dark);"
+                             size="lg"
+                             [icon]="deleteIcon">
+                    </fa-icon>
+                </td>
+            </tr>
         </tbody>
     </table>
 </mat-card>

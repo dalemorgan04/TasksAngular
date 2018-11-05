@@ -1,5 +1,29 @@
 @import '../../shared/styles/modules/_all.scss';
 
-mat-accordion{
-    z-index:30;
+.mat-accordion {
+    z-index: 30;
+
+    .mat-expansion-panel{
+
+        .mat-expansion-panel-content {
+            margin: 0;
+
+            .mat-expansion-panel-body {
+                padding: 0 !important;
+            }
+        }
+    }
+}
+
+.radio-buttons {
+    padding: 0;
+    margin: 0;
+    .mat-radio-button{
+        padding-bottom: 8px;
+    }
+
+    .highlight{
+        color: $blue;
+        font-weight: bold;
+    }
 }

@@ -1,14 +1,10 @@
-import { Component, OnInit, Input, Output, EventEmitter, SimpleChanges, SimpleChange } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, SimpleChanges, SimpleChange, ViewEncapsulation } from '@angular/core';
 import { MatTabChangeEvent, MatTabGroup } from '@angular/material';
 import { FormControl } from '@angular/forms';
 import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material/core';
-
 import { CustomDateAdapter } from '../../shared/datepicker/customDateAdapter/customDateAdapter.component';
 import * as moment from 'moment';
-import { ITimeframe, TimeframeType, StringLengthType, IMonth, IWeek, months, years} from '../../../models/timeframe.model';
-import { Observable } from 'rxjs';
-import { TimeframeService } from '../timeframe.service';
-import { Data } from '@angular/router';
+import { TimeframeType, IMonth, IWeek, months, years} from '../../../models/timeframe.model';
 
 export const datepickerFormats = {
     parse: {
@@ -25,7 +21,8 @@ export const datepickerFormats = {
 @Component({
     selector: 'timeframe',
     templateUrl: './timeframe.component.html',
-    //styleUrls: ['./timeframe.component.scss'],
+    styleUrls: ['./timeframe.component.scss'],
+    encapsulation: ViewEncapsulation.None,
     providers: [
         { provide: DateAdapter, useClass: CustomDateAdapter, deps: [MAT_DATE_LOCALE] },
         { provide: MAT_DATE_FORMATS, useValue: datepickerFormats }
@@ -69,8 +66,12 @@ export class TimeframeComponent implements OnInit{
     }
 
     ngOnChanges(changes: SimpleChanges) {
-        this.dateTime = changes.dateTime.currentValue;
-        this.timeframeType = changes.timeframeType.currentValue;
+        if (changes.dateTime) {
+            this.dateTime = changes.dateTime.currentValue;
+        }
+        if (changes.timeframeType) {
+            this.timeframeType = changes.timeframeType.currentValue;
+        }
 
         switch (this.timeframeType) {
             case TimeframeType.Time:
