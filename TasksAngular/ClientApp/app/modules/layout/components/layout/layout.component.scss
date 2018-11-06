@@ -1,40 +1,45 @@
 @import '../../../shared/styles/modules/_all.scss';
 
 .app-container {
-  width: 100vw;
-  height: 100vh;
-  background: $grey-light;
-  overflow: hidden;
+    width: 100vw;
+    height: 100vh;
+    background: $grey-light;
+    overflow: hidden;
 
-  main, content {
-    height: 100%;
-    width: 100%;
-  }
+    main {
+        z-index: 0;
 
-  header {
-    z-index: 30;
-    height: 60px;
-  }
+        &, content {
+            height: 100%;
+            width: 100%;
+        }
+    }
 
-  main {
-    z-index: 0;
-  }
+    header {
+        position: relative;
+        z-index: 30;
+        height: 60px;
+    }
 
-  nav {
-    z-index: 20;
-    padding-bottom: 5px;
-  }
 
-  content {
-    z-index: 10;
-    padding: 0;
-    height: 100%;
-    width: 100%;
-  }
+    nav {
+        position: relative;
+        z-index: 20;
+        padding-bottom: 5px;
+    }
 
-  footer {
-    z-index: 0;
-    color: $black;
-    width: 100%;
-  }
-} 
+    content {
+        position: relative;
+        z-index: 10;
+        height: 100%;
+        width: 100%;
+        padding: 0;
+    }
+
+    footer {
+        z-index: 0;
+        position: relative;
+        width: 100%;
+        color: $black;
+    }
+}

@@ -4,7 +4,8 @@ import { FormControl } from '@angular/forms';
 import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material/core';
 import { CustomDateAdapter } from '../../shared/datepicker/customDateAdapter/customDateAdapter.component';
 import * as moment from 'moment';
-import { TimeframeType, IMonth, IWeek, months, years} from '../../../models/timeframe.model';
+import { TimeframeType, IMonth, IWeek, months, years } from '../../../models/timeframe.model';
+import { fadeIn } from '../../shared/animations';
 
 export const datepickerFormats = {
     parse: {
@@ -26,7 +27,8 @@ export const datepickerFormats = {
     providers: [
         { provide: DateAdapter, useClass: CustomDateAdapter, deps: [MAT_DATE_LOCALE] },
         { provide: MAT_DATE_FORMATS, useValue: datepickerFormats }
-    ]
+    ],
+    animations: [fadeIn]
 })
 
 export class TimeframeComponent implements OnInit{
@@ -41,6 +43,7 @@ export class TimeframeComponent implements OnInit{
 
     private tabName: string;
     public tabSelected: number = 0;
+    public tabState: string = ''
 
     private timeframeString: string;
     public date: Date;
@@ -54,6 +57,8 @@ export class TimeframeComponent implements OnInit{
     public month: number;
     public years: number[] = years;
     public year: number;
+
+
 
     ngOnInit(): void {
         if (!this.dateTime) {

@@ -3,6 +3,8 @@ import { ThoughtsService } from '../../thoughts.service';
 import { ITimeframe, TimeframeType} from '../../../../models/timeframe.model';
 import { IAddThought, IThought, IEditThought } from '../../../../models/thought.model';
 import * as moment from 'moment';
+
+
 import { Observable, Subject } from 'rxjs';
 import { TimeframeService } from '../../../timeframe/timeframe.service';
 

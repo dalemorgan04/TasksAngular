@@ -1,6 +1,5 @@
-import { Component, NgZone, ViewChild } from '@angular/core';
+import { Component, NgZone} from '@angular/core';
 import { SidebarService } from '../../shared/sidebar/sidebar.service';
-import { MatDrawer } from '@angular/material/sidenav';
 import { sidebar, fadeIn } from '../../shared/animations';
 import { ThoughtsService } from '../thoughts.service';
 

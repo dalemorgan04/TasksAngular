@@ -22,12 +22,14 @@
                     <mat-radio-button class="example-radio-button" [value]="1">on the <span class="highlight">day</span> of ...</mat-radio-button>
                     <mat-radio-button class="example-radio-button" [value]="3">sometime in the <span class="highlight">week</span>  of...</mat-radio-button>
                     <mat-radio-button class="example-radio-button" [value]="4">sometime in the <span class="highlight">month</span>  of...</mat-radio-button>
-                </mat-radio-group>                
-            </div>
+                </mat-radio-group>
+            </div>  
+
+            <div [ngSwitch]="timeframeType">
 
                 <!--Day-->
 
-                <div *ngIf=" timeframeType == 1 || timeframeType == 2">
+                <div *ngSwitchCase="1 || 2" [@fadeIn] ="fadeIn">
                     <div fxLayout="row" fxLayoutAlign="center center" class="container-fluid mt-3">
                         <!--Date-->
                         <mat-datepicker-toggle fxFlex="60px" matSuffix [for]="daypicker"></mat-datepicker-toggle>
@@ -61,7 +63,7 @@
 
 
                 <!--Week-->
-                <div *ngIf="timeframeType == 3">
+                <div *ngSwitchCase="3" [@fadeIn] ="fadeIn">
 
                     <div fxLayout="row" fxLayoutAlign="center center" class="container-fluid mt-3">
                         <mat-datepicker-toggle fxFlex="60px" matSuffix [for]="weekpicker"></mat-datepicker-toggle>
@@ -82,7 +84,7 @@
                 </div>
 
                 <!--Month-->
-                <div *ngIf="timeframeType == 4">
+                <div *ngSwitchCase="4" [@fadeIn] ="fadeIn">
 
                     <div fxLayout="row" class="container-fluid">
                         <mat-form-field fxFlex="1 1 50%">
@@ -102,7 +104,9 @@
                         </mat-form-field>
                     </div>
 
-                </div>            
+                </div>
+
+            </div>
         </div>
 
     </mat-expansion-panel>

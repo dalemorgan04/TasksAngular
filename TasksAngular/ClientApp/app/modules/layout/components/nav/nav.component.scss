@@ -7,11 +7,36 @@
     margin: 0;
     background: $white;
     @extend %shadow-side;
-    
+
+
+    &.minified {
+
+        span {
+            display: none;
+            transition: opacity 1s linear;
+        }
+    }
+
+    &:not(.minified) {
+
+        span {
+            white-space: nowrap;
+            overflow: hidden;
+        }
+    }
+
+    .content-placeholder {
+        position: initial;
+        width: 45px;
+    }
+
     .content {
         height: 100%;
         z-index: 25;
         overflow: hidden;
+        position: absolute;
+        top: 0;
+        left: 0;
 
         ul {
             padding: 0;
@@ -41,27 +66,19 @@
                     padding-top: 7px;
                     color: var(--grey-dark);
 
-                    &:hover{
-                    text-decoration:none;
+                    &:hover {
+                        text-decoration: none;
                     }
 
                     fa-icon {
-                    width: 30px;
-                    padding-right: 10px;
+                        width: 30px;
+                        padding-right: 10px;
                     }
                 }
             }
         }
     }
-    span {
-        white-space: nowrap;
-        overflow: hidden;
-    }
-
-    &.minified span {
-        display: none;
-        transition: opacity 1s linear;
-    }
 }
 
-
+@media (min-width: $screen-sm) {
+}

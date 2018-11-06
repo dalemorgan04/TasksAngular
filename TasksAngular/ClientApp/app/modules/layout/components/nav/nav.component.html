@@ -3,77 +3,61 @@
         <span class='glyphicon glyphicon-th-list'></span> Fetch data
     </a>
 </li>-->
-<div
-  class="component-container"
-  [class.minified]="minifiedClass"
-  [@navbar]="navbarState" (@navbar.done)="toggleDone()">
-  
-  <div class="content">
 
-    <ul
-      fxLayout="column"
-      fxLayoutAlign="start stretch">
-      
-      <li>
-        <a class="align-middle">
-          <fa-icon
-            style="color: var(--grey-dark);"
-            [icon]="planIcon"
-            size="lg">
-          </fa-icon>
-          <span>Plan Week</span>
-        </a>
-      </li>
-      <li class="active">
-        <a>
-          <fa-icon style="color: var(--grey-dark);"
-                   [icon]="thoughtsIcon"
-                   size="lg">
-          </fa-icon>
-          <span>Thoughts</span>
-        </a>
-      </li>
-      <li>
-        <a>
-          <fa-icon
-            style="color: var(--grey-dark);"
-            [icon]="tasksIcon"
-            size="lg">
-          </fa-icon>
-          <span>Tasks</span>
-        </a>
-      </li>
-      <li>
-        <a>
-          <fa-icon
-            style="color: var(--grey-dark);"
-            [icon]="eventsIcon"
-            size="lg">
-          </fa-icon>
-          <span>Events</span>
-        </a>
-      </li>
-      <li>
-        <a>
-          <fa-icon
-            style="color: var(--grey-dark);"
-            [icon]="habitsIcon"
-            size="lg">
-          </fa-icon>
-          <span>Habits</span>
-        </a>
-      </li>
-      <li>
-        <a>
-          <fa-icon
-            style="color: var(--grey-dark);"
-            [icon]="projectsIcon"
-            size="lg">
-          </fa-icon>
-          <span>Projects</span>
-        </a>
-      </li>
-    </ul>
+<div class="component-container" [class.minified]="minifiedClass" [@navbar]="navbarState" (@navbar.done)="toggleDone()">
 
-  </div>
+    <!-- To be used to retain minified width -->
+    <div class="content-placeholder"></div>
+
+    <div class="content">
+
+        <ul>
+            <!--fxLayout="column"
+            fxLayoutAlign="start stretch">-->
+
+            <li>
+                <a class="align-middle">
+                    <fa-icon style="color: var(--grey-dark);" [icon]="planIcon" size="lg">
+                    </fa-icon>
+                    <span>Plan Week</span>
+                </a>
+            </li>
+            <li class="active">
+                <a>
+                    <fa-icon style="color: var(--grey-dark);" [icon]="thoughtsIcon" size="lg">
+                    </fa-icon>
+                    <span>Thoughts</span>
+                </a>
+            </li>
+            <li>
+                <a>
+                    <fa-icon style="color: var(--grey-dark);" [icon]="tasksIcon" size="lg">
+                    </fa-icon>
+                    <span>Tasks</span>
+                </a>
+            </li>
+            <li>
+                <a>
+                    <fa-icon style="color: var(--grey-dark);" [icon]="eventsIcon" size="lg">
+                    </fa-icon>
+                    <span>Events</span>
+                </a>
+            </li>
+            <li>
+                <a>
+                    <fa-icon style="color: var(--grey-dark);" [icon]="habitsIcon" size="lg">
+                    </fa-icon>
+                    <span>Habits</span>
+                </a>
+            </li>
+            <li>
+                <a>
+                    <fa-icon style="color: var(--grey-dark);" [icon]="projectsIcon" size="lg">
+                    </fa-icon>
+                    <span>Projects</span>
+                </a>
+            </li>
+        </ul>
+
+    </div>
 </div>

@@ -36,10 +36,14 @@ export const navbar =
             state('expanded',
                 style({
                     width: '150px'
+                    //position: 'absolute',
+                    //top: '0',
+                    //left: '0'
                 })),
             state('minified',
                 style({
                     width: '45px'
+                    //position: 'initial'
                 })),
             transition('expanded => minified', [
                 group([
