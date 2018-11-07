@@ -1,6 +1,7 @@
 @import '../../../shared/styles/modules/_all.scss';
 
 .app-container {
+    position: relative;
     width: 100vw;
     height: 100vh;
     background: $grey-light;
@@ -23,12 +24,11 @@
 
 
     nav {
-        position: relative;
-        z-index: 20;
-        padding-bottom: 5px;
     }
 
     content {
+        display: flex;
+        flex: 1 1 auto;
         position: relative;
         z-index: 10;
         height: 100%;

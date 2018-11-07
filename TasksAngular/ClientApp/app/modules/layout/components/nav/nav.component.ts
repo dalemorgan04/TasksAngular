@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostBinding } from '@angular/core';
 import { NavService } from './nav.service';
 import { navbar } from '../../../shared/animations';
 import { faProjectDiagram, faLightbulb, faTasks, faRetweet, faCalendarAlt, faFolderOpen   } from '@fortawesome/free-solid-svg-icons';
@@ -22,6 +22,7 @@ export class NavComponent implements OnInit {
     public minifiedClass: boolean = true;
     private isMinified: boolean = false;
 
+    @HostBinding('class.minified') hostMinifiedClass: boolean = this.isMinified;
     constructor(private navService: NavService) {
     }
 
@@ -42,6 +43,7 @@ export class NavComponent implements OnInit {
     }
 
     toggleDone() {
+        this.hostMinifiedClass = this.isMinified;
         this.minifiedClass = this.isMinified;
     }
 }
