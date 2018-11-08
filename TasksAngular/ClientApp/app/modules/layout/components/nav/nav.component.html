@@ -1,17 +1,8 @@
-<!--<li [routerLinkActive]="['link-active']">
-    <a [routerLink]="['/fetch-data']">
-        <span class='glyphicon glyphicon-th-list'></span> Fetch data
-    </a>
-</li>-->
-
-<div class="component-container" [class.minified]="minifiedClass" [@navbar]="navbarState" (@navbar.done)="toggleDone()">    
+<div class="container" [class.minified]="minifiedClass" [@navbar]="navbarState" (@navbar.done)="toggleDone()">    
 
     <div class="content">
 
         <ul>
-            <!--fxLayout="column"
-            fxLayoutAlign="start stretch">-->
-
             <li>
                 <a class="align-middle">
                     <fa-icon style="color: var(--grey-dark);" [icon]="planIcon" size="lg">

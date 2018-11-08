@@ -4,26 +4,29 @@
     position: relative;
     z-index: 20;
     padding-bottom: 5px;
-
-
-    &.minfied {
-        margin-right: 45px;
-    }
+    width: 45px;
+    //transition: all 0.5s;
 }
 
-.component-container {
+.container {
     height: 100%;
     width: 150px;
     padding: 0;
     margin: 0;
     background: $white;
     @extend %shadow-side;
+    transition: none;
+
+    span{
+        display:none;
+    }
 
     &.minified {
 
         span {
             display: none;
-            transition: opacity 1s linear;
+            transition: none;
+            /*transition: opacity 0s linear;*/
         }
     }
 
@@ -32,11 +35,13 @@
         span {
             white-space: nowrap;
             overflow: hidden;
+            transition: none;
         }
     }
 
     .content {
         height: 100%;
+        width: 100%;
         z-index: 25;
         overflow: hidden;
         position: absolute;
@@ -86,4 +91,11 @@
 }
 
 @media (min-width: $screen-sm) {
+
+    :host {
+
+        &:not(.minified) {
+            width: 150px;
+        }
+    }
 }
