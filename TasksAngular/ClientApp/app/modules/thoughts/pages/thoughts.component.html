@@ -12,23 +12,20 @@
             <!--<li class="disabled" [class.selected]="tab =='delete'" (click)="openDelete()"><span>Delete</span></li>-->
             <li [class.active]="tab =='edit'" (click)="openEditTab()"><span>Edit</span></li>
             <li [class.active]="tab =='add'" (click)="openAddTab()"><span>Add</span></li>
-        </ul>
-            
-        <mat-card>
-            <div
-                class="sidebar-content"
-                [ngSwitch]="tab">
+        </ul>            
+       
+        <div class="sidebar-content" [ngSwitch]="tab">
                 
-                <div *ngSwitchCase="'add'" [@fadeIn]="fadeIn" class="w-100 h-100">
-                    <thoughts-add></thoughts-add>
-                </div>
-
-                <div *ngSwitchCase="'edit'" [@fadeIn]="fadeIn">
-                    <thoughts-edit></thoughts-edit>
-                </div>
-
+            <div *ngSwitchCase="'add'" [@fadeIn]="fadeIn" class="w-100 h-100">
+                <thoughts-add></thoughts-add>
             </div>
-        </mat-card>
+
+            <div *ngSwitchCase="'edit'" [@fadeIn]="fadeIn">
+                <thoughts-edit></thoughts-edit>
+            </div>
+
+        </div>
+       
     </div>
     
 </div>
