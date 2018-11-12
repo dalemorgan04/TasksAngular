@@ -1,50 +1,25 @@
 <div
-    class="
-        component-container
-        container-fluid
-        p-0
-        d-flex
-        flex-row
-        align-items-center
-        justify-content-around">
-    <div
-        (click)="toggleNav()"
-        class="
-            side-container
-            d-flex
-            justify-content-center">
-        <!--fxFlex="150px"
-        fxLayout="row"
-        fxLayoutAlign="center center">-->
-        <fa-icon
-            style="color: var(--grey-dark);"
-            class ="align-self-center"
-            [@leftArrow]="leftArrowState"
-            [icon]="leftIcon"
-            size="2x">
-        </fa-icon>
-    </div>
+    (click)="toggleNav()"
+    class="side-container">
+    <fa-icon
+        style="color: var(--grey-dark);"
+        [@leftArrow]="leftArrowState"
+        [icon]="leftIcon"
+        size="2x">
+    </fa-icon>
+</div>
 
-    <div class=" center-container">
-        <h1 class="logo">Thought Stream</h1>
-    </div>
+<div class="center-container">
+    <h1 class="logo">Thought Stream</h1>
+</div>
 
-    <div
-        (click)="toggleSidebar()"
-        class="
-            side-container
-            d-flex
-            justify-content-center">
-        <!--fxFlex="150px"
-        fxLayout="row"
-        fxLayoutAlign="center center">-->
-        <fa-icon
-            style="color: var(--grey-dark);"
-            class="float-right"
-            [@rightArrow]="rightArrowState"
-            [icon]="rightIcon"
-            size="2x">
-        </fa-icon>
-    </div>
-
+<div
+    (click)="toggleSidebar()"
+    class="side-container">
+    <fa-icon
+        style="color: var(--grey-dark);"
+        [@rightArrow]="rightArrowState"
+        [icon]="rightIcon"
+        size="2x">
+    </fa-icon>
 </div>

@@ -11,6 +11,9 @@ import { faProjectDiagram, faLightbulb, faTasks, faRetweet, faCalendarAlt, faFol
 })
 export class NavComponent implements OnInit {
 
+    public navbarState: string; 
+    @HostBinding('class.minified') hostMinifiedClass: boolean;
+
     public planIcon = faProjectDiagram;
     public thoughtsIcon = faLightbulb;
     public tasksIcon = faTasks;
@@ -18,32 +21,16 @@ export class NavComponent implements OnInit {
     public eventsIcon = faCalendarAlt;
     public projectsIcon = faFolderOpen;
 
-    public navbarState: string = 'expanded';
-    public minifiedClass: boolean = true;
-    private isMinified: boolean = false;
-
-    @HostBinding('class.minified') hostMinifiedClass: boolean = this.isMinified;
-    constructor(private navService: NavService) {
-    }
+    constructor(private navService: NavService) {}
 
     ngOnInit() {
-        this.navService.change.subscribe((isMinified: any) => {
-            this.isMinified = isMinified;
-            this.toggle();
-        });
-    }
-
-    toggle() {
-        if (!this.isMinified) {
-            this.minifiedClass = this.isMinified;
-        }
-        this.navbarState = this.isMinified
-            ? 'minified'
-            : 'expanded';
-    }
-
-    toggleDone() {
-        this.hostMinifiedClass = this.isMinified;
-        this.minifiedClass = this.isMinified;
+        this.navService.getIsMinified().subscribe(
+            (isMinified: any) => {
+                this.hostMinifiedClass = isMinified;
+                this.navbarState = isMinified
+                    ? 'minified'
+                    : 'expanded';
+            }
+        );
     }
 }

@@ -1,19 +1,36 @@
 @import '../../../shared/styles/modules/_all.scss';
 
-.component-container {
+:host {
     z-index: 40;
     @extend %blue-green-blend;
     @extend %shadow-header;
-    
-    .side-container {
-        cursor: pointer;
-        flex: 0 0 150px;
-        width: 150px;
-    }
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    padding: 0;
+}
 
-    .center-container {
-        flex: 1 1 100%;
-        margin: 0;
-        text-align: center;
+.side-container {
+    cursor: pointer;
+    flex: 0 0 50px;
+    display: flex;
+    justify-content: center;
+    align-self: stretch;
+
+    fa-icon {
+        align-self: center;
+    }
+}
+
+.center-container {
+    flex: 1 1 100%;
+    margin: 0;
+    text-align: center;
+}
+
+@media (min-width: $screen-sm) {
+    .side-container {
+        flex: 0 0 150px;
     }
 }

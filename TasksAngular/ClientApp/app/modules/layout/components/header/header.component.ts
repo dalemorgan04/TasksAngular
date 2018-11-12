@@ -28,12 +28,16 @@ export class HeaderComponent {
     { }
 
     ngOnInit() {
-        this.navService.change.subscribe((isMinified: any) => {
-            this.isNavMinified = isMinified;
-            this.leftArrowState = this.isNavMinified
-                ? 'minified'
-                : 'expanded';
-        });
+
+
+        this.navService.getIsMinified().subscribe(
+            (isMinified: any) => {
+                this.isNavMinified = isMinified;
+                this.leftArrowState = this.isNavMinified
+                    ? 'minified'
+                    : 'expanded';
+            }
+        );
         this.sidebarService.isOpen$().subscribe((isOpen: boolean) => {
             this.isSidebarOpen = isOpen;
             this.rightArrowState = this.isSidebarOpen
