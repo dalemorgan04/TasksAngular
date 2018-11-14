@@ -1,6 +1,6 @@
 @import '../../shared/styles/modules/_all.scss';
 
-.component-container {
+:host {
     display: flex;
     flex-direction: row;
     width: 100%;
@@ -12,80 +12,84 @@
         flex: 1 1 100%;
     }
 
-    .sidebar-container {
-        flex: 0 0 auto;
-        height: 100%;
-        float: right;
-        padding: 0;
+    .sidebar-outer-container {
+        //Allows for overlapping on mobile
+        position: relative;
+        z-index: 20;
+        flex: 0 0 30px;
+        transition: 300ms cubic-bezier(0.4, 0.0, 0.2, 1);
 
-        display:flex;
-        flex-direction:row;
-
-        ul {
-            flex: 0 0 30px;
+        .sidebar-inner-container {
+            position: absolute;
             height: 100%;
-
+            width: 350px;
             padding: 0;
-            padding-top: 20px;
+            margin: 0;
+            background: $white;
+            @extend %shadow-side;            
             float: right;
-
             display: flex;
-            flex-direction: column-reverse;
-            justify-content: flex-end;
+            flex-direction: row;
 
-            li {
-                list-style-type: none;
-                z-index: 24;
-
+            ul {
+                flex: 0 0 30px;
+                height: 100%;
+                padding: 0;
+                padding-top: 20px;
+                float: right;
                 display: flex;
-                align-items: center;
-                justify-content: center;
+                flex-direction: column-reverse;
+                justify-content: flex-end;
 
-                width: 30px;
-                height: 80px;
-                margin-right: -10px;
-                cursor: pointer;
-                background: $white;
-                @extend %shadow-card;
-                @extend %radius-tab;
-                @include transition(all 0s linear);
-
-                &.active {
-                    z-index: 26;
-                    position: relative;
-                    margin-left: 2px;
-                    border-right: 2px solid $white;
+                li {
+                    list-style-type: none;
+                    z-index: 24;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    width: 30px;
+                    height: 80px;
+                    margin-right: -10px;
+                    cursor: pointer;
                     background: $white;
-                    @extend %shadow-tab;
+                    @extend %shadow-card;
+                    @extend %radius-tab;
                     @include transition(all 0s linear);
-                }
 
-                &.disabled {
-                    background: $grey-light;
-                }
+                    &.active {
+                        z-index: 26;
+                        position: relative;
+                        margin-left: 2px;
+                        border-right: 2px solid $white;
+                        background: $white;
+                        @extend %shadow-tab;
+                        @include transition(all 0s linear);
+                    }
 
-                &:not(.active):not(.disabled):hover {
-                    background: $green-light;
-                }
+                    &.disabled {
+                        background: $grey-light;
+                    }
 
-                span {
-                    z-index: inherit;
-                    @include rotate(270deg);
-                }
-            }
-        }
-        
-        mat-card {
-            padding: 5px;
-            flex: 1 1 100%;
-            width: 320px;
-            z-index: 25;
-            @extend %shadow-side;
+                    &:not(.active):not(.disabled):hover {
+                        background: $green-light;
+                    }
 
-            .sidebar-content{                
-                height:100%;
-                width:100%;
-                z-index: 27;
+                    span {
+                        z-index: inherit;
+                        @include rotate(270deg);
+                    }
+                }
+                //TODO sort this out
+                .tab-content {
+                    height: 100%;
+                    width: 100%;
+                    z-index: 27;
+                    padding: 5px;
+                    flex: 1 1 100%;
+                    width: 320px;
+                    z-index: 25;
+                    @extend %shadow-side;
+                }
             }
         }
     }

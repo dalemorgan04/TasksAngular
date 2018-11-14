@@ -1,4 +1,4 @@
-import { Component, NgZone} from '@angular/core';
+import { Component} from '@angular/core';
 import { SidebarService } from '../../shared/sidebar/sidebar.service';
 import { sidebar, fadeIn } from '../../shared/animations';
 import { ThoughtsService } from '../thoughts.service';
@@ -18,8 +18,8 @@ export class ThoughtsComponent {
     public tab: string = 'add';
     public tabState: string = 'active';
 
+    //TODO enable the sidebar to get bigger and smaller based on host class
     constructor(
-        public zone: NgZone,
         private sidebarService: SidebarService,
         private thoughtService: ThoughtsService
     ) { }

@@ -1,21 +1,19 @@
-<div class="component-container">
+<div class="content-container">
+    <thoughts-list></thoughts-list>
+</div>
 
-    <div class="content-container">
-        <thoughts-list></thoughts-list>
-    </div>
+<div class="sidebar-outer-container">
+    <div class="sidebar-inner-container"
+         [@sidebar]="sidebarState">
 
-    <div
-        class="sidebar-container"
-        [@sidebar] ="sidebarState">
-            
         <ul>
             <!--<li class="disabled" [class.selected]="tab =='delete'" (click)="openDelete()"><span>Delete</span></li>-->
             <li [class.active]="tab =='edit'" (click)="openEditTab()"><span>Edit</span></li>
             <li [class.active]="tab =='add'" (click)="openAddTab()"><span>Add</span></li>
-        </ul>            
-       
-        <div class="sidebar-content" [ngSwitch]="tab">
-                
+        </ul>
+
+        <div class="tab-content" [ngSwitch]="tab">
+
             <div *ngSwitchCase="'add'" [@fadeIn]="fadeIn" class="w-100 h-100">
                 <thoughts-add></thoughts-add>
             </div>
@@ -25,7 +23,6 @@
             </div>
 
         </div>
-       
+
     </div>
-    
 </div>
