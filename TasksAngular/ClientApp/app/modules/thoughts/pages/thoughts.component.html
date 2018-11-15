@@ -2,8 +2,8 @@
     <thoughts-list></thoughts-list>
 </div>
 
-<div class="sidebar-outer-container">
-    <div class="sidebar-inner-container" [@sidebar]="sidebarState" [class.minified]="sidebarState === 'minified'">
+<div class="sidebar-outer-container" [class.minified]="sidebarState === 'minified'">
+    <div class="sidebar-inner-container" [@sidebar]="sidebarState" >
 
         <ul>
             <!--<li class="disabled" [class.selected]="tab =='delete'" (click)="openDelete()"><span>Delete</span></li>-->
@@ -11,13 +11,13 @@
             <li [class.active]="tab =='add'" (click)="openAddTab()"><span>Add</span></li>
         </ul>
 
-        <div class="tab-content" [ngSwitch]="tab">
+        <div class="tab-container" [ngSwitch]="tab">
 
-            <div *ngSwitchCase="'add'" [@fadeIn]="fadeIn" class="w-100 h-100">
+            <div *ngSwitchCase="'add'" [@fadeIn]="fadeIn" class="tab">
                 <thoughts-add></thoughts-add>
             </div>
 
-            <div *ngSwitchCase="'edit'" [@fadeIn]="fadeIn">
+            <div *ngSwitchCase="'edit'" [@fadeIn]="fadeIn" class="tab">
                 <thoughts-edit></thoughts-edit>
             </div>
 
