@@ -70,14 +70,14 @@ export const sidebar =
             transition('expanded => minified',
                 [
                     group([
-                        query('.sidebar-content', animate('300ms', style({ opacity: '0' }))),
+                        query('.tab-content', animate('300ms', style({ opacity: '0' }))),
                         query(':self', animate('300ms cubic-bezier(0.4, 0.0, 0.2, 1)'))
                     ])
                 ]),
             transition('minified => expanded',
                 [
                     group([
-                        query('.sidebar-content', animate('350ms', style({ opacity: '1' }))),
+                        query('.tab-content', animate('350ms', style({ opacity: '1' }))),
                         query(':self', animate('350ms cubic-bezier(0.4, 0.0, 0.2, 1)'))
                     ])
                 ])

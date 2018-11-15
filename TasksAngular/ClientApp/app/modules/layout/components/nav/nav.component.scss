@@ -6,67 +6,67 @@
     padding-bottom: 5px;
     flex: 0 0 45px;
     transition: 300ms cubic-bezier(0.4, 0.0, 0.2, 1);
-}
 
-.container {
-    position: absolute;
-    height: 100%;
-    width: 150px;
-    padding: 0;
-    margin: 0;
-    background: $white;
-    @extend %shadow-side;
-
-    .content {
-        height: 100%;
-        width: 100%;
-        z-index: 25;
-        overflow: hidden;
+    .container {
         position: absolute;
-        top: 0;
-        left: 0;
+        height: 100%;
+        width: 150px;
+        padding: 0;
+        margin: 0;
+        background: $white;
+        @extend %shadow-side;
 
-        ul {
-            padding: 0;
-            margin-top: 10px;
+        .content {
+            height: 100%;
+            width: 100%;
+            z-index: 25;
+            overflow: hidden;
+            position: absolute;
+            top: 0;
+            left: 0;
 
-            li {
-                list-style-type: none;
-                min-width: 0;
-                height: 30px;
-                font-family: var(--heading);
-                cursor: pointer;
-                padding-left: 15px;
-                padding-bottom: 35px;
-                padding-top: 5px;
-                text-align: left;
+            ul {
+                padding: 0;
+                margin-top: 10px;
 
-                &:hover {
-                    background: var(--blue);
-                }
-
-                .active {
-                    background: var(--blue-dark);
-                }
-
-                a {
-                    display: flex;
-                    flex-direction: row;
-                    padding-top: 7px;
-                    color: var(--grey-dark);
+                li {
+                    list-style-type: none;
+                    min-width: 0;
+                    height: 30px;
+                    font-family: var(--heading);
+                    cursor: pointer;
+                    padding-left: 15px;
+                    padding-bottom: 35px;
+                    padding-top: 5px;
+                    text-align: left;
 
                     &:hover {
-                        text-decoration: none;
+                        background: var(--blue);
                     }
 
-                    fa-icon {
-                        flex: 0 0 30px;
+                    .active {
+                        background: var(--blue-dark);
                     }
 
-                    span {
-                        flex: 1 1 100%;
-                        overflow-x: hidden;
-                        white-space: nowrap;
+                    a {
+                        display: flex;
+                        flex-direction: row;
+                        padding-top: 7px;
+                        color: var(--grey-dark);
+
+                        &:hover {
+                            text-decoration: none;
+                        }
+
+                        fa-icon {
+                            flex: 0 0 30px;
+                        }
+
+                        span {
+                            flex: 1 1 100%;
+                            overflow-x: hidden;
+                            white-space: nowrap;
+                        }
                     }
                 }
             }

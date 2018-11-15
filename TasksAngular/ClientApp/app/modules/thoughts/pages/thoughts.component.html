@@ -3,8 +3,7 @@
 </div>
 
 <div class="sidebar-outer-container">
-    <div class="sidebar-inner-container"
-         [@sidebar]="sidebarState">
+    <div class="sidebar-inner-container" [@sidebar]="sidebarState" [class.minified]="sidebarState === 'minified'">
 
         <ul>
             <!--<li class="disabled" [class.selected]="tab =='delete'" (click)="openDelete()"><span>Delete</span></li>-->
