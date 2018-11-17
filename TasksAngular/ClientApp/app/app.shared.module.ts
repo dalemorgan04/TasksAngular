@@ -3,8 +3,16 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 //import { HttpModule } from '@angular/http';
 import { HttpClientModule } from '@angular/common/http';
+
+.
 //Routing
-import { RouterModule } from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
+const appRoutes: Routes = [
+    { path: '', redirectTo: 'thought', pathMatch: 'full' },
+    { path: 'thought', component: ThoughtsComponent },
+    { path: 'planner', component: ThoughtsComponent },
+    { path: '**', redirectTo: '' }
+];
 
 //Modules
 import { ThoughtsComponent } from './modules/thoughts/pages/thoughts.component';
@@ -19,11 +27,7 @@ import { FlexLayoutModule } from "@angular/flex-layout";
         CommonModule,
         HttpClientModule,
         FormsModule,
-        RouterModule.forRoot([
-            { path: '', redirectTo: 'thought', pathMatch: 'full' },
-            { path: 'thought', component: ThoughtsComponent },
-            { path: '**', redirectTo: '' }
-        ]),
+        RouterModule.forRoot(appRoutes, {enableTracing: true}),
         LayoutModule,
         FlexLayoutModule,
         SharedModule,

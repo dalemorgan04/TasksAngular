@@ -52,7 +52,6 @@
 
   <ItemGroup>
     <Folder Include="ClientApp\app\modules\planner\components\" />
-    <Folder Include="ClientApp\app\modules\planner\pages\" />
     <Folder Include="ClientApp\app\modules\timeframe\components\" />
     <Folder Include="Infrastructure\Extension\" />
   </ItemGroup>

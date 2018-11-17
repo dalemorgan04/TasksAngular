@@ -1,0 +1,18 @@
+@import '../../shared/styles/modules/_all.scss';
+
+//CSS done in shared sidebar container
+
+.tab-content1 {
+    padding: 5px;
+    flex: 1 1 100%;
+    width: 320px;
+    z-index: 25;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+    transition: box-shadow 280ms cubic-bezier(.4,0,.2,1);
+    display: block;
+    position: relative;
+    border-radius: 2px;
+    background: white;
+    color: rgba(0, 0, 0, 0.87);
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+}
