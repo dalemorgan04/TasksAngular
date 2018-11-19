@@ -24,7 +24,13 @@
 
   <ItemGroup>
     <!-- Files not to publish (note that the 'dist' subfolders are re-added below) -->
+    <Compile Remove="ClientApp\app\modules\layout\components\sidebar\components\thoughts\**" />
+    <Compile Remove="ClientApp\app\modules\timeframe\components\**" />
     <Content Remove="ClientApp\**" />
+    <EmbeddedResource Remove="ClientApp\app\modules\layout\components\sidebar\components\thoughts\**" />
+    <EmbeddedResource Remove="ClientApp\app\modules\timeframe\components\**" />
+    <None Remove="ClientApp\app\modules\layout\components\sidebar\components\thoughts\**" />
+    <None Remove="ClientApp\app\modules\timeframe\components\**" />
   </ItemGroup>
 
   <ItemGroup>
@@ -51,9 +57,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="ClientApp\app\modules\layout\components\sidebar\components\thoughts\" />
     <Folder Include="ClientApp\app\modules\planner\components\" />
-    <Folder Include="ClientApp\app\modules\timeframe\components\" />
     <Folder Include="Infrastructure\Extension\" />
   </ItemGroup>
 
