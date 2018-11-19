@@ -6,6 +6,7 @@ import { SharedModule } from '../shared/shared.module';
 import { TimeframeModule } from '../timeframe/timeframe.module';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { MatDatepickerModule } from '@angular/material/datepicker';
+import { PlannerComponent } from './pages/planner.component';
 
 @NgModule({
     imports: [
@@ -18,13 +19,13 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
         MatDatepickerModule
     ],
     declarations: [
-
+        PlannerComponent
     ],
     providers: [
         
     ],
     exports: [
-
+        PlannerComponent
     ]
 })
 export class PlannerModule {

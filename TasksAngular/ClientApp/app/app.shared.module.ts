@@ -4,22 +4,23 @@ import { FormsModule } from '@angular/forms';
 //import { HttpModule } from '@angular/http';
 import { HttpClientModule } from '@angular/common/http';
 
-.
 //Routing
 import { RouterModule, Routes } from '@angular/router';
+import { PlannerComponent } from './modules/planner/pages/planner.component';
+import { ThoughtsComponent } from './modules/thoughts/pages/thoughts.component';
 const appRoutes: Routes = [
     { path: '', redirectTo: 'thought', pathMatch: 'full' },
     { path: 'thought', component: ThoughtsComponent },
-    { path: 'planner', component: ThoughtsComponent },
+    { path: 'planner', component: PlannerComponent },
     { path: '**', redirectTo: '' }
 ];
 
 //Modules
-import { ThoughtsComponent } from './modules/thoughts/pages/thoughts.component';
 import { LayoutModule } from './modules/layout/layout.module';
 import { SharedModule } from './modules/shared/shared.module';
 import { TimeframeModule } from './modules/timeframe/timeframe.module';
 import { ThoughtsModule } from './modules/thoughts/thoughts.module';
+import { PlannerModule } from './modules/planner/planner.module';
 import { FlexLayoutModule } from "@angular/flex-layout";
 
 @NgModule({
@@ -27,12 +28,13 @@ import { FlexLayoutModule } from "@angular/flex-layout";
         CommonModule,
         HttpClientModule,
         FormsModule,
-        RouterModule.forRoot(appRoutes, {enableTracing: true}),
+        RouterModule.forRoot(appRoutes, {enableTracing: false}),
         LayoutModule,
         FlexLayoutModule,
         SharedModule,
         TimeframeModule,
-        ThoughtsModule
+        ThoughtsModule,
+        PlannerModule
     ]
 })
 export class AppModuleShared {

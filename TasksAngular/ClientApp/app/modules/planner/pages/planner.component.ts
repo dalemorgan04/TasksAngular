@@ -1,5 +1,4 @@
 import { Component} from '@angular/core';
-import { SidebarService } from '../../shared/sidebar/sidebar.service';
 import { sidebar, fadeIn } from '../../shared/animations';
 
 @Component({
@@ -11,11 +10,5 @@ import { sidebar, fadeIn } from '../../shared/animations';
     ],
     animations: [sidebar, fadeIn ]
 })
-export class PlannerComponent {
-    //TODO: Move sidebar as its own shared component
-    constructor( private sidebarService: SidebarService )
-    {}
-
-    ngOnInit() {
-    }
+export class PlannerComponent {    
 }

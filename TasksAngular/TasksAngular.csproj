@@ -51,6 +51,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="ClientApp\app\modules\layout\components\sidebar\components\thoughts\" />
     <Folder Include="ClientApp\app\modules\planner\components\" />
     <Folder Include="ClientApp\app\modules\timeframe\components\" />
     <Folder Include="Infrastructure\Extension\" />

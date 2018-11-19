@@ -1,0 +1,51 @@
+<div class="container" [@navbar]="navbarState">    
+
+    <div class="content">
+
+        <ul>
+            <li>
+                <a class="align-middle" routerLink="/planner" routerLinkActive="active">
+                    <fa-icon style="color: var(--grey-dark);" [icon]="planIcon" size="lg">
+                    </fa-icon>
+                    <span>Plan Week</span>
+                </a>    
+            </li>
+            <li class="align-middle" routerLink="/planner" routerLinkActive="active">
+                <a>
+                    <fa-icon style="color: var(--grey-dark);" [icon]="thoughtsIcon" size="lg">
+                    </fa-icon>
+                    <span>Thoughts</span>
+                </a>
+            </li>
+            <li>
+                <a>
+                    <fa-icon style="color: var(--grey-dark);" [icon]="tasksIcon" size="lg">
+                    </fa-icon>
+                    <span>Tasks</span>
+                </a>
+            </li>
+            <li>
+                <a>
+                    <fa-icon style="color: var(--grey-dark);" [icon]="eventsIcon" size="lg">
+                    </fa-icon>
+                    <span>Events</span>
+                </a>
+            </li>
+            <li>
+                <a>
+                    <fa-icon style="color: var(--grey-dark);" [icon]="habitsIcon" size="lg">
+                    </fa-icon>
+                    <span>Habits</span>
+                </a>
+            </li>
+            <li>
+                <a>
+                    <fa-icon style="color: var(--grey-dark);" [icon]="projectsIcon" size="lg">
+                    </fa-icon>
+                    <span>Projects</span>
+                </a>
+            </li>
+        </ul>
+
+    </div>
+</div>
