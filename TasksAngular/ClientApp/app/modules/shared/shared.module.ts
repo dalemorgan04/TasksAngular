@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { SidebarModule } from './sidebar/sidebar.module';
 import { MyDatePickerModule } from 'mydatepicker';
 import { DayPickerComponent } from './datepicker/daypicker/daypicker.component';
 import { WeekPickerComponent } from './datepicker/weekpicker/weekpicker.component';
@@ -25,8 +24,7 @@ import { CustomDateAdapter } from './datepicker/customDateAdapter/customDateAdap
 
 @NgModule({
     imports: [
-        CommonModule,
-        SidebarModule,
+        CommonModule,        
         MyDatePickerModule,
         FormsModule,
         ReactiveFormsModule,
@@ -54,7 +52,6 @@ import { CustomDateAdapter } from './datepicker/customDateAdapter/customDateAdap
     ],
     exports: [
         MyDatePickerModule,
-        SidebarModule,
         DayPickerComponent,
         WeekPickerComponent,
         MatFormFieldModule,

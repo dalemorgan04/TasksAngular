@@ -1,20 +1,33 @@
-import { Injectable, Output, EventEmitter } from '@angular/core';
-import { Subject, Observable, BehaviorSubject } from 'rxjs';
+import { Injectable } from '@angular/core';
+import { Observable, Subject, BehaviorSubject } from 'rxjs';
 
 @Injectable()
-export class NavService {
+export class SidebarService {
 
-    private $isMinified: BehaviorSubject<boolean> = new BehaviorSubject<boolean>( window.innerWidth <= 768 );
+    private isOpen: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
+    private activeTabName: Subject<string> = new Subject<string>();
 
-    @Output() change: EventEmitter<boolean> = new EventEmitter();
-
-    public getIsMinified() : Observable<boolean> {
-        return this.$isMinified.asObservable();
+    isOpen$(): Observable<boolean> {
+        return this.isOpen.asObservable();
     }
-    public toggle(): void {
-        this.$isMinified.next(!this.$isMinified.getValue());
-    }    
-    public setMinified( isMinified : boolean): void {
-        this.$isMinified.next(isMinified);
+
+    activeTabName$(): Observable<string> {
+        return this.activeTabName.asObservable();
+    }
+
+    toggle(): void {
+        this.isOpen.next(!this.isOpen.getValue());
+    }
+
+    open(): void {
+        this.isOpen.next(true);
+    }
+
+    close(): void {
+        this.isOpen.next(false);
+    }
+
+    switchTab(tabName: string): void {
+        this.activeTabName.next(tabName);
     }
 }

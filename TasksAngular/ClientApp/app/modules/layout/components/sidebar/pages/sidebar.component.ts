@@ -1,36 +1,18 @@
 import { Component, OnInit, HostBinding } from '@angular/core';
-import { NavService } from './nav.service';
-import { navbar } from '../../../shared/animations';
-import { faProjectDiagram, faLightbulb, faTasks, faRetweet, faCalendarAlt, faFolderOpen   } from '@fortawesome/free-solid-svg-icons';
+import { sidebar } from '../../../../shared/animations';
 
 @Component({
-    selector: 'nav',
-    templateUrl: './nav.component.html',
-    styleUrls: ['./nav.component.scss'],
-    animations: [ navbar ]
+    selector: 'sidebar',
+    templateUrl: './sidebar.component.html',
+    styleUrls: ['./sidebar.component.scss'],
+    animations: [ sidebar ]
 })
-export class NavComponent implements OnInit {
+export class SidebarComponent implements OnInit {
 
     public navbarState: string; 
     @HostBinding('class.minified') hostMinifiedClass: boolean;
 
-    public planIcon = faProjectDiagram;
-    public thoughtsIcon = faLightbulb;
-    public tasksIcon = faTasks;
-    public habitsIcon = faRetweet;
-    public eventsIcon = faCalendarAlt;
-    public projectsIcon = faFolderOpen;
-
-    constructor(private navService: NavService) {}
-
     ngOnInit() {
-        this.navService.getIsMinified().subscribe(
-            (isMinified: any) => {
-                this.hostMinifiedClass = isMinified;
-                this.navbarState = isMinified
-                    ? 'minified'
-                    : 'expanded';
-            }
-        );
+
     }
 }
