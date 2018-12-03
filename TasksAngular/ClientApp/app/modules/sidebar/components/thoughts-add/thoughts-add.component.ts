@@ -1,18 +1,18 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import { ThoughtsService } from '../../thoughts.service';
-import { ITimeframe, TimeframeType} from '../../../../models/timeframe.model';
-import { IAddThought } from '../../../../models/thought.model';
 import * as moment from 'moment';
+import { ITimeframe, TimeframeType } from '../../../../models/timeframe.model';
+import { ThoughtsService } from '../../../thoughts/thoughts.service';
 import { TimeframeService } from '../../../timeframe/timeframe.service';
+import { IAddThought } from '../../../../models/thought.model';
 
 @Component({
     selector: 'thoughts-add',
     templateUrl: './thoughts-add.component.html',
     styleUrls: ['./thoughts-add.component.scss']
 })
-export class ThoughtsAddComponent implements OnInit {
+export class SidebarThoughtsAddComponent implements OnInit {
     public description : string = '';
-    public timeframe: ITimeframe;    
+    public timeframe: ITimeframe;
     
     constructor(
         private thoughtsService: ThoughtsService,

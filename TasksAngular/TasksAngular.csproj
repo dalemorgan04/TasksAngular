@@ -24,18 +24,18 @@
 
   <ItemGroup>
     <!-- Files not to publish (note that the 'dist' subfolders are re-added below) -->
-    <Compile Remove="ClientApp\app\modules\layout\components\sidebar\components\thoughts\**" />
+    <Compile Remove="ClientApp\app\modules\sidebar\components\thoughts\**" />
     <Compile Remove="ClientApp\app\modules\timeframe\components\**" />
     <Content Remove="ClientApp\**" />
-    <EmbeddedResource Remove="ClientApp\app\modules\layout\components\sidebar\components\thoughts\**" />
+    <EmbeddedResource Remove="ClientApp\app\modules\sidebar\components\thoughts\**" />
     <EmbeddedResource Remove="ClientApp\app\modules\timeframe\components\**" />
-    <None Remove="ClientApp\app\modules\layout\components\sidebar\components\thoughts\**" />
+    <None Remove="ClientApp\app\modules\sidebar\components\thoughts\**" />
     <None Remove="ClientApp\app\modules\timeframe\components\**" />
   </ItemGroup>
 
   <ItemGroup>
     <None Remove="ClientApp\app\app.component.scss" />
-    <None Remove="ClientApp\app\modules\layout\components\sidebar\sidebar.service.ts" />
+    <None Remove="ClientApp\app\modules\sidebar\sidebar.service.ts" />
     <None Remove="ClientApp\app\modules\layout\pages\app.component.scss" />
     <None Remove="ClientApp\app\modules\shared\sidebar\sidebar.service.ts" />
     <None Remove="ClientApp\images\svg\loading.svg" />
@@ -65,7 +65,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <TypeScriptCompile Include="ClientApp\app\modules\layout\components\sidebar\sidebar.service.ts" />
+    <TypeScriptCompile Include="ClientApp\app\modules\sidebar\sidebar.service.ts" />
     <TypeScriptCompile Include="ClientApp\app\modules\shared\sidebar\sidebar.service.ts" />
   </ItemGroup>
 

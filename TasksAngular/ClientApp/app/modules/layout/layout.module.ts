@@ -25,27 +25,18 @@ import { AppComponent } from './pages/app.component';
     ],
   declarations: [
         AppComponent,
-        LayoutComponent,
         HeaderComponent,
         NavComponent,
-        SidebarComponent,
         ContentComponent,
         FooterComponent
     ],
     providers: [
-        NavService,
-        SidebarService,
-        {
-            provide: MATERIAL_SANITY_CHECKS,
-            useValue: false
-        }
+        NavService
     ],
   exports: [
         AppComponent,
-        LayoutComponent,
         HeaderComponent,
         NavComponent,
-        SidebarComponent,
         ContentComponent,
         FooterComponent
     ]
