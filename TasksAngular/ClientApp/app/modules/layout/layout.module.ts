@@ -25,6 +25,7 @@ import { AppComponent } from './pages/app.component';
     ],
   declarations: [
         AppComponent,
+        LayoutComponent,
         HeaderComponent,
         NavComponent,
         ContentComponent,
@@ -35,6 +36,7 @@ import { AppComponent } from './pages/app.component';
     ],
   exports: [
         AppComponent,
+        LayoutComponent,
         HeaderComponent,
         NavComponent,
         ContentComponent,

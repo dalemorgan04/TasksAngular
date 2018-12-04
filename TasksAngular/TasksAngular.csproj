@@ -37,7 +37,6 @@
     <None Remove="ClientApp\app\app.component.scss" />
     <None Remove="ClientApp\app\modules\sidebar\sidebar.service.ts" />
     <None Remove="ClientApp\app\modules\layout\pages\app.component.scss" />
-    <None Remove="ClientApp\app\modules\shared\sidebar\sidebar.service.ts" />
     <None Remove="ClientApp\images\svg\loading.svg" />
   </ItemGroup>
 
@@ -66,7 +65,6 @@
 
   <ItemGroup>
     <TypeScriptCompile Include="ClientApp\app\modules\sidebar\sidebar.service.ts" />
-    <TypeScriptCompile Include="ClientApp\app\modules\shared\sidebar\sidebar.service.ts" />
   </ItemGroup>
 
   <Target Name="DebugRunWebpack" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('wwwroot\dist') ">
