@@ -24,7 +24,7 @@ import { CustomDateAdapter } from './datepicker/customDateAdapter/customDateAdap
 
 @NgModule({
     imports: [
-        CommonModule,        
+        CommonModule,
         MyDatePickerModule,
         FormsModule,
         ReactiveFormsModule,

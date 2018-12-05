@@ -1,8 +1,8 @@
 import { Component, NgZone } from '@angular/core';
 import { NavService } from '../nav/nav.service';
-import { SidebarService } from '../../../shared/sidebar/sidebar.service';
-import { headerLeftArrow, headerRightArrow } from '../../../shared/animations';
 import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons';
+import { headerLeftArrow, headerRightArrow } from '../../../shared/animations';
+import { SidebarService } from '../../../sidebar/sidebar.service';
 
 @Component({
     selector: 'header',

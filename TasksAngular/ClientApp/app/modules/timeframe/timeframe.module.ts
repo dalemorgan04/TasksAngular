@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { SharedModule } from '../shared/shared.module';
-import { TimeframeComponent } from './pages/timeframe.component';
+import { TimeframeComponent } from './timeframe.component';
 import { TimeframeService } from './timeframe.service';
 
 @NgModule({

@@ -1,7 +1,7 @@
 import { Component, OnInit, HostBinding } from '@angular/core';
 import { NavService } from './nav.service';
-import { navbar } from '../../../shared/animations';
 import { faProjectDiagram, faLightbulb, faTasks, faRetweet, faCalendarAlt, faFolderOpen   } from '@fortawesome/free-solid-svg-icons';
+import { navbar } from '../../../shared/animations';
 
 @Component({
     selector: 'nav',

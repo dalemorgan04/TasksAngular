@@ -1,11 +1,11 @@
-import { Component, OnInit, Input, Output, EventEmitter, SimpleChanges, SimpleChange, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, SimpleChanges, ViewEncapsulation } from '@angular/core';
 import { MatTabChangeEvent, MatTabGroup } from '@angular/material';
 import { FormControl } from '@angular/forms';
 import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material/core';
-import { CustomDateAdapter } from '../../shared/datepicker/customDateAdapter/customDateAdapter.component';
+import { CustomDateAdapter } from '../shared/components/datepicker/customDateAdapter/customDateAdapter.component';
 import * as moment from 'moment';
-import { TimeframeType, IMonth, IWeek, months, years } from '../../../models/timeframe.model';
-import { fadeIn } from '../../shared/animations';
+import { TimeframeType, IMonth, IWeek, months, years } from '../../models/timeframe.model';
+import { fadeIn } from '../shared/animations';
 
 export const datepickerFormats = {
     parse: {
@@ -31,7 +31,7 @@ export const datepickerFormats = {
     animations: [fadeIn]
 })
 
-export class TimeframeComponent implements OnInit{
+export class TimeframeComponent implements OnInit {
 
     tabs = ['First', 'Second', 'Third', 'Fourth'];
 

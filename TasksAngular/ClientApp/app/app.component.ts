@@ -6,8 +6,7 @@ import { Component, ViewEncapsulation } from '@angular/core';
     styleUrls: [
         '../../shared/styles/vendor/bootstrap/bootstrap.scss',
         '../../shared/styles/vendor/dragula.scss',
-        '../../shared/styles/vendor/material-custom-theme.scss',
-        './app.component.scss'
+        '../../shared/styles/vendor/material-custom-theme.scss'
     ],
     encapsulation: ViewEncapsulation.None
 })

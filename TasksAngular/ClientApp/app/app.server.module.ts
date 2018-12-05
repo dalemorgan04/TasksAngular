@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { ServerModule } from '@angular/platform-server';
 import { AppModuleShared } from './app.shared.module';
-import { AppComponent } from './modules/layout/pages/app.component';
+import { AppComponent } from './app.component';
 
 @NgModule({
     bootstrap: [ AppComponent ],

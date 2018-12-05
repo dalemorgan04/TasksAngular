@@ -7,8 +7,8 @@ import { IThought, IAddThought, IEditThought } from '../../models/thought.model'
 import { Subject } from 'rxjs';
 import { TimeframeType, ITimeframe } from '../../models/timeframe.model';
 import { now } from 'moment';
-import { SidebarService } from '../shared/sidebar/sidebar.service';
 import { TimeframeService } from '../timeframe/timeframe.service';
+import { SidebarService } from '../sidebar/sidebar.service';
 
 const httpOptions = {
     headers: new HttpHeaders({

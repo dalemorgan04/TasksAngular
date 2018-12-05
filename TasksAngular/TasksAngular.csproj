@@ -34,14 +34,13 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Remove="ClientApp\app\app.component.scss" />
+    <None Remove="ClientApp\app\modules\layout\layout.component.scss" />
     <None Remove="ClientApp\app\modules\sidebar\sidebar.service.ts" />
-    <None Remove="ClientApp\app\modules\layout\pages\app.component.scss" />
     <None Remove="ClientApp\images\svg\loading.svg" />
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include="ClientApp\app\modules\layout\pages\app.component.scss">
+    <Content Include="ClientApp\app\modules\layout\layout.component.scss">
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
     </Content>
     <Content Include="ClientApp\images\svg\loading.svg">
@@ -54,6 +53,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="ClientApp\app\modules\layout\components\content\modules\" />
     <Folder Include="ClientApp\app\modules\planner\components\" />
     <Folder Include="Infrastructure\Extension\" />
   </ItemGroup>

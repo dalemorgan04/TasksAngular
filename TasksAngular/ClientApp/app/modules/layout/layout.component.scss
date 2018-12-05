@@ -1,9 +1,6 @@
-@import '../../shared/styles/modules/_colours.scss';
-@import '../../shared/styles/modules/_typography.scss';
+@import '../shared/styles/modules/_all.scss';
 
-//Global CSS
-
-app {
+:host {
     position: relative;
     display: flex;
     flex-direction: column;

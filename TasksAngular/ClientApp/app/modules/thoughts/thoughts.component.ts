@@ -1,15 +1,12 @@
 import { Component} from '@angular/core';
-import { SidebarService } from '../../shared/sidebar/sidebar.service';
 import { sidebar, fadeIn } from '../../shared/animations';
+import { SidebarService } from '../../sidebar/sidebar.service';
 import { ThoughtsService } from '../thoughts.service';
 
 @Component({
     selector: 'thoughts',
     templateUrl: './thoughts.component.html',
-    styleUrls: [
-        '../../shared/sidebar/sidebar.scss',
-        './thoughts.component.scss'
-    ],
+    styleUrls: ['./thoughts.component.scss'],
     animations: [sidebar, fadeIn ]
 })
 export class ThoughtsComponent {

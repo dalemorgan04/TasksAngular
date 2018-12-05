@@ -9,6 +9,7 @@ import { TimeframeModule } from '../timeframe/timeframe.module';
 import { SharedModule } from '../shared/shared.module';
 import { SidebarThoughtsAddComponent } from './components/thoughts-add/thoughts-add.component';
 import { SidebarService } from './sidebar.service';
+import { SidebarComponent } from './sidebar.component';
 
 @NgModule({
     imports: [
@@ -21,6 +22,7 @@ import { SidebarService } from './sidebar.service';
         MatDatepickerModule
     ],
     declarations: [
+        SidebarComponent,
         SidebarThoughtsAddComponent
     ],
     providers: [
@@ -31,8 +33,9 @@ import { SidebarService } from './sidebar.service';
         }
     ],
     exports: [
+        SidebarComponent,
         SidebarThoughtsAddComponent
     ]
 })
-export class ThoughtsModule {
+export class SidebarModule {
 }
