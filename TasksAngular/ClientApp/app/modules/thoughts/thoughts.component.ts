@@ -1,7 +1,8 @@
 import { Component} from '@angular/core';
-import { sidebar, fadeIn } from '../../shared/animations';
-import { SidebarService } from '../../sidebar/sidebar.service';
-import { ThoughtsService } from '../thoughts.service';
+
+import { sidebar, fadeIn } from '../shared/animations';
+import { SidebarService } from '../sidebar/sidebar.service';
+import { ThoughtsService } from './thoughts.service';
 
 @Component({
     selector: 'thoughts',

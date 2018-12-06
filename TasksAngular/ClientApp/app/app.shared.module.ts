@@ -23,7 +23,7 @@ import { SidebarModule } from './modules/sidebar/sidebar.module';
 import { ThoughtsModule } from './modules/thoughts/thoughts.module';
 import { PlannerModule } from './modules/planner/planner.module';
 import { FlexLayoutModule } from "@angular/flex-layout";
-import { TimeframeModule } from './modules/shared/timeframe/timeframe.module';
+import { TimeframeModule } from './modules/timeframe/timeframe.module';
 
 @NgModule({
     imports: [

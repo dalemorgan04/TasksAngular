@@ -1,9 +1,9 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import { ThoughtsService } from '../../thoughts.service';
+
+import { ThoughtsService } from '../../../thoughts/thoughts.service';
 import { ITimeframe, TimeframeType} from '../../../../models/timeframe.model';
 import { IAddThought, IThought, IEditThought } from '../../../../models/thought.model';
 import * as moment from 'moment';
-
 
 import { Observable, Subject } from 'rxjs';
 import { TimeframeService } from '../../../timeframe/timeframe.service';

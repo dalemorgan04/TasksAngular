@@ -1,8 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MyDatePickerModule } from 'mydatepicker';
-import { DayPickerComponent } from './datepicker/daypicker/daypicker.component';
-import { WeekPickerComponent } from './datepicker/weekpicker/weekpicker.component';
+
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FlexLayoutModule } from "@angular/flex-layout";
 import { ClickOutsideModule } from 'ng-click-outside'; 
@@ -20,7 +19,9 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatSelectModule } from '@angular/material/select';
 import { DateAdapter } from '@angular/material';
-import { CustomDateAdapter } from './datepicker/customDateAdapter/customDateAdapter.component';
+import { CustomDateAdapter } from './components/datepicker/customDateAdapter/customDateAdapter.component';
+import { DayPickerComponent } from './components/datepicker/daypicker/daypicker.component';
+import { WeekPickerComponent } from './components/datepicker/weekpicker/weekpicker.component';
 
 @NgModule({
     imports: [

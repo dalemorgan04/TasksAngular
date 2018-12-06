@@ -4,9 +4,9 @@ import { Component, ViewEncapsulation } from '@angular/core';
     selector: 'app',
     templateUrl: './app.component.html',
     styleUrls: [
-        '../../shared/styles/vendor/bootstrap/bootstrap.scss',
-        '../../shared/styles/vendor/dragula.scss',
-        '../../shared/styles/vendor/material-custom-theme.scss'
+        'modules/shared/styles/vendor/bootstrap/bootstrap.scss',
+        'modules/shared/styles/vendor/dragula.scss',
+        'modules/shared/styles/vendor/material-custom-theme.scss'
     ],
     encapsulation: ViewEncapsulation.None
 })

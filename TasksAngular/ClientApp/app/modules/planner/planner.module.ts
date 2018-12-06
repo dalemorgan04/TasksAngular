@@ -6,7 +6,7 @@ import { SharedModule } from '../shared/shared.module';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { PlannerComponent } from './planner.component';
-import { TimeframeModule } from '../shared/timeframe/timeframe.module';
+import { TimeframeModule } from '../timeframe/timeframe.module';
 
 @NgModule({
     imports: [

@@ -1,5 +1,5 @@
 import { Component, OnInit, HostBinding } from '@angular/core';
-import { sidebar } from '../../shared/animations';
+import { sidebar } from '../shared/animations';
 
 @Component({
     selector: 'sidebar',
