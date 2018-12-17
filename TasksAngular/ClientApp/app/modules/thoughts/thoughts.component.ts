@@ -23,7 +23,7 @@ export class ThoughtsComponent {
     ) { }
 
     ngOnInit() {
-        this.sidebarService.isOpen$().subscribe((isOpen: boolean) => {
+        this.sidebarService.getIsOpen().subscribe((isOpen: boolean) => {
             this.toggleSidebar(isOpen);
         });
         this.sidebarService.activeTabName$().subscribe((activeTabName: string) => {

@@ -38,7 +38,7 @@ export class HeaderComponent {
                     : 'expanded';
             }
         );
-        this.sidebarService.isOpen$().subscribe((isOpen: boolean) => {
+        this.sidebarService.getIsOpen().subscribe((isOpen: boolean) => {
             this.isSidebarOpen = isOpen;
             this.rightArrowState = this.isSidebarOpen
                 ? 'expanded'

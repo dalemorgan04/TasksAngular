@@ -1,5 +1,6 @@
 import { Component, OnInit, HostBinding } from '@angular/core';
 import { sidebar } from '../shared/animations';
+import { SidebarService } from './sidebar.service';
 
 @Component({
     selector: 'sidebar',
@@ -9,10 +10,19 @@ import { sidebar } from '../shared/animations';
 })
 export class SidebarComponent implements OnInit {
 
-    public navbarState: string; 
+    public sidebarState: string; 
     @HostBinding('class.minified') hostMinifiedClass: boolean;
 
-    ngOnInit() {
+    constructor(private sidebarService: SidebarService) { }
 
+    ngOnInit() {
+        this.sidebarService.getIsOpen().subscribe(
+            (isOpen: boolean) => {
+                this.hostMinifiedClass = isOpen;
+                this.sidebarState = isOpen
+                    ? 'minified'
+                    : 'expanded';
+            }
+        );
     }
 }

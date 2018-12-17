@@ -6,14 +6,17 @@
     z-index: 20;
     padding-bottom: 5px;
     display: flex;
-    flex: 0 0 45px;
+    flex: 0 0 35px;
     flex-direction: row;
     transition: 300ms cubic-bezier(0.4, 0.0, 0.2, 1);
 
-    .sidebar-inner-container {
+    .container {
         position: absolute;
         top: 0;
         right: 0;
+        bottom:0;
+        left:0;
+
         height: 100%;
         width: 270px;
         float: right;
@@ -100,7 +103,7 @@
 
     :host {
         &:not(.minified) {
-            flex: 0 0 150px;
+            flex: 0 0 300px;
         }
     }
 

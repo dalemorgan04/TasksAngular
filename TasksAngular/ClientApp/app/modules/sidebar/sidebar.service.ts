@@ -7,7 +7,7 @@ export class SidebarService {
     private isOpen: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
     private activeTabName: Subject<string> = new Subject<string>();
 
-    isOpen$(): Observable<boolean> {
+    getIsOpen(): Observable<boolean> {
         return this.isOpen.asObservable();
     }
 

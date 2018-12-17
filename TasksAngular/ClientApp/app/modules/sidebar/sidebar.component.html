@@ -1,23 +1,22 @@
-<div class="sidebar-outer-container" [class.minified]="sidebarState === 'minified'">
-    <div class="sidebar-inner-container" [@sidebar]="sidebarState">
+<div class="container" [@sidebar]="sidebarState">
 
-        <ul>
-            <!--<li class="disabled" [class.selected]="tab =='delete'" (click)="openDelete()"><span>Delete</span></li>-->
-            <li [class.active]="tab =='edit'" (click)="openEditTab()"><span>Edit</span></li>
-            <li [class.active]="tab =='add'" (click)="openAddTab()"><span>Add</span></li>
-        </ul>
+    <ul>
+        <!--<li class="disabled" [class.selected]="tab =='delete'" (click)="openDelete()"><span>Delete</span></li>-->
+        <li [class.active]="tab =='edit'" (click)="openEditTab()"><span>Edit</span></li>
+        <li [class.active]="tab =='add'" (click)="openAddTab()"><span>Add</span></li>
+    </ul>
 
-        <div class="tab-container" [ngSwitch]="tab">
+    <div class="tab-container" [ngSwitch]="tab">
 
-            <div *ngSwitchCase="'add'" [@fadeIn]="fadeIn" class="tab">
+        <div *ngSwitchCase="'add'" [@fadeIn]="fadeIn" class="tab">
                 
-            </div>
+        </div>
 
-            <div *ngSwitchCase="'edit'" [@fadeIn]="fadeIn" class="tab">
+        <div *ngSwitchCase="'edit'" [@fadeIn]="fadeIn" class="tab">
                 
-            </div>
-
         </div>
 
     </div>
+
 </div>
+
