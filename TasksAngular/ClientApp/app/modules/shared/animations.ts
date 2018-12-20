@@ -54,7 +54,7 @@ export const navbar =
                     query('span', animate('300ms', style({ opacity: '1' })))
                 ])
             ])
-    ]);
+        ]);
 
 export const sidebar =
     trigger('sidebar',
@@ -70,15 +70,15 @@ export const sidebar =
             transition('expanded => minified',
                 [
                     group([
-                        query('.tab', animate('300ms', style({ opacity: '0' }))),
-                        query(':self', animate('300ms cubic-bezier(0.4, 0.0, 0.2, 1)'))
+                        query('.tab', animate('300ms', style({ opacity: '0' })), { optional: true}),
+                        query(':self', animate('300ms cubic-bezier(0.4, 0.0, 0.2, 1)'), { optional: true})
                     ])
                 ]),
             transition('minified => expanded',
                 [
                     group([
-                        query('.tab', animate('300ms', style({ opacity: '1' }))),
-                        query(':self', animate('300ms cubic-bezier(0.4, 0.0, 0.2, 1)'))
+                        query('.tab', animate('300ms', style({ opacity: '1' })), { optional: true }),
+                        query(':self', animate('300ms cubic-bezier(0.4, 0.0, 0.2, 1)'), { optional: true })
                     ])
                 ])
         ]);

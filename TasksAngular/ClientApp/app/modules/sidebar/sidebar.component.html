@@ -2,17 +2,17 @@
 
     <ul>
         <!--<li class="disabled" [class.selected]="tab =='delete'" (click)="openDelete()"><span>Delete</span></li>-->
-        <li [class.active]="tab =='edit'" (click)="openEditTab()"><span>Edit</span></li>
-        <li [class.active]="tab =='add'" (click)="openAddTab()"><span>Add</span></li>
+        <li [class.active]="tab =='SidebarTab.thoughtsEdit'" (click)="openEditTab()"><span>Edit</span></li>
+        <li [class.active]="tab =='SidebarTab.thoughtsAdd'" (click)="openAddTab()"><span>Add</span></li>
     </ul>
 
     <div class="tab-container" [ngSwitch]="tab">
 
-        <div *ngSwitchCase="'add'" [@fadeIn]="fadeIn" class="tab">
-                
+        <div *ngif="SidebarTab.thoughtsAdd in availableTabs" *ngSwitchCase="'SidebarTab.thoughtsAdd'" [@fadeIn]="fadeIn" class="tab">
+
         </div>
 
-        <div *ngSwitchCase="'edit'" [@fadeIn]="fadeIn" class="tab">
+        <div *ngSwitchCase="'SidebarTab.thoughtsEdit'" [@fadeIn]="fadeIn" class="tab">
                 
         </div>
 

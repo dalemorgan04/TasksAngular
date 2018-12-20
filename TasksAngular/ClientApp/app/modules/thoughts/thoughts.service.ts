@@ -9,6 +9,7 @@ import { TimeframeType, ITimeframe } from '../../models/timeframe.model';
 import { now } from 'moment';
 import { TimeframeService } from '../timeframe/timeframe.service';
 import { SidebarService } from '../sidebar/sidebar.service';
+import { SidebarTab } from '../../models/sidebar.model';
 
 const httpOptions = {
     headers: new HttpHeaders({
@@ -84,7 +85,7 @@ export class ThoughtsService
                 this.selectedThought.next(result);
                 this.timeframeService.updateTimeframe(timeframe);
             });
-        this.sidebarService.switchTab('edit');
+        this.sidebarService.switchTab(SidebarTab.thoughtsEdit);
         this.sidebarService.open();
     }
 

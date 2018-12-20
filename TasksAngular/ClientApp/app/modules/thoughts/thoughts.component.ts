@@ -3,6 +3,7 @@ import { Component} from '@angular/core';
 import { sidebar, fadeIn } from '../shared/animations';
 import { SidebarService } from '../sidebar/sidebar.service';
 import { ThoughtsService } from './thoughts.service';
+import { SidebarTab } from '../../models/sidebar.model';
 
 @Component({
     selector: 'thoughts',
@@ -13,7 +14,7 @@ import { ThoughtsService } from './thoughts.service';
 export class ThoughtsComponent {
 
     public sidebarState: string = 'expanded';
-    public tab: string = 'add';
+    public tab: SidebarTab = SidebarTab.thoughtsAdd;
     public tabState: string = 'active';
 
     //TODO enable the sidebar to get bigger and smaller based on host class
@@ -26,7 +27,7 @@ export class ThoughtsComponent {
         this.sidebarService.getIsOpen().subscribe((isOpen: boolean) => {
             this.toggleSidebar(isOpen);
         });
-        this.sidebarService.activeTabName$().subscribe((activeTabName: string) => {
+        this.sidebarService.getActiveTab().subscribe((activeTabName: SidebarTab ) => {
             this.tab = activeTabName;
         });
     }
@@ -41,8 +42,8 @@ export class ThoughtsComponent {
 
     openAddTab() {
         
-        if (this.tab !== 'add') {
-            this.sidebarService.switchTab('add');
+        if (this.tab !== SidebarTab.thoughtsAdd ) {
+            this.sidebarService.switchTab( SidebarTab.thoughtsAdd );
             this.sidebarService.open();
         }
 
@@ -50,8 +51,8 @@ export class ThoughtsComponent {
 
     openEditTab() {
         this.thoughtService.deselectThought();
-        if (this.tab !== 'edit') {
-            this.sidebarService.switchTab('edit');
+        if (this.tab !== SidebarTab.thoughtsEdit ) {
+            this.sidebarService.switchTab( SidebarTab.thoughtsEdit );
             this.sidebarService.open();
         }
     }
