@@ -16,8 +16,7 @@ export class ThoughtsComponent {
     public sidebarState: string = 'expanded';
     public tab: SidebarTab = SidebarTab.thoughtsAdd;
     public tabState: string = 'active';
-
-    //TODO enable the sidebar to get bigger and smaller based on host class
+    
     constructor(
         private sidebarService: SidebarService,
         private thoughtService: ThoughtsService

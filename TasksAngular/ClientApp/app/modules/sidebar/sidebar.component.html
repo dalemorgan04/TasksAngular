@@ -7,13 +7,11 @@
     </ul>
 
     <div class="tab-container" [ngSwitch]="tab">
+        
+        <div *ngFor="let tab of availableTabs">
+            <div *ngSwitchCase="{{tab}}" [@fadeIn]="fadeIn" class="tab">
 
-        <div *ngif="SidebarTab.thoughtsAdd in availableTabs" *ngSwitchCase="'SidebarTab.thoughtsAdd'" [@fadeIn]="fadeIn" class="tab">
-
-        </div>
-
-        <div *ngSwitchCase="'SidebarTab.thoughtsEdit'" [@fadeIn]="fadeIn" class="tab">
-                
+            </div>
         </div>
 
     </div>
