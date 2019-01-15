@@ -8,6 +8,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { TimeframeModule } from '../timeframe/timeframe.module';
 import { SharedModule } from '../shared/shared.module';
 import { SidebarThoughtsAddComponent } from './components/thoughts-add/thoughts-add.component';
+import { SidebarThoughtsEditComponent } from './components/thoughts-edit/thoughts-edit.component';
 import { SidebarService } from './sidebar.service';
 import { SidebarComponent } from './sidebar.component';
 
@@ -23,7 +24,8 @@ import { SidebarComponent } from './sidebar.component';
     ],
     declarations: [
         SidebarComponent,
-        SidebarThoughtsAddComponent
+        SidebarThoughtsAddComponent,
+        SidebarThoughtsEditComponent
     ],
     providers: [
         SidebarService,
@@ -34,7 +36,8 @@ import { SidebarComponent } from './sidebar.component';
     ],
     exports: [
         SidebarComponent,
-        SidebarThoughtsAddComponent
+        SidebarThoughtsAddComponent,
+        SidebarThoughtsEditComponent
     ]
 })
 export class SidebarModule {

@@ -2,6 +2,8 @@ import { Component, OnInit, HostBinding } from '@angular/core';
 import { sidebar, fadeIn } from '../shared/animations';
 import { SidebarService } from './sidebar.service';
 import { SidebarTab } from '../../models/sidebar.model';
+import { TimeframeType } from '../../models/timeframe.model';
+
 
 @Component({
     selector: 'sidebar',
@@ -15,7 +17,7 @@ export class SidebarComponent implements OnInit {
     @HostBinding('class.minified') hostMinifiedClass: boolean;
 
     //Tabs
-    public activeTab: SidebarTab = SidebarTab.thoughtsAdd;
+    public activeTab: TimeframeType;
     public availableTabs: SidebarTab[] = [SidebarTab.thoughtsAdd];
     public thoughtsEditIsHidden: boolean = false;
     public thoughtsAddIsHidden: boolean = false;
@@ -31,6 +33,16 @@ export class SidebarComponent implements OnInit {
         this.sidebarService.getAvailableTabs().subscribe(
             (availableTabs: SidebarTab[]) => {
                 this.availableTabs = availableTabs;
-        });
+            });
+
+        this.activeTab = TimeframeType.Date;
+    }
+
+    public openEditTab(): void {
+        //this.sidebarService.switchTab(SidebarTab.thoughtsEdit);
+    }
+
+    public openAddTab(): void {
+        //this.sidebarService.switchTab(SidebarTab.thoughtsAdd);
     }
 }

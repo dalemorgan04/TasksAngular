@@ -1,26 +1,19 @@
 <div class="container" [@sidebar]="sidebarState">
     <ul>
         <!--<li class="disabled" [class.selected]="tab =='delete'" (click)="openDelete()"><span>Delete</span></li>-->
-        <li [class.active]="activeTab =='SidebarTab.thoughtsEdit'" (click)="openEditTab()"><span>Edit</span></li>
-        <li [class.active]="activeTab =='SidebarTab.thoughtsAdd'" (click)="openAddTab()"><span>Add</span></li>
+        <li [class.active]="activeTab == SidebarTab.thoughtsAdd" (click)="openAddTab()"><span>Add</span></li>
+        <li [class.active]="activeTab == SidebarTab.thoughtsEdit" (click)="openEditTab()"><span>Edit</span></li>
     </ul>
-    <div class="tab-container" [ngSwitch]="0">
+    <div class="tab-container" [ngSwitch]="activeTab">
 
-        <div *ngSwitchCase="0" [@fadeIn]="fadeIn" class="tab">
+        <div *ngSwitchCase="TimeframeType.Date" [@fadeIn]="fadeIn" class="tab">
             <thoughts-add></thoughts-add>
         </div>
 
+        <div *ngSwitchCase="TimeframeType.Month" [@fadeIn]="fadeIn" class="tab">
+            <thoughts-edit></thoughts-edit>
+        </div>
+
     </div>
-    <!--<div class="tab-container" [ngSwitch]="activeTab">
-
-        <div *ngSwitchCase="{{activeTab}}" [hidden]="thoughtsEditIsHidden" [@fadeIn]="fadeIn" class="tab">
-
-        </div>
-
-        <div *ngSwitchCase="{{activeTab}}" [hidden]="thoughtsEditIsHidden" [@fadeIn]="fadeIn" class="tab">
-
-        </div>
-
-    </div>-->
 </div>
 

@@ -13,7 +13,7 @@ import { TimeframeService } from '../../../timeframe/timeframe.service';
     templateUrl: './thoughts-edit.component.html',
     styleUrls: ['./thoughts-edit.component.scss']
 })
-export class ThoughtsEditComponent implements OnInit {
+export class SidebarThoughtsEditComponent implements OnInit {
     public editThought: IEditThought;
     public timeframeType: TimeframeType;
     public dateTime: Date;
