@@ -17,7 +17,8 @@ export class SidebarComponent implements OnInit {
     @HostBinding('class.minified') hostMinifiedClass: boolean;
 
     //Tabs
-    public activeTab: TimeframeType;
+    public sidebarTab = SidebarTab;
+    public activeTab : SidebarTab = SidebarTab.thoughtsAdd;
     public availableTabs: SidebarTab[] = [SidebarTab.thoughtsAdd];
     public thoughtsEditIsHidden: boolean = false;
     public thoughtsAddIsHidden: boolean = false;
@@ -34,15 +35,17 @@ export class SidebarComponent implements OnInit {
             (availableTabs: SidebarTab[]) => {
                 this.availableTabs = availableTabs;
             });
-
-        this.activeTab = TimeframeType.Date;
+        this.sidebarService.getActiveTab().subscribe(
+            (activeTab: SidebarTab) => {
+                this.activeTab = activeTab;
+            });
     }
 
     public openEditTab(): void {
-        //this.sidebarService.switchTab(SidebarTab.thoughtsEdit);
+        this.sidebarService.switchTab(SidebarTab.thoughtsEdit);
     }
 
     public openAddTab(): void {
-        //this.sidebarService.switchTab(SidebarTab.thoughtsAdd);
+        this.sidebarService.switchTab(SidebarTab.thoughtsAdd);
     }
 }
