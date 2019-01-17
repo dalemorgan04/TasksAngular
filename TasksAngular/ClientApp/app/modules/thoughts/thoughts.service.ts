@@ -81,7 +81,7 @@ export class ThoughtsService
                 var timeframe: ITimeframe = {
                     dateTime: result.dateTime,
                     timeframeType: result.timeframeType
-                }
+                };
                 this.selectedThought.next(result);
                 this.timeframeService.updateTimeframe(timeframe);
             });

@@ -3,6 +3,7 @@ import { DragulaService } from 'ng2-dragula/ng2-dragula';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
 import { IThought } from '../../../../models/thought.model';
 import { ThoughtsService } from '../../../thoughts/thoughts.service';
+import { IPlannerItem } from '../../../../models/planner.model';
 
 @Component({
     selector: 'thoughts-list',
@@ -10,7 +11,9 @@ import { ThoughtsService } from '../../../thoughts/thoughts.service';
     styleUrls: ['thoughts-list.component.scss']
 })
 
-export class ThoughtsListComponent implements OnInit {    
+export class PlannerDayComponent implements OnInit {    
+
+    public plannerItemList: IPlannerItem[];
 
     constructor(
         private thoughtsService: ThoughtsService,
@@ -24,8 +27,5 @@ export class ThoughtsListComponent implements OnInit {
 
     ngOnInit(): void {
         this.thoughtsService.refreshThoughtslist();
-        
     }
-
-
 }

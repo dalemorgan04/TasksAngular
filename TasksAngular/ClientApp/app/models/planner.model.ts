@@ -7,11 +7,7 @@ export enum PlannerItemType {
 
 export interface IPlannerItem {
     plannerItemType: PlannerItemType;
-    id: number;    
-    userId: number;
-    description: string;
-    priorityId: number;
-    createdDateTime: string;
-    sortId: number;
+    id: number;        
+    description: string;    
     timeFrameId: number;
 }

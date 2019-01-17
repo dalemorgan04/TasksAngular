@@ -10,9 +10,10 @@ import { now } from 'moment';
 import { TimeframeService } from '../timeframe/timeframe.service';
 import { SidebarService } from '../sidebar/sidebar.service';
 import { SidebarTab } from '../../models/sidebar.model';
-import { IPlannerItem } from '../../models/planner.model';
+import { IPlannerItem, PlannerItemType } from '../../models/planner.model';
 import { ThoughtsService } from '../thoughts/thoughts.service';
 import { forEach } from '@angular/router/src/utils/collection';
+import { A11yModule } from '@angular/cdk/a11y';
 
 const httpOptions = {
     headers: new HttpHeaders({
@@ -43,12 +44,21 @@ export class PlannerService {
         return this.plannerItemList.asObservable();
     }
 
-    private refreshPlannerItemList() {
+    public refreshPlannerItemList() {
         //Convert thoughts to items
-        for (var thought in this.thoughtslist) {
-            var item : IPlannerItem= {
-            }
-        }
+        var list : IPlannerItem[] = [];
+        this.thoughtslist.forEach((thought: IThought) => {
+            var item: IPlannerItem = {
+                plannerItemType: PlannerItemType.thought,
+                id: thought.thoughtId,
+                description: thought.description,
+                timeFrameId: thought.timeFrameId
+            };
+            list.push(item);
+        });
+        this.plannerItemList.next(list);
+
+        //Order the items
     }
 
 }
