@@ -6,9 +6,9 @@ import { ThoughtsService } from '../../../thoughts/thoughts.service';
 import { IPlannerItem } from '../../../../models/planner.model';
 
 @Component({
-    selector: 'thoughts-list',
-    templateUrl: './thoughts-list.component.html',
-    styleUrls: ['thoughts-list.component.scss']
+    selector: 'planner-day',
+    templateUrl: './planner-day.component.html',
+    styleUrls: ['planner-day.component.scss']
 })
 
 export class PlannerDayComponent implements OnInit {    

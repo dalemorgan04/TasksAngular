@@ -37,6 +37,7 @@ export class PlannerService {
         this.thoughtsService.getThoughtslist().subscribe(
             (thoughtsList: IThought[]) => {
                 this.thoughtslist = thoughtsList;
+                this.refreshPlannerItemList();
             });
     }
 
