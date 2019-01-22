@@ -7,5 +7,6 @@ import { sidebar, fadeIn } from '../shared/animations';
     styleUrls: ['./planner.component.scss'],
     animations: [sidebar, fadeIn ]
 })
-export class PlannerComponent {    
+export class PlannerComponent {
+    public dateTime: Date = new Date();
 }

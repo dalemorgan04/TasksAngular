@@ -24,7 +24,7 @@ const httpOptions = {
 @Injectable()
 export class PlannerService {
 
-    private plannerItemList: Subject<IPlannerItem[]> = new Subject<IPlannerItem[]>();
+    private plannerItemList: Subject<IPlannerItem[]> = new Subject<IPlannerItem[]>();        
     private selectedItem: Subject<IPlannerItem> = new Subject<IPlannerItem>();
 
     private thoughtslist: IThought[];
@@ -33,12 +33,18 @@ export class PlannerService {
         private http: HttpClient,
         private sidebarService: SidebarService,
         private timeframeService: TimeframeService,
-        private thoughtsService: ThoughtsService) {
+        private thoughtsService: ThoughtsService)
+    {
+        //Thoughts
         this.thoughtsService.getThoughtslist().subscribe(
-            (thoughtsList: IThought[]) => {
+            ( thoughtsList: IThought[] ) => {
                 this.thoughtslist = thoughtsList;
                 this.refreshPlannerItemList();
             });
+    }
+
+    ngOnInit(): void {
+        this.thoughtsService.refreshThoughtslist();
     }
 
     public getPlannerItemList() : Observable<IPlannerItem[]> {
@@ -46,18 +52,22 @@ export class PlannerService {
     }
 
     public refreshPlannerItemList() {
-        //Convert thoughts to items
-        var list : IPlannerItem[] = [];
-        this.thoughtslist.forEach((thought: IThought) => {
-            var item: IPlannerItem = {
-                plannerItemType: PlannerItemType.thought,
-                id: thought.thoughtId,
-                description: thought.description,
-                timeFrameId: thought.timeFrameId
-            };
-            list.push(item);
-        });
-        this.plannerItemList.next(list);
+        //Thoughts
+        this.thoughtsService.refreshThoughtslist();
+        var list: IPlannerItem[] = [];
+        if (this.thoughtslist !== undefined ) {
+            this.thoughtslist.forEach((thought: IThought) => {
+                var item :IPlannerItem = {
+                    plannerItemType: PlannerItemType.thought,
+                    id: thought.thoughtId,
+                    description: thought.description,
+                    timeFrameId: thought.timeFrameId,
+                    dateTime: thought.dateTime
+                };
+                list.push(item);
+            });
+            this.plannerItemList.next(list);
+        }
 
         //Order the items
     }

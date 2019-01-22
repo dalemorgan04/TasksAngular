@@ -1,4 +1,5 @@
 import { TimeframeType } from './timeframe.model';
+import { Data } from '@angular/router';
 
 export interface IThought {
     thoughtId: number;
@@ -7,6 +8,7 @@ export interface IThought {
     priorityId: number;
     createdDateTime: string;
     sortId: number;
+    dateTime: Date;
     timeFrameId: number;
     timeFrameDateString: string;
     timeFrameTimeString: string;

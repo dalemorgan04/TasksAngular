@@ -1,3 +1,5 @@
+import { TimeframeType } from "./timeframe.model";
+
 export enum PlannerItemType {
     thought,
     task,
@@ -7,7 +9,8 @@ export enum PlannerItemType {
 
 export interface IPlannerItem {
     plannerItemType: PlannerItemType;
-    id: number;        
-    description: string;    
-    timeFrameId: number;
+    id: number;
+    description: string;
+    timeFrameId: TimeframeType;
+    dateTime: Date;
 }

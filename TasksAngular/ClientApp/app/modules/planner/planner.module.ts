@@ -8,6 +8,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { PlannerComponent } from './planner.component';
 import { TimeframeModule } from '../timeframe/timeframe.module';
 import { PlannerDayComponent } from './components/planner-day/planner-day.component';
+import { PlannerService } from './planner.service';
 
 @NgModule({
     imports: [
@@ -24,7 +25,7 @@ import { PlannerDayComponent } from './components/planner-day/planner-day.compon
         PlannerDayComponent
     ],
     providers: [
-        
+        PlannerService
     ],
     exports: [
         PlannerComponent,
