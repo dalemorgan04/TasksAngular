@@ -9,7 +9,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { PlannerComponent } from './modules/planner/planner.component';
 import { ThoughtsComponent } from './modules/thoughts/thoughts.component';
 const appRoutes: Routes = [
-    { path: '', redirectTo: 'thought', pathMatch: 'full' },
+    { path: '', redirectTo: 'planner', pathMatch: 'full' },
     { path: 'thought', component: ThoughtsComponent },
     { path: 'planner', component: PlannerComponent },
     { path: '**', redirectTo: '' }

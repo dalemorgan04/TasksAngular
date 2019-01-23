@@ -39,12 +39,8 @@ export class PlannerService {
         this.thoughtsService.getThoughtslist().subscribe(
             ( thoughtsList: IThought[] ) => {
                 this.thoughtslist = thoughtsList;
-                this.refreshPlannerItemList();
+                this.updatePlannerItemList();
             });
-    }
-
-    ngOnInit(): void {
-        this.thoughtsService.refreshThoughtslist();
     }
 
     public getPlannerItemList() : Observable<IPlannerItem[]> {
@@ -52,12 +48,15 @@ export class PlannerService {
     }
 
     public refreshPlannerItemList() {
-        //Thoughts
         this.thoughtsService.refreshThoughtslist();
+    }
+
+    private updatePlannerItemList() {
+        //Thoughts
         var list: IPlannerItem[] = [];
-        if (this.thoughtslist !== undefined ) {
+        if (this.thoughtslist !== undefined) {
             this.thoughtslist.forEach((thought: IThought) => {
-                var item :IPlannerItem = {
+                var item: IPlannerItem = {
                     plannerItemType: PlannerItemType.thought,
                     id: thought.thoughtId,
                     description: thought.description,

@@ -25,22 +25,11 @@ export class PlannerDayComponent implements OnInit {
     {
         this.plannerService.getPlannerItemList().subscribe(
             (plannerItemList: IPlannerItem[]) => {
-                this.updatePlannerItemList( plannerItemList );
+                this.plannerItemList = plannerItemList.filter(item => item.timeFrameId == TimeframeType.Date);
         });
     }
 
     ngOnInit(): void {
         this.plannerService.refreshPlannerItemList();
-    }
-
-    public updatePlannerItemList( items : IPlannerItem[]) : void {
-        //Strip out anything not meant for today
-        var currentItems: IPlannerItem[] = [] ;
-        items.forEach( (item: IPlannerItem) => {
-            if (item.timeFrameId == TimeframeType.Date && item.dateTime == this.dateTime) {
-                currentItems.push(item);
-            }
-        });
-        this.plannerItemList = currentItems;
     }
 }
