@@ -1,4 +1,5 @@
-<mat-card>    
+<mat-card>
+    <h1>{{dateTime}}</h1>
     <table>
         <thead>
             <tr>
@@ -8,15 +9,13 @@
             </tr>
         </thead>
 
-        <tbody>
-            <tr *ngFor="let thought of thoughtslist"
-                (dblclick)="selectThought(thought.thoughtId)"
-                [class.selected]="selectedThought === thought.thoughtId"
-                [attr.data-thoughtid]="thought.thoughtId"
-                [attr.data-sortid]="thought.sortId">
+        <tbody>            
+            <tr *ngFor="let item of plannerItemList"
+                [attr.data-itemid]="item.id"
+                [attr.data-itemtype]="item.plannerItemType">
 
-                <td class="description"> {{thought.description}}</td>
-                <td class="due"> {{thought.timeFrameDueString}} </td>
+                <td class="description"> {{item.description}}</td>
+                <td class="type"> {{item.plannerItemType}} </td>
                 <td class="option">
                     <fa-icon style="color: var(--grey-dark);"
                              size="lg"

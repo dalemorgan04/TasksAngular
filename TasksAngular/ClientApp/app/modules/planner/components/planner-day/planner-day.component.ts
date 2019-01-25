@@ -14,9 +14,10 @@ import { TimeframeType } from '../../../../models/timeframe.model';
     styleUrls: ['planner-day.component.scss']
 })
 
-export class PlannerDayComponent implements OnInit {    
+export class PlannerDayComponent {
 
     @Input() public dateTime: Date;
+
     public plannerItemList: IPlannerItem[];
 
     constructor(
@@ -27,9 +28,5 @@ export class PlannerDayComponent implements OnInit {
             (plannerItemList: IPlannerItem[]) => {
                 this.plannerItemList = plannerItemList.filter(item => item.timeFrameId == TimeframeType.Date);
         });
-    }
-
-    ngOnInit(): void {
-        this.plannerService.refreshPlannerItemList();
     }
 }

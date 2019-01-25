@@ -24,6 +24,7 @@ const httpOptions = {
 @Injectable()
 export class PlannerService {
 
+    private dateTime: Subject<Date> = new Subject<Date>();
     private plannerItemList: Subject<IPlannerItem[]> = new Subject<IPlannerItem[]>();        
     private selectedItem: Subject<IPlannerItem> = new Subject<IPlannerItem>();
 
@@ -41,6 +42,10 @@ export class PlannerService {
                 this.thoughtslist = thoughtsList;
                 this.updatePlannerItemList();
             });
+    }
+
+    public getDateTime(): Observable<Date> {
+        return this.dateTime.asObservable();
     }
 
     public getPlannerItemList() : Observable<IPlannerItem[]> {

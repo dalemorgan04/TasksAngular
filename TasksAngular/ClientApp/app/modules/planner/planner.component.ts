@@ -15,6 +15,7 @@ export class PlannerComponent {
     constructor( private plannerService: PlannerService) {}
 
     ngOnInit(): void {
+        console.log("This has run");
         this.plannerService.refreshPlannerItemList();
     }
 }
