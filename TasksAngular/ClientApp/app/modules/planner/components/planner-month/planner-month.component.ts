@@ -7,7 +7,6 @@ import { IPlannerItem } from '../../../../models/planner.model';
 import { PlannerService } from '../../planner.service';
 import { forEach } from '@angular/router/src/utils/collection';
 import { TimeframeType } from '../../../../models/timeframe.model';
-import * as moment from 'moment';
 
 @Component({
     selector: 'planner-day',
@@ -18,7 +17,6 @@ import * as moment from 'moment';
 export class PlannerDayComponent {
 
     @Input() public dateTime: Date;
-    private title: string;
 
     public plannerItemList: IPlannerItem[];
 
@@ -28,11 +26,7 @@ export class PlannerDayComponent {
     {
         this.plannerService.getPlannerItemList().subscribe(
             (plannerItemList: IPlannerItem[]) => {
-                this.plannerItemList = plannerItemList.filter(item => item.timeFrameId == TimeframeType.Date);
+                this.plannerItemList = plannerItemList.filter(item => item.timeFrameId == TimeframeType.Month);
         });
-    }
-
-    ngOnInit() {
-        this.title = moment(this.dateTime).format("Do");
     }
 }

@@ -54,7 +54,6 @@
 
   <ItemGroup>
     <Folder Include="ClientApp\app\modules\layout\components\content\modules\" />
-    <Folder Include="ClientApp\app\modules\planner\components\planner-month\" />
     <Folder Include="ClientApp\app\modules\planner\components\planner-week\" />
     <Folder Include="Infrastructure\Extension\" />
   </ItemGroup>

@@ -48,6 +48,10 @@ export class PlannerService {
         return this.dateTime.asObservable();
     }
 
+    public setDateTime( dateTime : Date): void {
+        this.dateTime.next(dateTime);
+    }
+
     public getPlannerItemList() : Observable<IPlannerItem[]> {
         return this.plannerItemList.asObservable();
     }
