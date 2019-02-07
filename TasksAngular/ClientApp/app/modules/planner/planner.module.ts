@@ -10,6 +10,8 @@ import { TimeframeModule } from '../timeframe/timeframe.module';
 import { PlannerService } from './planner.service';
 import { PlannerDayComponent } from './components/planner-day/planner-day.component';
 import { PlannerDaysComponent } from './components/planner-days/planner-days.component';
+import { PlannerWeekComponent } from './components/planner-week/planner-week.component';
+import { PlannerMonthComponent } from './components/planner-month/planner-month.component';
 
 
 @NgModule({
@@ -25,7 +27,9 @@ import { PlannerDaysComponent } from './components/planner-days/planner-days.com
     declarations: [
         PlannerComponent,
         PlannerDayComponent,
-        PlannerDaysComponent
+        PlannerDaysComponent,
+        PlannerWeekComponent,
+        PlannerMonthComponent
     ],
     providers: [
         PlannerService
@@ -33,7 +37,9 @@ import { PlannerDaysComponent } from './components/planner-days/planner-days.com
     exports: [
         PlannerComponent,
         PlannerDayComponent,
-        PlannerDaysComponent
+        PlannerDaysComponent,
+        PlannerWeekComponent,
+        PlannerMonthComponent
     ]
 })
 export class PlannerModule {

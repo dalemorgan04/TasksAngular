@@ -1,5 +1,11 @@
-<div class="content-container">
-
-    <planner-days [dateTime]="dateTime"></planner-days>
-    TEst
+<div class="row">
+    <div class="col-sm-6">
+        <planner-days [dateTime]="dateTime"></planner-days>
+    </div>
+    <div class="col-sm-3">
+        <planner-week [dateTime]="dateTime"></planner-week>
+    </div>
+    <div class="col-sm-3">
+        <planner-month [dateTime]="dateTime"></planner-month>
+    </div>
 </div>

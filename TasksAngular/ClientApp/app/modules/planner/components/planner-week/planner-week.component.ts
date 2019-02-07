@@ -10,12 +10,12 @@ import { TimeframeType } from '../../../../models/timeframe.model';
 import * as moment from 'moment';
 
 @Component({
-    selector: 'planner-month',
-    templateUrl: './planner-month.component.html',
-    styleUrls: ['planner-month.component.scss']
+    selector: 'planner-week',
+    templateUrl: './planner-week.component.html',
+    styleUrls: ['planner-week.component.scss']
 })
 
-export class PlannerMonthComponent {
+export class PlannerWeekComponent {
 
     @Input() public dateTime: Date;
     private title: string;
@@ -28,7 +28,7 @@ export class PlannerMonthComponent {
     {
         this.plannerService.getPlannerItemList().subscribe(
             (plannerItemList: IPlannerItem[]) => {
-                this.plannerItemList = plannerItemList.filter(item => item.timeFrameId == TimeframeType.Month);
+                this.plannerItemList = plannerItemList.filter(item => item.timeFrameId == TimeframeType.Week);
         });
     }
 
