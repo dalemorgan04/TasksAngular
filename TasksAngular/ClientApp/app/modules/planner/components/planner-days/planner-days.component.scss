@@ -3,8 +3,13 @@
 :host {
     width: 100%;
     height: 100%;
-    overflow: scroll;
     display: flex;
+    flex-wrap: wrap;
+    overflow-y: scroll;
+
+    planner-day {
+        flex: 0 0 auto;
+    }
 }
 
 /*Dragging helper*/
