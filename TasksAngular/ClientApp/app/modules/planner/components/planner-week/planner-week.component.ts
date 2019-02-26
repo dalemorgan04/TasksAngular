@@ -18,7 +18,7 @@ import * as moment from 'moment';
 export class PlannerWeekComponent {
 
     @Input() public dateTime: Date;
-    private title: string;
+    private weekString: string;
 
     public plannerItemList: IPlannerItem[];
 
@@ -33,6 +33,6 @@ export class PlannerWeekComponent {
     }
 
     ngOnInit() {
-        this.title = moment(this.dateTime).format("Do");
+        this.weekString = moment(this.dateTime).format("Do");
     }
 }

@@ -18,7 +18,7 @@ import * as moment from 'moment';
 export class PlannerMonthComponent {
 
     @Input() public dateTime: Date;
-    private title: string;
+    private monthString: string;
 
     public plannerItemList: IPlannerItem[];
 
@@ -33,6 +33,6 @@ export class PlannerMonthComponent {
     }
 
     ngOnInit() {
-        this.title = moment(this.dateTime).format("Do");
+        this.monthString = moment(this.dateTime).format("Do");
     }
 }

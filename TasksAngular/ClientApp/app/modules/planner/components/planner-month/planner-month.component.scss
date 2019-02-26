@@ -4,6 +4,7 @@ mat-card {
     margin: 10px;
     padding: 0;
     @extend %shadow-card;
+    width: 280px;
 
     table {
         width: 100%;

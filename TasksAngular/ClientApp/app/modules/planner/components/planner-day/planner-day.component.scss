@@ -1,6 +1,11 @@
 @import '../../../shared/styles/modules/_all.scss';
 
-
+mat-card {
+    margin: 10px;
+    padding: 0;
+    @extend %shadow-card;
+    width: 280px;
+}
 
 /*Dragging helper*/
 .gu-mirror {   
