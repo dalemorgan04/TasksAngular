@@ -6,10 +6,14 @@
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
-    overflow-y: scroll;
+    justify-content: flex-start;
+    align-items: flex-start;
 
-    planner-day {
-        flex: 0 0 auto;
+    .day-container {
+        width: 280px;
+
+        planner-day {
+        }
     }
 }
 
@@ -17,8 +21,8 @@
 .gu-mirror {   
     display:flex;
     background: $white;
-    padding: 0;    
-    @extend %shadow-card    
+    padding: 0;
+    @extend %shadow-card;
 }
 .gu-mirror > td:nth-child(1) {
     flex: 1 1 50%;

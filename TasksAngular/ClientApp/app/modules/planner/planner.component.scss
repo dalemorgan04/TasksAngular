@@ -3,5 +3,35 @@
 :host {
     width: 100%;
     height: 100%;
-    display: flex;    
+    display: flex;
+    flex-direction: column;
+
+    planner-days, .bottom {
+        flex: 0 0 50%;
+    }
+
+    /*display: grid;
+    grid-template-columns: auto;
+    grid-template-rows: 50%;
+
+    planner-days {
+        grid-column-start: 1;
+        grid-column-end: 3;
+        grid-row-start: 1;
+        grid-row-end: 1;
+    }
+
+    planner-week {
+        grid-column-start: 1;
+        grid-column-end: 1;
+        grid-row-start: 2;
+        grid-row-end: 2;
+    }
+
+    planner-month {
+        grid-column-start: 2;
+        grid-column-end: 2;
+        grid-row-start: 2;
+        grid-row-end: 2;
+    }*/
 }

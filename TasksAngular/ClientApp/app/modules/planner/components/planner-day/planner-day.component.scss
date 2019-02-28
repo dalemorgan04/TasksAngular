@@ -1,10 +1,14 @@
 @import '../../../shared/styles/modules/_all.scss';
 
-mat-card {
-    margin: 10px;
-    padding: 0;
-    @extend %shadow-card;
+:host {
     width: 280px;
+
+    mat-card {
+        margin: 10px;
+        padding: 0;
+        @extend %shadow-card;
+        width: 100%;
+    }
 }
 
 /*Dragging helper*/
