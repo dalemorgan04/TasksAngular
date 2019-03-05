@@ -8,30 +8,16 @@
 
     planner-days, .bottom {
         flex: 0 0 50%;
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+        justify-content: flex-start;
+        align-items: stretch;
+
+        planner-week, planner-month {
+            min-width: 280px;
+            max-width: 800px;
+            padding: 0 20px;
+        }
     }
-
-    /*display: grid;
-    grid-template-columns: auto;
-    grid-template-rows: 50%;
-
-    planner-days {
-        grid-column-start: 1;
-        grid-column-end: 3;
-        grid-row-start: 1;
-        grid-row-end: 1;
-    }
-
-    planner-week {
-        grid-column-start: 1;
-        grid-column-end: 1;
-        grid-row-start: 2;
-        grid-row-end: 2;
-    }
-
-    planner-month {
-        grid-column-start: 2;
-        grid-column-end: 2;
-        grid-row-start: 2;
-        grid-row-end: 2;
-    }*/
 }

@@ -1,13 +1,54 @@
 @import '../../../shared/styles/modules/_all.scss';
 
-:host {
-    width: 280px;
+:host {    
+    width: 100%;
 
     mat-card {
         margin: 10px;
         padding: 0;
+        padding-bottom: 20px;
         @extend %shadow-card;
         width: 100%;
+
+        table {
+            width: 100%;
+        }
+
+        fa-icon {
+            visibility: hidden;
+        }
+
+        tr {
+            border-bottom: 1px solid $grey-light;
+            word-wrap: break-word;
+            display: flex;
+            cursor: pointer;
+
+            &.selected {
+                background: $green-light;
+            }
+
+            .description {
+                flex: 1 1 50%;
+                text-align: left;
+                padding-left: 10px;
+            }
+
+            .due {
+                flex: 1 1 40%;
+                text-align: center;
+            }
+
+            .option {
+                flex: 0 0 20px;
+                text-align: center;
+                padding-right: 10px;
+            }
+
+            &:hover fa-icon {
+                visibility: visible;
+            }
+        }
     }
 }
 

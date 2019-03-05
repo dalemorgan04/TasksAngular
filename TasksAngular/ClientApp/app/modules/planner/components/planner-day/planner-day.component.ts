@@ -18,8 +18,9 @@ import * as moment from 'moment';
 export class PlannerDayComponent {
 
     @Input() public dateTime: Date;
-    private title: string;
-
+    private hasDayHeading: boolean;
+    private dayHeading: string;
+    private cardHeading: string;
     public plannerItemList: IPlannerItem[];
 
     constructor(
@@ -33,6 +34,6 @@ export class PlannerDayComponent {
     }
 
     ngOnInit() {
-        this.title = moment(this.dateTime).format("Do");
+        this.cardHeading = moment(this.dateTime).format("dddd Do");
     }
 }
