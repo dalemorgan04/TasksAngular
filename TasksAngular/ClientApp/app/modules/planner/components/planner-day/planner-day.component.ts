@@ -30,10 +30,20 @@ export class PlannerDayComponent {
         this.plannerService.getPlannerItemList().subscribe(
             (plannerItemList: IPlannerItem[]) => {
                 this.plannerItemList = plannerItemList.filter(item => item.timeFrameId == TimeframeType.Date);
-        });
+            });
+        //this.dragula.setOptions('bag-day',
+        //    {
+        //        revertOnSpill: true,
+        //        mirrorContainer: document.body
+        //    }
+        //);
     }
 
     ngOnInit() {
         this.cardHeading = moment(this.dateTime).format("dddd Do");
+        //this.dragula.drop.subscribe(
+        //    (el: any) => {
+        //    }
+        //);
     }
 }

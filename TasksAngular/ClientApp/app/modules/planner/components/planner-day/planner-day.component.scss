@@ -18,37 +18,41 @@
             visibility: hidden;
         }
 
-        tr {
-            border-bottom: 1px solid $grey-light;
-            word-wrap: break-word;
-            display: flex;
-            cursor: pointer;
-
-            &.selected {
-                background: $green-light;
+        tbody {
+            min-height: 20px;
             }
+            tr {
+                border-bottom: 1px solid $grey-light;
+                word-wrap: break-word;
+                display: flex;
+                cursor: pointer;
 
-            .description {
-                flex: 1 1 50%;
-                text-align: left;
-                padding-left: 10px;
-            }
+                &.selected {
+                    background: $green-light;
+                }
 
-            .due {
-                flex: 1 1 40%;
-                text-align: center;
-            }
+                .description {
+                    flex: 1 1 50%;
+                    text-align: left;
+                    padding-left: 10px;
+                }
 
-            .option {
-                flex: 0 0 20px;
-                text-align: center;
-                padding-right: 10px;
-            }
+                .due {
+                    flex: 1 1 40%;
+                    text-align: center;
+                }
 
-            &:hover fa-icon {
-                visibility: visible;
+                .option {
+                    flex: 0 0 20px;
+                    text-align: center;
+                    padding-right: 10px;
+                }
+
+                &:hover fa-icon {
+                    visibility: visible;
+                }
             }
-        }
+        
     }
 }
 
