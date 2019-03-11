@@ -1,28 +1,17 @@
-<h1>Anytime this Month</h1>
+<h1>sometime this <b>Month</b></h1>
 <mat-card>
-    <table>
-        <thead>
-            <tr>
-                <th class="description">{{monthString}}</th>
-                <th class="due">Due</th>
-                <th class="option"></th>
-            </tr>
-        </thead>
+    <div class="row heading">
+        <div class="col-sm-12">{{monthString}}</div>
+    </div>
+    <div class="items" [dragula]="'bag-day'" [dragulaModel]='plannerItemList'>
+        <div *ngFor="let item of plannerItemList"
+             [attr.data-itemid]="item.id"
+             [attr.data-itemtype]="item.plannerItemType">
 
-        <tbody>
-            <tr *ngFor="let item of plannerItemList"
-                [attr.data-itemid]="item.id"
-                [attr.data-itemtype]="item.plannerItemType">
-
-                <td class="description"> {{item.description}}</td>
-                <td class="type"> {{item.plannerItemType}} </td>
-                <td class="option">
-                    <fa-icon style="color: var(--grey-dark);"
-                             size="lg"
-                             [icon]="deleteIcon">
-                    </fa-icon>
-                </td>
-            </tr>
-        </tbody>
-    </table>
+            <div class="row">
+                <div class="col-sm-8">{{item.description}}</div>
+                <div class="col-sm-4">{{item.plannerItemType}}</div>
+            </div>
+        </div>
+    </div>
 </mat-card>

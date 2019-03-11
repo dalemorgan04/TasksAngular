@@ -1,6 +1,6 @@
 @import '../../../shared/styles/modules/_all.scss';
 
-:host {    
+:host {
     width: 100%;
 
     mat-card {
@@ -8,60 +8,31 @@
         padding: 0;
         padding-bottom: 20px;
         @extend %shadow-card;
-        width: 100%;
 
-        table {
-            width: 100%;
+        .row {
+            padding: 0 5px;
+            border-bottom: 1px solid $grey-light;
+            margin: 0;
         }
 
-        fa-icon {
-            visibility: hidden;
+        .heading {
+            border-bottom: 1px solid $blue-dark;
+            font-weight: bold;
+            padding-top: 10px;
         }
 
-        tbody {
+        .items {
             min-height: 20px;
-            }
-            tr {
-                border-bottom: 1px solid $grey-light;
-                word-wrap: break-word;
-                display: flex;
-                cursor: pointer;
-
-                &.selected {
-                    background: $green-light;
-                }
-
-                .description {
-                    flex: 1 1 50%;
-                    text-align: left;
-                    padding-left: 10px;
-                }
-
-                .due {
-                    flex: 1 1 40%;
-                    text-align: center;
-                }
-
-                .option {
-                    flex: 0 0 20px;
-                    text-align: center;
-                    padding-right: 10px;
-                }
-
-                &:hover fa-icon {
-                    visibility: visible;
-                }
-            }
-        
+        }
     }
 }
 
 /*Dragging helper*/
-.gu-mirror {   
+.gu-mirror {
     display:flex;
     background: $white;
     padding: 0;    
-    @extend %shadow-card    
+    @extend %shadow-card;
 }
 .gu-mirror > td:nth-child(1) {
     flex: 1 1 50%;

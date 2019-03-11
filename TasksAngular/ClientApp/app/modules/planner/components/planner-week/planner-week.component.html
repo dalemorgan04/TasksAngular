@@ -1,28 +1,18 @@
-<h1>Anytime this Week</h1>
+<h1>anytime this <b>Week</b></h1>
 <mat-card>
-    <table>
-        <thead>
-            <tr>
-                <th class="description">{{weekString}}</th>
-                <th class="due">Due</th>
-                <th class="option"></th>
-            </tr>
-        </thead>
+    <div class="row heading">
+        <div class="col-sm-12">{{weekString}}</div>
+    </div>
+    <div class="items" [dragula]="'bag-day'" [dragulaModel]='plannerItemList'>
+        <div *ngFor="let item of plannerItemList"
+             [attr.data-itemid]="item.id"
+             [attr.data-itemtype]="item.plannerItemType">
 
-        <tbody>            
-            <tr *ngFor="let item of plannerItemList"
-                [attr.data-itemid]="item.id"
-                [attr.data-itemtype]="item.plannerItemType">
+            <div class="row">
+                <div class="col-sm-8">{{item.description}}</div>
+                <div class="col-sm-4">{{item.plannerItemType}}</div>
+            </div>
+        </div>
+    </div>
 
-                <td class="description"> {{item.description}}</td>
-                <td class="type"> {{item.plannerItemType}} </td>
-                <td class="option">
-                    <fa-icon style="color: var(--grey-dark);"
-                             size="lg"
-                             [icon]="deleteIcon">
-                    </fa-icon>
-                </td>
-            </tr>
-        </tbody>
-    </table>
 </mat-card>
