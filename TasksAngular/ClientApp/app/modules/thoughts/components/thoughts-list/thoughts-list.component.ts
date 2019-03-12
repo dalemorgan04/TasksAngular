@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { DragulaService } from 'ng2-dragula/ng2-dragula';
 import { ThoughtsService } from '../../thoughts.service';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
 import { IThought } from '../../../../models/thought.model';
+import { DragulaService } from 'ng2-dragula';
 
 @Component({
     selector: 'thoughts-list',
@@ -31,7 +31,7 @@ export class ThoughtsListComponent implements OnInit {
                 this.selectedThought = selectedThought.id;
             }
         );
-        this.dragula.setOptions('bag-thoughts',
+        this.dragula.createGroup('bag-thoughts',
             {
                 revertOnSpill: true,
                 mirrorContainer: document.body
@@ -41,7 +41,7 @@ export class ThoughtsListComponent implements OnInit {
 
     ngOnInit(): void {
         this.thoughtsService.refreshThoughtslist();
-        this.dragula.drop.subscribe(
+        this.dragula.drop('bag-thoughts').subscribe(
             (el: any) => {
                 var moveToSortId: number;
                 if (el[1].previousElementSibling !== null) {

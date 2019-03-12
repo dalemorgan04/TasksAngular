@@ -1,8 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { DragulaService } from 'ng2-dragula/ng2-dragula';
 import { IPlannerItem } from '../../../../models/planner.model';
 import { PlannerService } from '../../planner.service';
 import * as moment from 'moment';
+import { DragulaService } from 'ng2-dragula';
 
 @Component({
     selector: 'planner-days',
